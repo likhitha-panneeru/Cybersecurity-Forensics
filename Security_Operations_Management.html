@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Operations & Management</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#070b14;color:#e2e8f0;line-height:1.8;font-size:15px}
+.hero{background:linear-gradient(135deg,#0a1628,#0d2137 50%,#0c1a2e);color:#fff;padding:44px 24px;text-align:center;border-bottom:3px solid #0ea5e9}
+.hero h1{font-size:24px;font-weight:800}.hero h1 span{color:#38bdf8}
+.hero .sub{font-size:13px;color:#7dd3fc;margin-top:4px}
+.hero .meta{display:flex;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.hero .meta span{font-size:11px;background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.25);padding:4px 12px;border-radius:20px;color:#7dd3fc}
+.ct{max-width:960px;margin:0 auto;padding:20px 20px 80px}
+.acts{display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px}
+.acts button{font:600 12px Inter,sans-serif;padding:6px 14px;border-radius:6px;border:1px solid #1e3a5f;background:#0d1b2a;color:#38bdf8;cursor:pointer}
+.s{margin-bottom:8px;border-radius:10px;border:1px solid #1e293b;background:#0d1b2a;overflow:hidden}
+.s-h{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;user-select:none}
+.s-h:hover{background:#112240}
+.s-h h2{font-size:14px;font-weight:700;flex:1;color:#f1f5f9}
+.sn{min-width:40px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;background:#0284c7}
+.tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.tag-t{background:rgba(14,165,233,.15);color:#7dd3fc;border:1px solid rgba(14,165,233,.2)}
+.tag-l{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.cv{width:16px;height:16px;transition:transform .2s;color:#475569}
+.s.o .cv{transform:rotate(180deg)}
+.s-b{display:none;padding:0 18px 22px;border-top:1px solid #1e293b}
+.s.o .s-b{display:block}
+h3{font-size:15px;font-weight:700;color:#38bdf8;margin:18px 0 10px;padding-bottom:5px;border-bottom:2px solid #1e3a5f}
+h4{font-size:13px;font-weight:700;color:#f59e0b;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.3px}
+h5{font-size:12.5px;font-weight:700;color:#a78bfa;margin:10px 0 4px}
+p{margin-bottom:8px;color:#cbd5e1}
+ul,ol{padding-left:20px;margin:6px 0 10px;color:#94a3b8}li{margin-bottom:5px}
+strong{color:#f1f5f9}
+code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#1e293b;color:#fbbf24;padding:2px 6px;border-radius:4px}
+pre{background:#030712;color:#a5f3fc;border:1px solid #1e293b;border-radius:8px;padding:14px 16px;margin:8px 0 12px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.85;white-space:pre-wrap}
+.box{border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px}
+.box-b{background:rgba(59,130,246,.08);border-left:4px solid #3b82f6;color:#93c5fd}
+.box-g{background:rgba(34,197,94,.08);border-left:4px solid #22c55e;color:#86efac}
+.box-y{background:rgba(234,179,8,.08);border-left:4px solid #eab308;color:#fde68a}
+.box-r{background:rgba(239,68,68,.08);border-left:4px solid #ef4444;color:#fca5a5}
+.tbl{overflow-x:auto;margin:8px 0;border-radius:8px;border:1px solid #1e293b}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#112240;text-align:left;padding:8px 12px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#64748b;border-bottom:2px solid #1e293b}
+td{padding:7px 12px;border-bottom:1px solid #0d1b2a;color:#cbd5e1;vertical-align:top}tr:last-child td{border-bottom:none}
+.diagram{background:#030712;border:2px dashed #1e293b;border-radius:8px;padding:14px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;white-space:pre;overflow-x:auto;text-align:center;color:#64748b}
+@media(max-width:640px){.hero{padding:28px 14px}.hero h1{font-size:20px}pre{font-size:11px}.diagram{font-size:10px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>Security Operations & Management</h1>
+</div>
+
+<div class="ct">
+<div class="acts">
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.add('o'))">Expand All</button>
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.remove('o'))">Collapse All</button>
+</div>
+
+<!-- ══════════════ SESSION 1 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S01</span><h2>Cyber Threats, Indicators of Compromise (IoC) &amp; Indicators of Attack (IoA)</h2><span class="tag tag-t">Theory</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>7 Types of Cyber Security Threats</h3>
+
+<h4>1. Malware</h4>
+<p><strong>Malware (Malicious Software)</strong> is any software designed to harm, exploit, or compromise systems. It's the umbrella term — everything below is a subset.</p>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Behavior</th><th>Self-Replicates?</th><th>Needs User?</th><th>Example</th></tr>
+<tr><td><strong>Virus</strong></td><td>Attaches to legitimate files, executes when host file runs</td><td>Yes</td><td>Yes (must open file)</td><td>ILOVEYOU, Melissa</td></tr>
+<tr><td><strong>Worm</strong></td><td>Spreads across networks independently</td><td>Yes</td><td>No (self-propagates)</td><td>WannaCry, Conficker, Stuxnet</td></tr>
+<tr><td><strong>Trojan</strong></td><td>Disguised as legitimate software, creates backdoor</td><td>No</td><td>Yes (install/run)</td><td>njRAT, DarkComet</td></tr>
+<tr><td><strong>Ransomware</strong></td><td>Encrypts files, demands payment for decryption</td><td>Sometimes</td><td>Usually yes</td><td>WannaCry, LockBit, REvil</td></tr>
+<tr><td><strong>Spyware</strong></td><td>Silently collects user data (keystrokes, screens)</td><td>No</td><td>Usually no</td><td>Pegasus, FinFisher</td></tr>
+<tr><td><strong>Rootkit</strong></td><td>Hides deep in OS kernel, conceals other malware</td><td>No</td><td>No</td><td>Necurs, ZeroAccess</td></tr>
+<tr><td><strong>Fileless</strong></td><td>Lives in memory only, uses legitimate tools (PowerShell, WMI)</td><td>No</td><td>Usually no</td><td>PowerShell Empire attacks</td></tr>
+<tr><td><strong>RAT</strong></td><td>Remote Access Trojan — full remote control of victim</td><td>No</td><td>Yes (install)</td><td>njRAT, AsyncRAT, Quasar</td></tr>
+</table></div>
+
+<h4>2. Emotet</h4>
+<p>Emotet deserves its own category because it's one of the most dangerous and sophisticated malware families. Originally a <strong>banking trojan</strong> (2014), it evolved into a <strong>malware-as-a-service platform</strong>. How it works: Spreads via phishing emails with malicious Word documents (macros). Once installed, it downloads additional payloads (TrickBot, Ryuk ransomware). Acts as a <strong>botnet</strong> — thousands of infected machines controlled by attackers. Self-propagates across the network using stolen credentials and exploits. <strong>Why it matters:</strong> Emotet was so dangerous that a global law enforcement operation took it down in 2021 — but it came back. It's the poster child for "infection leads to ransomware."</p>
+
+<h4>3. Denial of Service (DoS/DDoS)</h4>
+<p>Overwhelm a system/server/network so legitimate users can't access it. Not about stealing data — it's about <strong>disruption</strong>.</p>
+<div class="tbl"><table>
+<tr><th>Layer</th><th>Attack Type</th><th>How</th></tr>
+<tr><td>L3/L4 Volumetric</td><td>UDP Flood, ICMP Flood, DNS/NTP Amplification</td><td>Saturate bandwidth with massive traffic</td></tr>
+<tr><td>L4 Protocol</td><td>SYN Flood, Ping of Death, Smurf Attack</td><td>Exhaust server's connection state table</td></tr>
+<tr><td>L7 Application</td><td>HTTP Flood, Slowloris, RUDY</td><td>Exhaust application resources (web server threads, DB connections)</td></tr>
+</table></div>
+<p><strong>DoS:</strong> Single source. <strong>DDoS:</strong> Distributed — thousands of sources (botnet). Much harder to stop because you can't block one IP.</p>
+
+<h4>4. Man in the Middle (MITM)</h4>
+<p>Attacker positions themselves <strong>between two communicating parties</strong>, intercepting and potentially modifying traffic. Neither party knows the attacker is there.</p>
+<div class="diagram">Alice ←──── Attacker ────→ Bob
+        (thinks they're      (thinks they're
+         talking to Bob)      talking to Alice)</div>
+<p><strong>Methods:</strong> ARP Poisoning (redirect LAN traffic), DNS Spoofing (redirect to fake site), SSL Stripping (downgrade HTTPS to HTTP), Rogue Wi-Fi (Evil Twin AP), HTTPS Interception (fake certificate). <strong>Prevention:</strong> HTTPS everywhere, Certificate pinning, VPN, HSTS (HTTP Strict Transport Security), DNSSEC.</p>
+
+<h4>5. Phishing</h4>
+<p>Social engineering via fake emails/messages/websites to steal credentials, install malware, or trick users into actions.</p>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Target</th><th>Channel</th></tr>
+<tr><td><strong>Phishing</strong></td><td>Mass — anyone</td><td>Email</td></tr>
+<tr><td><strong>Spear Phishing</strong></td><td>Specific individual/org</td><td>Email (researched, personalized)</td></tr>
+<tr><td><strong>Whaling</strong></td><td>Executives (CEO, CFO)</td><td>Email</td></tr>
+<tr><td><strong>Vishing</strong></td><td>Anyone</td><td>Voice/Phone</td></tr>
+<tr><td><strong>Smishing</strong></td><td>Anyone</td><td>SMS</td></tr>
+<tr><td><strong>BEC</strong></td><td>Finance/accounting</td><td>Compromised or spoofed executive email</td></tr>
+</table></div>
+
+<h4>6. SQL Injection</h4>
+<p>Injecting malicious SQL code into input fields that interact with a database. Exploits lack of input validation. Can read, modify, delete data, bypass authentication, or even execute OS commands.</p>
+<pre># Normal query: SELECT * FROM users WHERE user='admin' AND pass='secret';
+# Injected:     SELECT * FROM users WHERE user='admin' OR '1'='1' -- ' AND pass='anything';
+# Result:       Returns all users — bypasses login!</pre>
+<p><strong>Types:</strong> In-Band (Union-based, Error-based), Blind (Boolean, Time-based), Out-of-Band. <strong>Prevention:</strong> Parameterized queries/Prepared statements (NEVER concatenate user input into SQL), Input validation, WAF, Least-privilege DB accounts.</p>
+
+<h4>7. Password Attacks</h4>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>How</th><th>Defense</th></tr>
+<tr><td><strong>Brute Force</strong></td><td>Try every possible combination</td><td>Account lockout, Rate limiting, MFA</td></tr>
+<tr><td><strong>Dictionary</strong></td><td>Try words from a wordlist (rockyou.txt)</td><td>Complex passwords, Not using dictionary words</td></tr>
+<tr><td><strong>Credential Stuffing</strong></td><td>Use leaked credentials from other breaches</td><td>Unique passwords per site, MFA</td></tr>
+<tr><td><strong>Password Spraying</strong></td><td>Try 1 common password against many accounts</td><td>Account lockout, Monitoring</td></tr>
+<tr><td><strong>Rainbow Tables</strong></td><td>Pre-computed hash lookups</td><td>Salted hashes (bcrypt, Argon2)</td></tr>
+<tr><td><strong>Pass-the-Hash</strong></td><td>Use NTLM hash directly without cracking</td><td>Credential Guard, Disable NTLM</td></tr>
+<tr><td><strong>Keylogging</strong></td><td>Record keystrokes</td><td>EDR, Anti-malware, Virtual keyboards</td></tr>
+</table></div>
+
+<h3>Indicators of Compromise (IoC)</h3>
+<p>IoCs are <strong>forensic evidence</strong> that a security breach has occurred. They are <strong>reactive</strong> — they tell you an attack <strong>has already happened</strong> or is in progress. Think of IoCs as the "crime scene evidence."</p>
+
+<h4>Examples of IoC</h4>
+<div class="tbl"><table>
+<tr><th>Category</th><th>IoC Examples</th></tr>
+<tr><td><strong>Network</strong></td><td>Unusual outbound traffic, Communication to known C2 (Command &amp; Control) IPs, DNS requests to suspicious domains, Unexpected data transfers at odd hours, Spikes in failed connections</td></tr>
+<tr><td><strong>Host/Endpoint</strong></td><td>Unknown processes running, Registry changes, New scheduled tasks, Unexpected services installed, Files with known malware hashes, Unexpected high CPU/memory usage</td></tr>
+<tr><td><strong>File</strong></td><td>Malicious file hashes (MD5, SHA-256), Known malware signatures, Suspicious file names in temp directories, Modified system files</td></tr>
+<tr><td><strong>Email</strong></td><td>Sender IP from known threat lists, Malicious attachment hashes, Phishing URLs, SPF/DKIM failures</td></tr>
+<tr><td><strong>Account</strong></td><td>Logins from unusual locations, Multiple failed logins followed by success, Privilege escalation, Logins at unusual times, New admin accounts created</td></tr>
+</table></div>
+
+<h3>Indicators of Attack (IoA)</h3>
+<p>IoAs focus on <strong>detecting attacker behavior in real-time</strong>, regardless of the tools or malware used. They are <strong>proactive</strong> — they identify attacks <strong>as they're happening</strong>, based on intent and actions, not artifacts.</p>
+
+<h4>IoC vs IoA</h4>
+<div class="tbl"><table>
+<tr><th>Aspect</th><th>IoC (Indicator of Compromise)</th><th>IoA (Indicator of Attack)</th></tr>
+<tr><td>Focus</td><td>Evidence AFTER an attack</td><td>Behavior DURING an attack</td></tr>
+<tr><td>Nature</td><td>Reactive (what happened)</td><td>Proactive (what's happening now)</td></tr>
+<tr><td>What it detects</td><td>Specific artifacts: hashes, IPs, domains</td><td>Attack patterns: lateral movement, privilege escalation, reconnaissance</td></tr>
+<tr><td>Effectiveness</td><td>Only known threats (signature-based)</td><td>Known AND unknown threats (behavior-based)</td></tr>
+<tr><td>Example</td><td>"This file has hash XYZ which is known malware"</td><td>"A process is spawning cmd.exe from Excel — that's suspicious behavior regardless of the file hash"</td></tr>
+<tr><td>Limitation</td><td>Attackers change hashes/IPs constantly (polymorphism)</td><td>May generate false positives</td></tr>
+<tr><td>Mapped to</td><td>Threat intelligence feeds, VirusTotal</td><td>MITRE ATT&amp;CK framework</td></tr>
+</table></div>
+
+<div class="box box-b">💡 <strong>Interview Gold:</strong> "IoCs tell you the WHAT (what artifact was found). IoAs tell you the WHY and HOW (what behavior pattern is happening). A mature SOC uses BOTH — IoCs for known threats and IoAs for behavioral detection of novel attacks."</div>
+
+<h4>IoC Use in Detection &amp; Response</h4>
+<ol>
+<li><strong>Threat Intel Feeds:</strong> Subscribe to feeds (MISP, OTX, STIX/TAXII) that share IoCs (malicious IPs, domains, hashes)</li>
+<li><strong>SIEM Integration:</strong> Import IoCs into SIEM → create correlation rules → alert when IoC is seen in your logs</li>
+<li><strong>EDR Matching:</strong> EDR tools compare file hashes and behaviors against IoC databases in real-time</li>
+<li><strong>Incident Response:</strong> During IR, search your environment for IoCs related to the specific threat (e.g., after hearing about a new ransomware, search for its known hashes, C2 domains, registry keys)</li>
+<li><strong>Threat Hunting:</strong> Proactively search logs for IoCs/IoAs without waiting for an alert</li>
+</ol>
+
+</div></div>
+
+<!-- ══════════════ SESSION 2 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S02</span><h2>SOC Overview &amp; Incident Management Systems</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>SOC (Security Operations Center) Overview</h3>
+<p>A SOC is a <strong>centralized team</strong> (people + processes + technology) that monitors, detects, analyzes, and responds to cybersecurity incidents 24/7. It's the nerve center of an organization's security.</p>
+
+<h4>People — SOC Team Structure</h4>
+<div class="tbl"><table>
+<tr><th>Role</th><th>Tier</th><th>Responsibilities</th></tr>
+<tr><td><strong>SOC Analyst L1</strong></td><td>Tier 1 — Triage</td><td>Monitor alerts, Initial triage (true/false positive), Escalate confirmed incidents, Follow playbooks, Create tickets</td></tr>
+<tr><td><strong>SOC Analyst L2</strong></td><td>Tier 2 — Investigation</td><td>Deep-dive investigation, Correlate events, Determine scope and impact, Perform containment actions</td></tr>
+<tr><td><strong>SOC Analyst L3</strong></td><td>Tier 3 — Threat Hunter</td><td>Proactive threat hunting, Advanced forensics, Malware analysis, Develop new detection rules, Threat intelligence</td></tr>
+<tr><td><strong>SOC Manager</strong></td><td>Management</td><td>Team management, Metrics/KPIs, Process improvement, Stakeholder communication, Budget</td></tr>
+<tr><td><strong>Incident Responder</strong></td><td>Specialized</td><td>Lead containment, eradication, and recovery for confirmed incidents</td></tr>
+<tr><td><strong>Threat Intel Analyst</strong></td><td>Specialized</td><td>Monitor threat landscape, Produce intelligence reports, Feed IoCs into SIEM</td></tr>
+</table></div>
+
+<h4>Process — SOC Workflow</h4>
+<div class="diagram">Data Sources (Logs)                    SIEM                         SOC Analysts
+────────────────────               ─────────────               ─────────────────
+Firewalls                          Collect                     L1: Triage alerts
+IDS/IPS         ──── Log Agents ──→  Parse     ──→ Alerts ──→  L2: Investigate
+Endpoints (EDR)                    Correlate                   L3: Hunt / Forensics
+Servers                            Dashboard                   IR: Contain / Eradicate
+Cloud                              Rules/Use Cases             Manager: Report
+Email Gateway</div>
+
+<h4>Technology — SOC Tool Stack</h4>
+<div class="tbl"><table>
+<tr><th>Category</th><th>Purpose</th><th>Examples</th></tr>
+<tr><td><strong>SIEM</strong></td><td>Log collection, correlation, alerting</td><td>Splunk, IBM QRadar, Elastic SIEM, Microsoft Sentinel, Wazuh</td></tr>
+<tr><td><strong>EDR</strong></td><td>Endpoint monitoring, detection, response</td><td>CrowdStrike Falcon, Microsoft Defender for Endpoint, Carbon Black, SentinelOne</td></tr>
+<tr><td><strong>SOAR</strong></td><td>Orchestration, automation, playbooks</td><td>Palo Alto XSOAR, Splunk SOAR, IBM Resilient</td></tr>
+<tr><td><strong>IDS/IPS</strong></td><td>Network intrusion detection/prevention</td><td>Snort, Suricata, Palo Alto</td></tr>
+<tr><td><strong>Firewall/NGFW</strong></td><td>Network traffic filtering</td><td>Palo Alto, Fortinet, Cisco ASA, pfSense</td></tr>
+<tr><td><strong>Threat Intel</strong></td><td>IoC feeds, adversary tracking</td><td>MISP, OTX, Recorded Future, VirusTotal</td></tr>
+<tr><td><strong>Ticketing</strong></td><td>Incident tracking and case management</td><td>TheHive, ServiceNow, Jira, RTIR</td></tr>
+</table></div>
+
+<h4>Tiered vs Tierless SOC</h4>
+<div class="tbl"><table>
+<tr><th>Model</th><th>How</th><th>Pros</th><th>Cons</th></tr>
+<tr><td><strong>Tiered (L1/L2/L3)</strong></td><td>Analysts organized by skill level. L1 triages → escalates to L2 → L3</td><td>Clear roles, Scalable, Good for large SOCs</td><td>L1 burnout (repetitive), Slow escalation, Knowledge silos</td></tr>
+<tr><td><strong>Tierless</strong></td><td>All analysts handle alerts end-to-end. Automation handles triage</td><td>Faster response, Better skill development, Higher job satisfaction</td><td>Needs skilled staff, Harder to scale, Needs strong automation</td></tr>
+</table></div>
+
+<h4>Important Operational Documents</h4>
+<ul>
+<li><strong>Playbooks:</strong> Step-by-step procedures for handling specific incident types (phishing, malware, DDoS, unauthorized access). "If you see X, do Y."</li>
+<li><strong>Runbooks:</strong> Technical procedures for specific tasks (how to block an IP on the firewall, how to isolate a host, how to collect forensic image).</li>
+<li><strong>Standard Operating Procedures (SOPs):</strong> How the SOC operates day-to-day (shift handoff, escalation criteria, reporting timelines).</li>
+<li><strong>Communication Matrix:</strong> Who to notify for each severity level (P1=CISO, P2=SOC Manager, P3=Team Lead).</li>
+<li><strong>Escalation Policy:</strong> When to escalate, to whom, and within what timeframe.</li>
+</ul>
+
+<h3>Events, Alerts, Anomalies &amp; Incidents</h3>
+<div class="tbl"><table>
+<tr><th>Term</th><th>Definition</th><th>Example</th><th>Volume</th></tr>
+<tr><td><strong>Event</strong></td><td>Any observable occurrence in a system</td><td>User login, File access, Firewall allow/deny</td><td>Millions/day</td></tr>
+<tr><td><strong>Alert</strong></td><td>An event that matches a detection rule and needs human review</td><td>SIEM rule: "5 failed logins in 1 min from same IP"</td><td>Hundreds/day</td></tr>
+<tr><td><strong>Anomaly</strong></td><td>Deviation from normal baseline behavior</td><td>User downloading 10GB at 3 AM (normally downloads 100MB)</td><td>Dozens/day</td></tr>
+<tr><td><strong>Incident</strong></td><td>A confirmed security event that requires response</td><td>Confirmed malware infection, Verified data breach</td><td>Few per week</td></tr>
+</table></div>
+
+<div class="diagram">Events (millions) → Parsed/Filtered → Correlated by SIEM Rules → Alerts (hundreds)
+→ L1 Triage (true/false positive?) → True Positive → Incident Created → Investigation → Response</div>
+
+<h4>Signature-Based vs Anomaly-Based Detection</h4>
+<p><strong>Signatures:</strong> Match known patterns (like antivirus signatures). Fast, low false positives, but ONLY detects known threats. <strong>Anomaly:</strong> Establish a baseline of "normal" behavior, alert on deviations. Detects unknown/novel threats, but higher false positive rate. A mature SOC uses both.</p>
+
+<h4>Alert Triage Workflow</h4>
+<ol>
+<li><strong>Alert fires</strong> in SIEM based on correlation rule</li>
+<li><strong>L1 reviews:</strong> Is this a true positive or false positive? Check context — source IP, destination, time, user, past history</li>
+<li><strong>Enrich:</strong> Look up IPs (VirusTotal, AbuseIPDB), Check domain reputation, Correlate with other alerts</li>
+<li><strong>Decision:</strong> False Positive → close with notes. True Positive → Create incident, escalate to L2</li>
+<li><strong>Document:</strong> All actions, evidence, reasoning in the ticket</li>
+</ol>
+
+<h3>Incident Management Systems</h3>
+<h4>TheHive (Open-Source Incident Management)</h4>
+<p>TheHive is a popular open-source Security Incident Response Platform. Works with Cortex (automated analysis) and MISP (threat intelligence).</p>
+<pre># Key TheHive concepts:
+# Case:       An incident being investigated. Contains tasks, observables, logs.
+# Alert:      Incoming notification (from SIEM, email, etc.) that may become a case.
+# Observable: An artifact to analyze — IP, domain, hash, email, URL.
+# Task:       Work items within a case (analyze malware, contain host, write report).
+# Playbook:   Pre-defined set of tasks for a specific incident type.
+# TLP:        Traffic Light Protocol — sharing classification
+#             TLP:RED (no sharing), TLP:AMBER (limited), TLP:GREEN (community), TLP:WHITE (public)
+
+# Workflow:
+# 1. Alert arrives (from SIEM, MISP, email)
+# 2. Analyst reviews → Promotes to Case or Closes as False Positive
+# 3. Case created with severity, TLP, tasks assigned
+# 4. Observables added (IPs, domains, hashes)
+# 5. Cortex analyzers run on observables (VirusTotal, MISP lookup, GeoIP)
+# 6. Tasks completed, evidence documented
+# 7. Case closed with resolution and report</pre>
+
+<h4>Case and Alert Naming Convention</h4>
+<p>Use a consistent format: <code>[DATE]-[CATEGORY]-[SHORT_DESCRIPTION]-[SEQ]</code><br>
+Example: <code>2026-07-01-MALWARE-Emotet-Phishing-Campaign-001</code><br>
+Or: <code>INC-2026-0142-PHISHING</code></p>
+
+<h4>Incident Categorization Framework</h4>
+<div class="tbl"><table>
+<tr><th>Category</th><th>Examples</th></tr>
+<tr><td>Malware</td><td>Virus, Worm, Trojan, Ransomware, RAT</td></tr>
+<tr><td>Unauthorized Access</td><td>Brute force, Credential theft, Privilege escalation</td></tr>
+<tr><td>Denial of Service</td><td>DDoS, Resource exhaustion</td></tr>
+<tr><td>Data Breach / Leak</td><td>Exfiltration, Accidental exposure, Insider theft</td></tr>
+<tr><td>Phishing / Social Engineering</td><td>Email phishing, Vishing, BEC</td></tr>
+<tr><td>Web Application Attack</td><td>SQLi, XSS, CSRF, File inclusion</td></tr>
+<tr><td>Policy Violation</td><td>Unauthorized software, Data handling violation</td></tr>
+<tr><td>Reconnaissance</td><td>Port scanning, Enumeration attempts</td></tr>
+</table></div>
+
+</div></div>
+
+<!-- ══════════════ SESSION 3 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S03</span><h2>Understanding Your Network — DNS, HTTP/S, SMTP &amp; Email Analysis</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Corporate Network Architecture</h3>
+
+<h4>Network Zones</h4>
+<div class="diagram">┌─────────────────────────────────────────────────────────────┐
+│                          INTERNET                          │
+└─────────────────────────┬───────────────────────────────────┘
+                          │
+                   [Perimeter Firewall]
+                          │
+              ┌───────────┴───────────┐
+              │         DMZ           │  (Web servers, Email relay,
+              │  Public-facing hosts  │   DNS, Reverse proxy)
+              └───────────┬───────────┘
+                          │
+                   [Internal Firewall]
+                          │
+         ┌────────────────┼────────────────┐
+         │                │                │
+    [User VLAN]     [Server VLAN]    [Management VLAN]
+    Workstations    App servers       Switches, Routers
+    Printers        Databases         Admin consoles
+    Phones          File servers      SIEM, Jump boxes</div>
+
+<h4>Zero Trust Architecture</h4>
+<p><strong>"Never trust, always verify."</strong> Traditional security: Trust everything inside the network perimeter. Zero Trust: Trust nothing — verify every user, device, and connection regardless of location. Key principles: Verify explicitly (MFA, device health), Least privilege access, Assume breach (segment, monitor, detect). Implementation: Microsegmentation, Identity-based access, Continuous verification, Encrypted all traffic (even internal).</p>
+
+<h3>Understanding DNS (Port 53)</h3>
+
+<h4>DNS Server Types</h4>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Role</th></tr>
+<tr><td><strong>Stub Resolver</strong></td><td>Built into your OS. Sends queries to configured DNS server. Caches locally. Not a full resolver.</td></tr>
+<tr><td><strong>Forwarding Server</strong></td><td>Receives queries from clients, forwards to another DNS server. Caches results. Doesn't resolve itself.</td></tr>
+<tr><td><strong>Caching Server</strong></td><td>Performs full recursive resolution, caches results. Speeds up repeated queries. Example: Unbound.</td></tr>
+<tr><td><strong>Authoritative Server</strong></td><td>Holds the actual DNS records for a zone. Answers definitively: "I know the answer." Doesn't recurse.</td></tr>
+<tr><td><strong>Recursive Resolver</strong></td><td>Resolves queries on behalf of clients by querying root → TLD → authoritative. Example: 8.8.8.8, 1.1.1.1.</td></tr>
+</table></div>
+
+<h4>DNS Attacks &amp; Detection</h4>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>How</th><th>Detection (SOC Perspective)</th></tr>
+<tr><td><strong>Malicious Domain Request</strong></td><td>Malware connects to C2 domain</td><td>Check domain reputation (VirusTotal), Domain age (new = suspicious), Domain randomness (DGA — random-looking domains like <code>xkr4tq.com</code>), Excessive length, Unusual TLDs</td></tr>
+<tr><td><strong>DNS Tunneling</strong></td><td>Exfiltrate data by encoding it in DNS queries</td><td>Unusually long DNS queries, High query volume to single domain, TXT record queries with encoded data</td></tr>
+<tr><td><strong>DNS Recon</strong></td><td>Enumerate subdomains, zone transfers</td><td>High volume of NXDOMAIN responses, Zone transfer attempts from unauthorized IPs</td></tr>
+<tr><td><strong>Unauthorized DNS</strong></td><td>Device using non-corporate DNS (bypass filtering)</td><td>DNS traffic to IPs other than corporate DNS servers</td></tr>
+<tr><td><strong>Domain Shadowing</strong></td><td>Attacker creates subdomains under compromised domain</td><td>New subdomains appearing for known domains, Check domain registration details</td></tr>
+</table></div>
+
+<pre># DNS Analysis Commands
+$ dig suspicious-domain.com +short               # Quick lookup
+$ dig suspicious-domain.com ANY                   # All records
+$ whois suspicious-domain.com                     # Registration info (age, registrant)
+$ host -t ptr 203.0.113.5                         # Reverse DNS
+# PassiveDNS: Check historical DNS records to see what an IP/domain resolved to in the past
+# Shared Hosting: Multiple domains on same IP — check if IP is shared hosting (legitimate) vs dedicated (suspicious)</pre>
+
+<h3>HTTP and HTTPS Analysis</h3>
+
+<h4>Decoding URLs</h4>
+<pre># URL structure:
+https://user:pass@www.example.com:443/path/page.html?key=value&id=2#section
+│       │         │                │   │              │            │
+scheme  auth      host           port  path          query        fragment
+
+# URL encoding: space=%20, <=&lt;=%3C, >=%3E, '=%27, "=%22
+# Attackers use encoding to bypass filters:
+# %2F = /    %3A = :    %3F = ?    %26 = &
+# Double-encoding: %252F = %2F → /</pre>
+
+<h4>HTTP Request Analysis</h4>
+<pre># Key Request Headers to analyze:
+GET /login HTTP/1.1
+Host: target.com                  # Target website
+User-Agent: Mozilla/5.0 (...)     # Client software — look for unusual/scripted agents
+Referer: https://google.com/      # Where user came from — check for suspicious referrers
+Cookie: session=abc123            # Session tokens — look for stolen/replayed sessions
+X-Forwarded-For: 10.0.0.1        # Real client IP behind proxy
+Content-Type: application/json    # Data format — watch for unexpected types</pre>
+
+<h4>HTTP Response Analysis</h4>
+<pre># Key Response Headers:
+HTTP/1.1 200 OK
+Server: Apache/2.4.41            # Server version (info disclosure if detailed)
+Set-Cookie: session=xyz; HttpOnly; Secure; SameSite=Strict
+X-Frame-Options: DENY            # Clickjacking protection
+Content-Security-Policy: default-src 'self'   # XSS protection
+Strict-Transport-Security: max-age=31536000   # HSTS — force HTTPS
+
+# Security headers to CHECK for presence:
+# X-Frame-Options, CSP, HSTS, X-Content-Type-Options, X-XSS-Protection
+# Missing headers = misconfiguration = risk</pre>
+
+<h4>Analyzing HTTP for Suspicious Activity</h4>
+<ul>
+<li><strong>Credential Phishing:</strong> POST to fake login page → check domain legitimacy, SSL certificate issuer</li>
+<li><strong>User-Agent Deconstruction:</strong> Automated tools often have unusual User-Agents (<code>Python-urllib</code>, <code>curl/7.x</code>, <code>sqlmap</code>). Mismatch: Windows User-Agent from a Mac = suspicious.</li>
+<li><strong>Exploit Kits:</strong> Chain of redirects (site → iframe → exploit → payload). Look for: Multiple 302 redirects, Obfuscated JavaScript, Unexpected iframes.</li>
+<li><strong>HTTPS Certificate Inspection:</strong> Self-signed cert, Cert doesn't match domain, Recently issued cert, Free CA (Let's Encrypt used by attackers — not inherently suspicious but combined with other factors).</li>
+</ul>
+
+<h3>SMTP &amp; Email Analysis</h3>
+<h4>How Email Works</h4>
+<div class="diagram">Sender → [MUA] → [MSA/MTA] → [MTA] → ... → [MTA] → [MDA] → [MUA] → Recipient
+         (Outlook)  (smtp.gmail)   (relay)        (mx.target)  (mailbox)  (Outlook)
+
+Port 25:  SMTP (server-to-server)
+Port 587: SMTP Submission (client-to-server, authenticated)
+Port 465: SMTPS (SMTP over TLS)
+Port 993: IMAPS (read email)
+Port 995: POP3S (download email)</div>
+
+<h4>Reading Email Headers (Bottom-Up)</h4>
+<pre># Headers are added bottom-to-top — read from BOTTOM to TOP to trace the path
+
+Received: from mail-out.attacker.com (203.0.113.50)       ← FIRST hop (sender's server)
+    by mx1.target.com (10.0.0.5)                          ← LAST hop (recipient's server)
+    Thu, 01 Jul 2026 10:30:00 +0530
+
+From: ceo@company.com           ← Can be spoofed!
+Reply-To: attacker@evil.com     ← Where replies actually go — RED FLAG if different from From
+Return-Path: bounce@evil.com    ← Bounce address — another spoofing indicator
+X-Originating-IP: 203.0.113.50 ← Actual sender IP
+Message-ID: &lt;unique@server&gt;    ← Should match sending domain
+SPF: pass/fail                  ← Did sender IP match domain's SPF record?
+DKIM: pass/fail                 ← Was email cryptographically signed by domain?
+DMARC: pass/fail                ← Did email pass both SPF AND DKIM alignment?</pre>
+
+<h4>Email Authentication (SPF, DKIM, DMARC)</h4>
+<div class="tbl"><table>
+<tr><th>Protocol</th><th>What It Does</th><th>How</th></tr>
+<tr><td><strong>SPF</strong></td><td>Specifies which IPs can send email for a domain</td><td>DNS TXT record listing authorized senders. Receiver checks if sender IP is in the list.</td></tr>
+<tr><td><strong>DKIM</strong></td><td>Cryptographic signature proving email wasn't tampered with</td><td>Sender adds signature using private key. Receiver verifies with public key from DNS.</td></tr>
+<tr><td><strong>DMARC</strong></td><td>Policy that tells receivers what to do if SPF/DKIM fail</td><td>DNS TXT record: none (monitor), quarantine (spam), reject (drop). Requires alignment.</td></tr>
+</table></div>
+
+<h4>Identifying Spoofed Email</h4>
+<ol>
+<li>Check <strong>From</strong> vs <strong>Return-Path</strong> vs <strong>Reply-To</strong> — do they match?</li>
+<li>Check <strong>SPF result</strong> — pass or fail?</li>
+<li>Check <strong>DKIM result</strong> — pass or fail?</li>
+<li>Check <strong>DMARC result</strong> — pass or fail?</li>
+<li>Check <strong>Received headers</strong> — does the originating IP match the claimed sender domain?</li>
+<li>Check <strong>X-Originating-IP</strong> — geolocate it, check reputation</li>
+</ol>
+
+</div></div>
+
+<!-- ══════════════ SESSION 4 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S04</span><h2>Event Logging — Endpoint Defense, Windows/Linux Logs, Log Pipeline</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Endpoint Defense Stack</h3>
+<div class="tbl"><table>
+<tr><th>Control</th><th>What It Does</th><th>Examples</th></tr>
+<tr><td><strong>Vulnerability Scanning</strong></td><td>Discover known vulnerabilities in software/OS</td><td>Nessus, Qualys, OpenVAS</td></tr>
+<tr><td><strong>Patch Management</strong></td><td>Apply security updates</td><td>WSUS, SCCM, Ansible</td></tr>
+<tr><td><strong>Whitelisting</strong></td><td>Only approved applications can run</td><td>AppLocker, Carbon Black</td></tr>
+<tr><td><strong>Anti-Exploitation</strong></td><td>Prevent exploit techniques (buffer overflow, ROP)</td><td>EMET, Windows Exploit Guard</td></tr>
+<tr><td><strong>HIDS/HIPS</strong></td><td>Host-based intrusion detection/prevention</td><td>OSSEC, Wazuh</td></tr>
+<tr><td><strong>Host Firewall</strong></td><td>Control network traffic to/from endpoint</td><td>Windows Firewall, iptables</td></tr>
+<tr><td><strong>FIM</strong></td><td>File Integrity Monitoring — detect unauthorized file changes</td><td>Tripwire, OSSEC, Wazuh</td></tr>
+<tr><td><strong>EDR</strong></td><td>Endpoint Detection &amp; Response — real-time monitoring, investigation, containment</td><td>CrowdStrike, Defender for Endpoint, SentinelOne</td></tr>
+<tr><td><strong>DLP</strong></td><td>Data Loss Prevention — prevent sensitive data leaving</td><td>Symantec DLP, Microsoft Purview</td></tr>
+<tr><td><strong>UEBA</strong></td><td>User Entity Behavior Analytics — baseline normal behavior, alert deviations</td><td>Exabeam, Securonix, Splunk UBA</td></tr>
+<tr><td><strong>Disk Encryption</strong></td><td>Encrypt drives to protect data at rest</td><td>BitLocker, VeraCrypt, LUKS</td></tr>
+</table></div>
+
+<h3>Windows Event Logging</h3>
+<h4>How It Works</h4>
+<p>Windows logs events in <strong>channels</strong> stored as .evtx files. Each event has an <strong>Event ID</strong>, source, level, timestamp, and XML-formatted data. Viewed via <strong>Event Viewer</strong> (<code>eventvwr.msc</code>) or PowerShell.</p>
+
+<h4>Critical Windows Event IDs for SOC</h4>
+<div class="tbl"><table>
+<tr><th>Event ID</th><th>Channel</th><th>What</th><th>Why It Matters</th></tr>
+<tr><td><strong>4624</strong></td><td>Security</td><td>Successful logon</td><td>Track who logged in, from where, logon type</td></tr>
+<tr><td><strong>4625</strong></td><td>Security</td><td>Failed logon</td><td>Brute force detection, account enumeration</td></tr>
+<tr><td><strong>4634/4647</strong></td><td>Security</td><td>Logoff</td><td>Session duration tracking</td></tr>
+<tr><td><strong>4648</strong></td><td>Security</td><td>Logon with explicit credentials</td><td>Lateral movement (RunAs, credential use)</td></tr>
+<tr><td><strong>4672</strong></td><td>Security</td><td>Special privileges assigned</td><td>Admin logon — always investigate</td></tr>
+<tr><td><strong>4720</strong></td><td>Security</td><td>User account created</td><td>Attacker creating backdoor account</td></tr>
+<tr><td><strong>4726</strong></td><td>Security</td><td>User account deleted</td><td>Covering tracks</td></tr>
+<tr><td><strong>4732</strong></td><td>Security</td><td>Member added to security group</td><td>Privilege escalation</td></tr>
+<tr><td><strong>1102</strong></td><td>Security</td><td>Audit log cleared</td><td>HIGHLY SUSPICIOUS — attacker covering tracks</td></tr>
+<tr><td><strong>4688</strong></td><td>Security</td><td>New process created</td><td>Track command execution (enable command-line logging!)</td></tr>
+<tr><td><strong>4698</strong></td><td>Security</td><td>Scheduled task created</td><td>Persistence mechanism</td></tr>
+<tr><td><strong>7045</strong></td><td>System</td><td>New service installed</td><td>Persistence / Malware installation</td></tr>
+<tr><td><strong>1 (Sysmon)</strong></td><td>Sysmon</td><td>Process creation (with hash, cmdline, parent)</td><td>Most valuable log for detection</td></tr>
+<tr><td><strong>3 (Sysmon)</strong></td><td>Sysmon</td><td>Network connection</td><td>C2 detection, data exfiltration</td></tr>
+<tr><td><strong>11 (Sysmon)</strong></td><td>Sysmon</td><td>File created</td><td>Malware drops, Downloads</td></tr>
+</table></div>
+
+<pre># PowerShell — Query Windows Events
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 20  # Failed logons
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4720} -MaxEvents 10  # New accounts
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=1102}               # Cleared logs
+Get-WinEvent -FilterHashtable @{LogName='System'; Id=7045} -MaxEvents 10   # New services</pre>
+
+<h3>Linux Logging</h3>
+<h4>Syslog &amp; Key Log Files</h4>
+<div class="tbl"><table>
+<tr><th>Log File</th><th>Contents</th></tr>
+<tr><td><code>/var/log/auth.log</code> (Debian) / <code>/var/log/secure</code> (RHEL)</td><td>Authentication events — SSH logins, sudo, su, failed attempts</td></tr>
+<tr><td><code>/var/log/syslog</code> (Debian) / <code>/var/log/messages</code> (RHEL)</td><td>General system messages</td></tr>
+<tr><td><code>/var/log/kern.log</code></td><td>Kernel messages</td></tr>
+<tr><td><code>/var/log/apache2/access.log</code></td><td>Web server access</td></tr>
+<tr><td><code>/var/log/apache2/error.log</code></td><td>Web server errors</td></tr>
+<tr><td><code>/var/log/cron</code></td><td>Cron job execution</td></tr>
+<tr><td><code>/var/log/audit/audit.log</code></td><td>SELinux and auditd events</td></tr>
+</table></div>
+
+<pre># Syslog format:
+# timestamp hostname process[PID]: message
+Jul  1 10:30:45 server01 sshd[1234]: Failed password for root from 203.0.113.50 port 22 ssh2
+
+# Key commands
+$ grep "Failed password" /var/log/auth.log | tail -20     # Failed SSH logins
+$ grep "Accepted" /var/log/auth.log | tail -20            # Successful logins
+$ journalctl -u sshd --since "1 hour ago"                 # Systemd journal for SSH
+$ last                                                     # Login history
+$ lastb                                                    # Failed login history
+$ ausearch -m USER_LOGIN --success no                      # Auditd failed logins</pre>
+
+<h4>Kerberos Authentication (for SOC)</h4>
+<div class="diagram">1. User sends credentials to KDC (Key Distribution Center)
+2. KDC's AS (Authentication Service) verifies → issues TGT (Ticket-Granting Ticket)
+3. User presents TGT to TGS (Ticket-Granting Service) + requests access to service
+4. TGS issues Service Ticket
+5. User presents Service Ticket to target server → Access granted
+
+Key Event IDs:
+4768 — TGT requested (AS-REQ)
+4769 — Service Ticket requested (TGS-REQ)
+4771 — Kerberos pre-authentication failed
+
+Attacks:
+Kerberoasting — Request service tickets, crack offline (Event 4769 with RC4 encryption)
+Golden Ticket — Forged TGT using krbtgt hash (compromises entire domain)
+Silver Ticket — Forged service ticket (compromises single service)</div>
+
+<h3>Log Collection Pipeline</h3>
+<div class="diagram">Source → Agent → Transport → Parser → Enrichment → Normalization → Storage → SIEM
+
+Source:        Firewalls, Servers, Endpoints, Cloud, Apps
+Agent:         Winlogbeat, Filebeat, NXLog, Fluentd, rsyslog
+Transport:     Syslog (UDP 514), TCP, Kafka, HTTP
+Parser:        Extract fields from unstructured logs (regex, Grok patterns)
+Enrichment:    Add context: GeoIP, Threat Intel lookup, User info, Asset info
+Normalization: Map to common schema (ECS, CIM) so different sources speak same language
+Storage:       Elasticsearch, Splunk indexes, Data lake
+SIEM:          Correlation, Alerting, Dashboards</div>
+
+</div></div>
+
+<!-- ══════════════ SESSION 5 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S05</span><h2>SIEM (Security Information &amp; Event Management)</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>What is SIEM?</h3>
+<p>A SIEM collects logs from across your entire environment, <strong>normalizes</strong> them into a common format, <strong>correlates</strong> events to find patterns, and generates <strong>alerts</strong> when suspicious activity is detected. It's the SOC's primary tool — the "brain" that connects the dots across all security data.</p>
+
+<h4>Benefits of Data Centralization</h4>
+<ul>
+<li><strong>Single pane of glass:</strong> See all security data in one place instead of checking 20 different consoles</li>
+<li><strong>Correlation:</strong> Connect events across sources (failed login on AD + VPN login from unusual country + file download = compromised account)</li>
+<li><strong>Long-term storage:</strong> Retain logs for compliance and forensic investigations</li>
+<li><strong>Compliance:</strong> Prove to auditors that you're monitoring and retaining logs (PCI DSS, ISO 27001, CERT-In 180-day requirement)</li>
+</ul>
+
+<h4>SIEM Options</h4>
+<div class="tbl"><table>
+<tr><th>SIEM</th><th>Type</th><th>Strengths</th></tr>
+<tr><td><strong>Splunk Enterprise</strong></td><td>Commercial</td><td>Powerful search (SPL), Massive ecosystem, Most popular enterprise SIEM</td></tr>
+<tr><td><strong>IBM QRadar</strong></td><td>Commercial</td><td>Strong correlation, Flow analysis, Offense management</td></tr>
+<tr><td><strong>Microsoft Sentinel</strong></td><td>Cloud-native</td><td>Azure integration, KQL language, AI/ML detection, Pay-per-use</td></tr>
+<tr><td><strong>Elastic SIEM</strong></td><td>Open Source/Commercial</td><td>ELK Stack (Elasticsearch+Logstash+Kibana), Flexible, Free tier</td></tr>
+<tr><td><strong>Wazuh</strong></td><td>Open Source</td><td>HIDS + SIEM, FIM, Vulnerability detection, Free</td></tr>
+<tr><td><strong>Google Chronicle</strong></td><td>Cloud-native</td><td>Massive data ingestion, YARA-L rules, VirusTotal integration</td></tr>
+</table></div>
+
+<h3>Efficient Searching in SIEM</h3>
+<pre># ═══ Splunk SPL (Search Processing Language) ═══
+index=security sourcetype=WinEventLog EventCode=4625
+| stats count by src_ip, user
+| where count > 10
+| sort -count
+# Translation: Find failed logins, count per IP+user, show those with >10 attempts
+
+index=firewall action=blocked
+| timechart span=1h count by src_ip
+# Translation: Show blocked connections per hour per source IP
+
+index=security EventCode=4720
+| table _time, TargetUserName, SubjectUserName, ComputerName
+# Translation: Show newly created accounts with who created them
+
+# ═══ Elastic/KQL (Kibana Query Language) ═══
+event.code: "4625" and source.ip: "203.0.113.*"
+# Failed logins from specific subnet
+
+event.code: "1" and process.name: "powershell.exe" and process.command_line: *-enc*
+# Sysmon Process Creation: PowerShell with encoded commands (suspicious!)
+
+# ═══ Microsoft Sentinel KQL ═══
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts = count() by TargetAccount, IpAddress
+| where FailedAttempts > 10
+| order by FailedAttempts desc</pre>
+
+<h3>Use Cases (Detection Rules)</h3>
+<p>A <strong>use case</strong> is a specific scenario you want to detect, defined as a correlation rule in the SIEM. It maps a threat to a detection logic to an alert.</p>
+<div class="tbl"><table>
+<tr><th>Use Case</th><th>Logic</th><th>Severity</th></tr>
+<tr><td>Brute Force</td><td>>10 failed logins (4625) from same IP in 5 min</td><td>Medium</td></tr>
+<tr><td>Brute Force → Success</td><td>Multiple 4625 followed by 4624 from same IP for same user</td><td>High</td></tr>
+<tr><td>Admin Account Created</td><td>4720 (user created) + 4732 (added to Administrators group)</td><td>High</td></tr>
+<tr><td>Log Clearing</td><td>Event 1102 (Security log cleared)</td><td>Critical</td></tr>
+<tr><td>Lateral Movement</td><td>4648 (explicit credential logon) to multiple hosts in short time</td><td>High</td></tr>
+<tr><td>Unusual Outbound Traffic</td><td>Large data transfer to external IP not in whitelist, after hours</td><td>High</td></tr>
+<tr><td>C2 Communication</td><td>Repeated DNS/HTTP to known malicious domain (threat intel match)</td><td>Critical</td></tr>
+<tr><td>Encoded PowerShell</td><td>Sysmon Event 1: powershell.exe with -enc or -EncodedCommand</td><td>High</td></tr>
+</table></div>
+
+<h4>SIEM Visualizations &amp; Dashboards</h4>
+<p>A good SOC dashboard shows: Alert volume over time, Top alerting sources, Geographic map of connections, Failed vs successful logins, Top attacked users/hosts, Open incidents by severity, Mean time to detect (MTTD) and respond (MTTR).</p>
+
+<h3>Lab — Elastic Stack (ELK)</h3>
+<pre># ELK = Elasticsearch + Logstash + Kibana
+# Elasticsearch: Search engine and data store
+# Logstash: Log ingestion and parsing pipeline
+# Kibana: Web UI for visualization, dashboards, search
+# Beats: Lightweight data shippers (Filebeat for logs, Winlogbeat for Windows events, Packetbeat for network)
+
+# Basic flow:
+# Data Source → Beat/Agent → Logstash (parse/enrich) → Elasticsearch (store/index) → Kibana (visualize)
+
+# Kibana Discovery: Search raw logs
+# Kibana Dashboards: Pre-built and custom visualizations
+# Kibana Alerts: Create detection rules (threshold, anomaly, correlation)</pre>
+
+</div></div>
+
+<!-- ══════════════ SESSION 6 ══════════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn">S06</span><h2>Cyber Threat Intelligence (CTI)</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>What is Cyber Threat Intelligence?</h3>
+<p>Threat Intelligence is <strong>evidence-based knowledge</strong> about existing or emerging threats that helps make informed security decisions. It's not raw data — it's data that has been collected, processed, analyzed, and contextualized to be <strong>actionable</strong>.</p>
+
+<h4>Data vs Information vs Intelligence</h4>
+<div class="tbl"><table>
+<tr><th>Level</th><th>What</th><th>Example</th></tr>
+<tr><td><strong>Data</strong></td><td>Raw, unprocessed facts</td><td>IP address 203.0.113.50 appeared in firewall logs</td></tr>
+<tr><td><strong>Information</strong></td><td>Data with context</td><td>IP 203.0.113.50 made 500 requests to /admin in 1 hour from Russia</td></tr>
+<tr><td><strong>Intelligence</strong></td><td>Analyzed, actionable insight</td><td>IP 203.0.113.50 is part of APT28 infrastructure, targeting financial organizations. Block this IP range and hunt for similar patterns in your network.</td></tr>
+</table></div>
+
+<h4>Intelligence Types</h4>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Audience</th><th>Focus</th><th>Example</th></tr>
+<tr><td><strong>Strategic</strong></td><td>Executives, Board</td><td>Big picture: Who attacks us? Why? Trends.</td><td>"Ransomware attacks on financial sector increased 150% this year. APT groups from X country are targeting Indian banks."</td></tr>
+<tr><td><strong>Tactical</strong></td><td>SOC Managers, Architects</td><td>TTPs (Tactics, Techniques, Procedures)</td><td>"APT28 uses spear-phishing with macro-enabled docs → PowerShell → Cobalt Strike → lateral movement via PsExec"</td></tr>
+<tr><td><strong>Operational</strong></td><td>IR Team, Threat Hunters</td><td>Specific campaigns, Timing</td><td>"An active campaign targeting banks in India is using domain xyz.com for C2 starting this week"</td></tr>
+<tr><td><strong>Technical</strong></td><td>SOC Analysts, SIEM</td><td>IoCs — IPs, domains, hashes</td><td>"Block these 50 IPs, these 20 domains, and search for these 10 file hashes"</td></tr>
+</table></div>
+
+<h4>Threat Intelligence Sources</h4>
+<div class="tbl"><table>
+<tr><th>Source Type</th><th>Examples</th></tr>
+<tr><td><strong>Open Source (OSINT)</strong></td><td>VirusTotal, AbuseIPDB, OTX (AlienVault), URLhaus, MalwareBazaar, Shodan, MITRE ATT&amp;CK</td></tr>
+<tr><td><strong>Commercial Feeds</strong></td><td>Recorded Future, Mandiant, CrowdStrike Intel, IBM X-Force</td></tr>
+<tr><td><strong>Government/CERT</strong></td><td>CERT-In (India), US-CERT, ENISA, NCSC</td></tr>
+<tr><td><strong>Industry ISACs</strong></td><td>FS-ISAC (financial), H-ISAC (healthcare), IT-ISAC</td></tr>
+<tr><td><strong>Internal</strong></td><td>Your own incident data, Logs, Past investigations</td></tr>
+</table></div>
+
+<h4>Sharing Standards</h4>
+<ul>
+<li><strong>STIX (Structured Threat Information eXpression):</strong> JSON format for describing threat intelligence (indicators, threat actors, campaigns, attack patterns, malware). The "language" of threat intel.</li>
+<li><strong>TAXII (Trusted Automated eXchange of Indicator Information):</strong> Transport protocol for sharing STIX data. Uses REST API. Defines Collection (data repo) and Channel (pub/sub). The "transport" of threat intel.</li>
+<li><strong>MISP (Malware Information Sharing Platform):</strong> Open-source platform for sharing, storing, and correlating threat intelligence. Supports STIX/TAXII.</li>
+</ul>
+
+<h3>MITRE ATT&amp;CK Framework</h3>
+<p>A knowledge base of adversary <strong>Tactics, Techniques, and Procedures (TTPs)</strong> based on real-world observations. Organized as a matrix. Used to: Map detections to adversary behavior, Identify detection gaps, Structure threat hunting, Communicate about threats.</p>
+
+<div class="tbl"><table>
+<tr><th>Tactic (WHY)</th><th>Technique Examples (HOW)</th></tr>
+<tr><td>Reconnaissance</td><td>Active Scanning, Search Open Technical Databases</td></tr>
+<tr><td>Resource Development</td><td>Acquire Infrastructure, Develop Capabilities</td></tr>
+<tr><td>Initial Access</td><td>Phishing, Exploit Public-Facing App, Valid Accounts</td></tr>
+<tr><td>Execution</td><td>PowerShell, Command Prompt, Scripting</td></tr>
+<tr><td>Persistence</td><td>Scheduled Tasks, Registry Run Keys, Services</td></tr>
+<tr><td>Privilege Escalation</td><td>Exploit Vulnerability, Token Manipulation</td></tr>
+<tr><td>Defense Evasion</td><td>Obfuscation, Disabling Security Tools, Timestomping</td></tr>
+<tr><td>Credential Access</td><td>Credential Dumping, Kerberoasting, Brute Force</td></tr>
+<tr><td>Discovery</td><td>System Info, Network Scan, Account Discovery</td></tr>
+<tr><td>Lateral Movement</td><td>Remote Services (RDP, SSH, SMB), PsExec, WMI</td></tr>
+<tr><td>Collection</td><td>Data from Local System, Email Collection, Screen Capture</td></tr>
+<tr><td>Command &amp; Control</td><td>Web Protocols (HTTP/HTTPS C2), DNS Tunneling</td></tr>
+<tr><td>Exfiltration</td><td>Over C2 Channel, Over Web Service, Over DNS</td></tr>
+<tr><td>Impact</td><td>Data Encryption (Ransomware), Data Destruction, Defacement</td></tr>
+</table></div>
+
+<h3>Lab — MISP Threat Intelligence Platform</h3>
+<pre># MISP — Malware Information Sharing Platform
+# Web-based interface for creating, storing, and sharing threat intelligence
+
+# Key MISP Concepts:
+# Event:      A threat intelligence report (e.g., "Emotet Campaign July 2026")
+# Attribute:  A single IoC within an event (IP, domain, hash, email, URL)
+# Object:     Structured group of attributes (e.g., File object: name + hash + size)
+# Tag:        Label for classification (TLP:GREEN, malware:emotet, source:cert-in)
+# Galaxy:     Categorized knowledge (MITRE ATT&CK, Threat actors, Malware types)
+# Correlation: MISP automatically links events that share common attributes
+
+# Workflow:
+# 1. Create Event (title, date, distribution, threat level, TLP)
+# 2. Add Attributes (type: ip-dst, domain, md5, sha256, url, email-src)
+# 3. Tag event (TLP, MITRE ATT&CK technique, malware family)
+# 4. Correlate — MISP shows related events sharing same IoCs
+# 5. Share — Publish to connected MISP instances or export as STIX/CSV
+# 6. Integrate — Feed IoCs into SIEM (Splunk, Elastic, QRadar) for detection
+
+# MISP API example (Python):
+from pymisp import PyMISP
+misp = PyMISP('https://misp.local', 'API_KEY', ssl=False)
+event = misp.new_event(info="Emotet Campaign July 2026", distribution=1, threat_level_id=2)
+misp.add_attribute(event, type='ip-dst', value='203.0.113.50')
+misp.add_attribute(event, type='domain', value='evil-c2.com')
+misp.add_attribute(event, type='md5', value='d41d8cd98f00b204e9800998ecf8427e')</pre>
+
+</div></div>
+
+</div>
+
+<div style="text-align:center;padding:24px 20px 48px;color:#475569;font-size:12px">
+
+</div>
+</body>
+</html>

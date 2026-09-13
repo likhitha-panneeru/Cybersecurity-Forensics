@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Forensics — Complete Theory & Practical Guide</title>
+<style>
+:root{
+ --bg:#080b12;--panel:#101622;--panel2:#151d2b;--text:#e6edf7;--muted:#a8b3c5;
+ --accent:#8b5cf6;--accent2:#22c55e;--warn:#f59e0b;--danger:#ef4444;--cyan:#22d3ee;
+ --border:#273246;--code:#070b12;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.72;font-size:15px}
+.hero{padding:46px 22px;text-align:center;background:linear-gradient(135deg,#111827,#312e81 55%,#172554);border-bottom:3px solid var(--accent)}
+.hero h1{margin:0;font-size:30px}
+.hero p{max-width:850px;margin:10px auto 0;color:#cbd5e1}
+.wrap{max-width:1100px;margin:auto;padding:22px 18px 80px}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:10px;background:rgba(8,11,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+button,.pill{border:1px solid var(--border);background:var(--panel2);color:#dbeafe;border-radius:7px;padding:7px 12px;cursor:pointer;font-weight:700}
+button:hover{border-color:var(--accent);color:white}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:20px 0}
+.toc a{display:block;text-decoration:none;color:#ddd6fe;background:var(--panel);border:1px solid var(--border);padding:11px 13px;border-radius:8px}
+.section{margin:18px 0;border:1px solid var(--border);background:var(--panel);border-radius:11px;overflow:hidden}
+.section>summary{list-style:none;cursor:pointer;padding:15px 18px;background:var(--panel2);font-size:17px;font-weight:800;color:#ddd6fe}
+.section>summary::-webkit-details-marker{display:none}
+.section>summary:before{content:"▶";font-size:11px;margin-right:10px;color:var(--accent)}
+.section[open]>summary:before{content:"▼"}
+.content{padding:18px 20px}
+h2{color:#c4b5fd;font-size:20px;margin:22px 0 10px}
+h3{color:#67e8f9;font-size:17px;margin:20px 0 8px}
+h4{color:#fbbf24;font-size:14px;text-transform:uppercase;letter-spacing:.4px;margin:16px 0 6px}
+p{margin:7px 0;color:#d2dae6}
+ul,ol{padding-left:24px;color:#cbd5e1}
+li{margin:5px 0}
+strong{color:#fff}
+code{font-family:Consolas,monospace;background:#202938;color:#fde68a;padding:2px 5px;border-radius:4px}
+pre{background:var(--code);border:1px solid var(--border);padding:14px;border-radius:8px;overflow:auto;color:#b8f7ff;line-height:1.55}
+.box{padding:13px 16px;border-radius:8px;margin:12px 0;border-left:4px solid var(--cyan);background:#08202a}
+.warn{border-left-color:var(--warn);background:#211807}
+.safe{border-left-color:var(--accent2);background:#0a2116}
+.danger{border-left-color:var(--danger);background:#250d12}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#1b2433;color:#c4b5fd}
+td{color:#d2dae6}
+.check{background:#0c1520;border:1px dashed #40506a;padding:12px 15px;border-radius:8px}
+.term{color:#a7f3d0;font-weight:800}
+.small{font-size:13px;color:var(--muted)}
+.footer{margin-top:30px;padding:18px;border-top:1px solid var(--border);color:var(--muted);text-align:center}
+@media(max-width:650px){.hero h1{font-size:23px}.wrap{padding:12px}.content{padding:14px}}
+</style>
+<script>
+function allOpen(v){document.querySelectorAll('details.section').forEach(x=>x.open=v)}
+</script>
+</head>
+<body>
+<header class="hero">
+<h1>Cyber Forensics</h1>
+<p>Complete Theory + Practical Study Guide — from acquisition and file systems to disk, live, memory, network, mobile, malware and IoT forensics.</p>
+</header>
+
+<div class="wrap">
+<div class="toolbar">
+<button onclick="allOpen(true)">Expand All</button>
+<button onclick="allOpen(false)">Collapse All</button>
+</div>
+
+<div class="toc">
+<a href="#s1">1. Data Acquisition</a>
+<a href="#s2">2. Cyber Forensics Analysis</a>
+<a href="#s3">3. Disk Forensics</a>
+<a href="#s4">4. Live Forensics</a>
+<a href="#s5">5. Memory Forensics</a>
+<a href="#s6">6. Network Forensics</a>
+<a href="#s7">7. Mobile Phone Forensics</a>
+<a href="#s8">8. Malware Analysis</a>
+<a href="#s9">9. IoT Forensics</a>
+<a href="#final">10. End-to-End Workflow & Revision</a>
+</div>
+
+<details class="section" id="s1" open>
+<summary>1 — Data Acquisition</summary><div class="content">
+<h2>1.1 What is Data Acquisition?</h2>
+<p><strong>Data acquisition</strong> is the controlled collection of digital evidence from a device or storage medium so that the evidence can later be examined and presented without changing its original state.</p>
+<div class="box safe"><strong>Core forensic principle:</strong> collect first, preserve integrity, analyze a verified copy. The original evidence should be protected from unnecessary modification.</div>
+
+<h3>Data Storage Fundamentals</h3>
+<p>Digital evidence can exist on many kinds of storage: HDDs, SSDs, USB drives, memory cards, optical media, NAS/SAN storage, phones, virtual disks and cloud-backed systems. At the logical level, information is organized into files and directories; underneath that, the operating system and file system map those files to storage structures.</p>
+<table><tr><th>Concept</th><th>Easy explanation</th><th>Forensic relevance</th></tr>
+<tr><td>Bit</td><td>0 or 1</td><td>Smallest unit of digital information.</td></tr>
+<tr><td>Byte</td><td>8 bits</td><td>Basic unit used to represent data.</td></tr>
+<tr><td>Sector</td><td>Small addressable storage unit</td><td>Important for low-level acquisition.</td></tr>
+<tr><td>Partition</td><td>Logical division of a disk</td><td>May contain different file systems or operating systems.</td></tr>
+<tr><td>File system</td><td>Rules used to organize files</td><td>Provides metadata such as names, timestamps and allocation information.</td></tr>
+<tr><td>Unallocated space</td><td>Storage not currently assigned to a normal file</td><td>May contain remnants of deleted files.</td></tr>
+</table>
+
+<h3>Introduction to Cyber Crimes</h3>
+<p>A <strong>cyber crime</strong> is an unlawful activity involving computers, networks, digital devices or digital information. Forensics helps answer questions such as <em>what happened, when, how, which account/device was involved, and what evidence supports the conclusion?</em></p>
+<table><tr><th>Category</th><th>Example</th><th>Potential evidence</th></tr>
+<tr><td>Unauthorized access</td><td>Compromised account or system</td><td>Authentication logs, browser history, endpoint artifacts</td></tr>
+<tr><td>Malware</td><td>Trojan/ransomware infection</td><td>Files, processes, persistence artifacts, memory</td></tr>
+<tr><td>Data theft</td><td>Unauthorized copying</td><td>File timestamps, USB artifacts, network logs</td></tr>
+<tr><td>Fraud</td><td>Digital transaction manipulation</td><td>Emails, logs, application records</td></tr>
+<tr><td>DoS/DDoS</td><td>Availability attack</td><td>Network captures, firewall and server logs</td></tr>
+</table>
+
+<h3>Cyber Forensics Principles</h3>
+<ol>
+<li><strong>Integrity:</strong> evidence must remain trustworthy and demonstrably unchanged.</li>
+<li><strong>Authenticity:</strong> show that the evidence is what you claim it is.</li>
+<li><strong>Documentation:</strong> record actions, times, tools and observations.</li>
+<li><strong>Repeatability:</strong> another examiner should be able to understand and reproduce the analytical process.</li>
+<li><strong>Chain of custody:</strong> document who possessed evidence, when, why, and what happened to it.</li>
+<li><strong>Minimize alteration:</strong> avoid modifying the original evidence.</li>
+</ol>
+
+<h3>Digital Evidence Seizure</h3>
+<p>Seizure is the controlled taking of a device or digital medium into evidence. The exact procedure depends on law, organizational policy and the situation.</p>
+<ol>
+<li>Confirm legal authority and scope.</li>
+<li>Document the scene and device state.</li>
+<li>Record identifiers such as device make/model and serial number.</li>
+<li>Decide whether the device is powered on or off; live systems can contain volatile evidence.</li>
+<li>Isolate devices from networks when appropriate and authorized.</li>
+<li>Use appropriate forensic acquisition procedures.</li>
+<li>Label, seal, hash and document evidence as required.</li>
+</ol>
+
+<h3>Forensic Hardware Tools</h3>
+<p>Common hardware includes <strong>write blockers</strong>, forensic duplicators, evidence storage media, adapters, cables and drive interfaces.</p>
+<div class="box"><strong>Write blocker:</strong> a device or software mechanism intended to prevent writes to a storage medium while an examiner reads it. It is a key evidence-preservation concept.</div>
+
+<h3>Seizing Data with Forensic Hardware and Software — Practical</h3>
+<div class="check"><strong>Safe lab exercise:</strong> use a spare USB/storage image supplied for training. Do not experiment on someone else's live device.</div>
+<ol>
+<li>Connect the evidence medium through a write blocker where applicable.</li>
+<li>Identify the source device and record its details.</li>
+<li>Calculate a source hash when the acquisition procedure supports it.</li>
+<li>Create a forensic image using an approved forensic imager.</li>
+<li>Verify the image using a cryptographic hash.</li>
+<li>Work from the image/copy, not the original.</li>
+<li>Record examiner, date/time, tool/version, source, destination and verification results.</li>
+</ol>
+<pre>Typical evidence workflow
+Evidence → Identification → Preservation → Acquisition → Hash verification
+        → Working copy → Examination → Analysis → Reporting</pre>
+<div class="box warn"><strong>Exam point:</strong> acquisition is not the same as analysis. Acquisition obtains/preserves the evidence; analysis interprets it.</div>
+</div></details>
+
+<details class="section" id="s2" open>
+<summary>2 — Cyber Forensics Analysis</summary><div class="content">
+<h2>2.1 What is Cyber Forensics Analysis?</h2>
+<p>Forensic analysis is the examination and interpretation of acquired digital evidence to reconstruct events and answer investigative questions.</p>
+
+<h3>Windows File System — FAT and NTFS</h3>
+<table><tr><th>Feature</th><th>FAT</th><th>NTFS</th></tr>
+<tr><td>Meaning</td><td>File Allocation Table family</td><td>New Technology File System</td></tr>
+<tr><td>Typical use</td><td>Removable media and compatibility scenarios</td><td>Modern Windows system volumes</td></tr>
+<tr><td>Metadata</td><td>More limited</td><td>Rich metadata and security information</td></tr>
+<tr><td>Forensic interest</td><td>Allocation and directory structures</td><td>MFT, timestamps, attributes, security descriptors, journals and more</td></tr>
+</table>
+<p><strong>FAT:</strong> keeps allocation information in a File Allocation Table. <strong>NTFS:</strong> uses the <strong>Master File Table (MFT)</strong> to maintain records describing files and directories.</p>
+
+<h3>Linux File System</h3>
+<p>Linux systems commonly use file systems such as ext4. Forensics can involve inodes, directory entries, permissions, ownership, timestamps, journaling and deleted/unallocated content.</p>
+<table><tr><th>Artifact</th><th>What it tells you</th></tr>
+<tr><td>Inode</td><td>Metadata associated with a file, such as permissions, ownership and timestamps.</td></tr>
+<tr><td>Directory entry</td><td>Maps a filename to filesystem metadata.</td></tr>
+<tr><td>Journal</td><td>Records filesystem transactions useful for reconstruction.</td></tr>
+<tr><td>Permissions</td><td>Shows access rights and ownership.</td></tr>
+</table>
+
+<h3>Familiarizing File-System Concepts — Practical</h3>
+<p>In a forensic suite, inspect a training image and identify partitions, file systems, directory structures, deleted files, metadata and unallocated areas. Compare the same concept across Windows and Linux evidence.</p>
+
+<h3>Tools — Disk Explorer, Win-Hex, Autopsy</h3>
+<ul>
+<li><strong>Disk Explorer:</strong> used for examining disk structures and forensic artifacts.</li>
+<li><strong>WinHex:</strong> hexadecimal/disk editor and forensic examination tool; useful for low-level structures and raw data inspection.</li>
+<li><strong>Autopsy:</strong> graphical digital-forensics platform built around The Sleuth Kit; useful for ingesting images and examining file systems, timelines, hashes and artifacts.</li>
+</ul>
+<div class="box safe"><strong>Practical learning sequence:</strong> open image → identify partitions → browse files → inspect metadata → search keywords → examine deleted/unallocated data → build timeline → document findings.</div>
+</div></details>
+
+<details class="section" id="s3" open>
+<summary>3 — Disk Forensics</summary><div class="content">
+<h2>3.1 Disk Forensics Analysis</h2>
+<p>Disk forensics focuses on persistent data stored on physical or virtual storage. The syllabus specifically includes partitioning, registry, file carving and Windows artifacts.</p>
+
+<h3>Partitioning</h3>
+<p>A partition is a logical region of a disk. Modern systems may use <strong>GPT</strong>; older systems commonly used <strong>MBR</strong>. Partition information helps an examiner locate file systems and understand the disk layout.</p>
+<table><tr><th>MBR</th><th>GPT</th></tr><tr><td>Older partitioning scheme</td><td>Modern GUID Partition Table</td></tr><tr><td>Partition table has traditional limitations</td><td>Supports large disks and many partitions more flexibly</td></tr></table>
+
+<h3>Windows Registry</h3>
+<p>The Windows Registry is a hierarchical database containing configuration and system/application information. Forensic value depends on the hive and artifact.</p>
+<ul>
+<li><strong>SAM:</strong> local account/security information.</li>
+<li><strong>SYSTEM:</strong> system configuration and control-set information.</li>
+<li><strong>SOFTWARE:</strong> installed software and system/application configuration.</li>
+<li><strong>SECURITY:</strong> security-policy-related information.</li>
+<li><strong>NTUSER.DAT:</strong> user-specific configuration and activity-related artifacts.</li>
+</ul>
+
+<h3>File Carving</h3>
+<p><strong>File carving</strong> attempts to recover files from raw data using file signatures and structure rather than relying entirely on the file system's directory metadata.</p>
+<div class="box"><strong>Why it matters:</strong> a deleted file's directory entry may disappear while some or all of its data remains in unallocated space.</div>
+<p>Typical carving concepts include <strong>file headers/signatures</strong>, body/footer patterns, fragmentation and false positives.</p>
+
+<h3>Windows Analysis</h3>
+<h4>Browser</h4>
+<p>Browser artifacts may include history, downloads, cookies, cache, saved form information, session-related data and bookmarks. They can help reconstruct web activity.</p>
+
+<h4>Event Log</h4>
+<p>Windows Event Logs record system and application events. Important categories include authentication, process/service activity, policy changes and system errors. Correlate event times with other artifacts rather than treating one log entry as complete proof.</p>
+
+<h4>Prefetch</h4>
+<p>Windows Prefetch artifacts can provide evidence about program execution and associated files. They are useful for understanding application execution history.</p>
+
+<h4>Volume Shadow Copy</h4>
+<p>Volume Shadow Copy provides point-in-time snapshots of volumes. Older copies may preserve files or artifacts that were later changed or deleted.</p>
+
+<h4>Recycle Bin</h4>
+<p>Deleted files may remain in the Recycle Bin before permanent deletion. Metadata and file contents can help identify what was deleted and when.</p>
+
+<h4>Client-Based Email Analysis</h4>
+<p>Email clients can leave messages, headers, attachments, local databases, caches and configuration artifacts. Important investigative questions include sender/recipient, timestamps, message IDs, attachments and whether the local copy is complete.</p>
+
+<h4>Page File</h4>
+<p>The Windows page file is used for virtual memory. It can contain remnants of data that was previously in memory, although contents and usefulness vary.</p>
+
+<h4>Hibernation</h4>
+<p>The hibernation file stores memory state used to resume the system. It may preserve valuable information from the time the system entered hibernation.</p>
+
+<h4>Metadata</h4>
+<p><strong>Metadata</strong> is data about data: timestamps, authors, file properties, camera information, software, GPS information and more. Always distinguish filesystem metadata from application/document metadata.</p>
+
+<h4>Spool Files</h4>
+<p>Spool files are temporary files used by systems/applications to queue jobs such as printing. They may preserve information about documents processed by a system.</p>
+
+<h4>Link Files</h4>
+<p>Windows shortcut/link artifacts can provide evidence about accessed files, paths, volumes and execution/activity context.</p>
+
+<h4>Reparse Points</h4>
+<p>Windows reparse points provide special filesystem behavior, including mechanisms used by links and other filesystem features. Their presence can be significant during filesystem analysis.</p>
+
+<h4>Linux Analysis</h4>
+<p>Linux forensic analysis may examine logs, shell history, authentication records, filesystem metadata, user accounts, scheduled tasks, configuration files and application artifacts.</p>
+
+<h3>Practical — Disk Analysis using CyberCheckSuite</h3>
+<ol>
+<li>Load a training disk image.</li>
+<li>Identify partitions and filesystem types.</li>
+<li>Browse filesystem contents.</li>
+<li>Search for known keywords and file types.</li>
+<li>Inspect deleted files and unallocated space.</li>
+<li>Examine Windows artifacts and timestamps where present.</li>
+<li>Export relevant evidence while maintaining provenance.</li>
+<li>Hash exported evidence and record the values.</li>
+<li>Create a short finding: artifact → observation → interpretation → limitation.</li>
+</ol>
+</div></details>
+
+<details class="section" id="s4" open>
+<summary>4 — Live Forensics</summary><div class="content">
+<h2>4.1 What is Live Forensics?</h2>
+<p><strong>Live forensics</strong> examines a system while it is powered on. This is important because volatile information can disappear when the system is shut down.</p>
+<table><tr><th>Volatile evidence</th><th>Persistent evidence</th></tr>
+<tr><td>RAM contents</td><td>Disk files</td></tr>
+<tr><td>Running processes</td><td>Filesystem metadata</td></tr>
+<tr><td>Active network connections</td><td>Stored logs</td></tr>
+<tr><td>Logged-in users/sessions</td><td>Browser/database artifacts</td></tr>
+</table>
+
+<h3>Live Seizing and Acquisition</h3>
+<p>A live acquisition must balance preservation with the need to capture volatile evidence. Every action performed on a live system can potentially alter evidence, so procedures must be documented.</p>
+
+<h3>Live Forensic Analysis</h3>
+<p>Potential observations include current users, processes, services, network connections, mounted volumes, open files, system time and memory.</p>
+
+<h3>Win-LiFT</h3>
+<p>The syllabus includes <strong>Win-LiFT</strong> as a live-forensics practical tool. In a lab, use it to understand live evidence collection and artifact capture, following the tool's documentation and the evidence-handling procedure.</p>
+
+<h3>Practical Checklist</h3>
+<ol>
+<li>Photograph/document the system state where applicable.</li>
+<li>Record system date/time and examiner time.</li>
+<li>Determine what volatile evidence must be captured first.</li>
+<li>Collect volatile artifacts with a trusted forensic tool.</li>
+<li>Store output on a controlled evidence destination.</li>
+<li>Hash and document collected files.</li>
+<li>Only then proceed to less volatile examination as required.</li>
+</ol>
+<div class="box warn"><strong>Important:</strong> “Live” does not mean “free to change anything.” The examiner must minimize changes and maintain a defensible record.</div>
+</div></details>
+
+<details class="section" id="s5" open>
+<summary>5 — Memory Forensics</summary><div class="content">
+<h2>5.1 Memory Dumping</h2>
+<p>A <strong>memory dump</strong> is a capture of volatile system memory (RAM). RAM can contain running-process information, network state, credentials/tokens, injected code and other transient artifacts.</p>
+
+<h3>Memory Analysis</h3>
+<p>Memory analysis attempts to answer questions such as:</p>
+<ul>
+<li>Which processes were running?</li>
+<li>What network connections existed?</li>
+<li>Which processes had suspicious relationships?</li>
+<li>Was code injected into a process?</li>
+<li>What modules, handles or command lines were associated with processes?</li>
+<li>Are there indicators of malware or persistence?</li>
+</ul>
+
+<h3>DumpIt</h3>
+<p><strong>DumpIt</strong> is commonly used for acquiring a memory image from a live Windows system in forensic/incident-response contexts. The resulting image should be preserved and hashed before analysis.</p>
+
+<h3>Volatility</h3>
+<p><strong>Volatility</strong> is a memory-forensics framework. A typical investigation uses plugins to enumerate processes, network artifacts, loaded modules and other structures.</p>
+<pre>Conceptual workflow
+Live system
+   ↓
+Memory acquisition
+   ↓
+Hash memory image
+   ↓
+Identify appropriate analysis/profile requirements
+   ↓
+Volatility analysis
+   ↓
+Processes / network / modules / suspicious artifacts
+   ↓
+Correlate with disk + logs
+</pre>
+<div class="box safe"><strong>Practical goal:</strong> do not memorize only commands. Learn what every output means and how it supports or contradicts another artifact.</div>
+
+<h3>Analysis of Live Artifacts — DumpIt, Volatility</h3>
+<p>For a controlled lab memory image, identify processes and their parent-child relationships, inspect network information, look for suspicious executable paths, and compare findings with known-good baseline behavior.</p>
+</div></details>
+
+<details class="section" id="s6" open>
+<summary>6 — Network Forensics</summary><div class="content">
+<h2>6.1 Network Packet Capturing</h2>
+<p><strong>Network forensics</strong> examines network traffic and related records to reconstruct communication and identify suspicious activity.</p>
+
+<h3>Packet Basics</h3>
+<p>A packet is a unit of data transmitted over a network. Depending on the protocol stack, an examiner may inspect Ethernet frames, IP packets and TCP/UDP segments or application-layer information.</p>
+<table><tr><th>Layer/area</th><th>Useful information</th></tr>
+<tr><td>Ethernet</td><td>MAC addresses, frame information</td></tr>
+<tr><td>IP</td><td>Source/destination IP, protocol, TTL and fragmentation information</td></tr>
+<tr><td>TCP</td><td>Ports, flags, sequence/acknowledgment behavior and connection state</td></tr>
+<tr><td>UDP</td><td>Ports and datagram communication</td></tr>
+<tr><td>DNS</td><td>Domain queries and responses</td></tr>
+<tr><td>HTTP</td><td>Requests/responses when visible and not encrypted</td></tr>
+</table>
+
+<h3>Monitoring and Analysis</h3>
+<p>Questions include: Who communicated with whom? Which protocol was used? When did communication occur? Was the traffic encrypted? Were there repeated connections, unusual destinations, scans or data-transfer patterns?</p>
+
+<h3>Wireshark</h3>
+<p><strong>Wireshark</strong> is a graphical packet-analysis tool. Core skills include opening a capture, filtering traffic, following streams, inspecting protocol fields, viewing timestamps and exporting relevant evidence.</p>
+<pre>Useful beginner filters in a lab:
+ip.addr == 192.0.2.10
+tcp
+udp
+dns
+http
+tcp.port == 443
+</pre>
+<p>Use IP addresses appropriate to your own lab capture; the examples above are documentation/test addresses, not targets.</p>
+
+<h3>NeSa</h3>
+<p>The syllabus lists <strong>NeSa</strong> for network-forensics work. Learn its role in packet/network capture and analysis according to the lab environment provided.</p>
+
+<h3>Practical — Wireshark</h3>
+<ol>
+<li>Open a provided PCAP.</li>
+<li>Identify protocols and endpoints.</li>
+<li>Use display filters to narrow the investigation.</li>
+<li>Inspect DNS queries and connection timing.</li>
+<li>Follow a TCP stream where appropriate.</li>
+<li>Identify suspicious or unexpected communications.</li>
+<li>Export only the evidence needed and record packet/frame references.</li>
+</ol>
+<div class="box"><strong>Forensic habit:</strong> a packet capture is evidence, not automatically an explanation. Interpret it in context and correlate with host logs and timestamps.</div>
+</div></details>
+
+<details class="section" id="s7" open>
+<summary>7 — Mobile Phone Forensics</summary><div class="content">
+<h2>7.1 Mobile Phone Forensics</h2>
+<p>Mobile forensics is the acquisition and examination of data from smartphones and related mobile components. Evidence can include communications, application data, media, location information and device metadata.</p>
+
+<h3>SIM Card Forensics</h3>
+<p>A SIM/UICC can contain identifiers and subscriber-related information, and depending on the technology and configuration may contain contacts or messages. Modern mobile evidence is much broader than the SIM alone.</p>
+
+<h3>Call Data Record (CDR) Analysis</h3>
+<p><strong>CDR</strong> data can contain telecommunications metadata such as calling party, receiving party, timestamps, duration and cell/tower-related information depending on the provider and record type.</p>
+<div class="box warn"><strong>Important:</strong> CDR is generally metadata, not the audio content of a call. Exact fields depend on the carrier and record format.</div>
+
+<h3>Mobile Phone Artifacts</h3>
+<ul>
+<li>Calls and messages</li>
+<li>Contacts</li>
+<li>Application databases</li>
+<li>Photos/videos and metadata</li>
+<li>Location/GPS artifacts</li>
+<li>Browser/application history</li>
+<li>Device identifiers and configuration</li>
+</ul>
+
+<h3>MobileCheck, Sim Xtractor, CDR Analyzer</h3>
+<p>The syllabus lists these as tools for mobile artifact analysis. In the practical environment, learn the acquisition format, supported artifact types, search/export functions and reporting workflow of the supplied versions.</p>
+
+<h3>Practical Investigation Workflow</h3>
+<ol>
+<li>Document the device and its state.</li>
+<li>Follow legal authority and acquisition procedure.</li>
+<li>Use an approved acquisition method.</li>
+<li>Preserve the original acquisition and calculate hashes where applicable.</li>
+<li>Parse artifacts with the forensic tool.</li>
+<li>Correlate calls, messages, locations and timestamps.</li>
+<li>Export findings with source/provenance information.</li>
+</ol>
+</div></details>
+
+<details class="section" id="s8" open>
+<summary>8 — Malware Analysis</summary><div class="content">
+<h2>8.1 What is Malware Analysis?</h2>
+<p><strong>Malware analysis</strong> is the examination of malicious or suspicious software to understand what it is, how it behaves, what it changes and what indicators can be used for detection and response.</p>
+
+<h3>Static vs Dynamic Analysis</h3>
+<table><tr><th>Static</th><th>Dynamic</th></tr>
+<tr><td>Analyze without executing the sample.</td><td>Observe behavior in a controlled environment.</td></tr>
+<tr><td>Hashes, strings, headers, imports, metadata.</td><td>Processes, files, registry changes, network activity.</td></tr>
+<tr><td>Lower execution risk.</td><td>Requires strong isolation and safety controls.</td></tr>
+</table>
+
+<h3>Useful Malware Concepts</h3>
+<ul>
+<li><strong>Hash:</strong> identifies a specific file version/content.</li>
+<li><strong>IOC:</strong> indicator of compromise such as a hash, domain, IP or filename.</li>
+<li><strong>Persistence:</strong> mechanisms used to survive reboot/logon.</li>
+<li><strong>Command and control (C2):</strong> communication between malware and its controlling infrastructure.</li>
+<li><strong>Packing/obfuscation:</strong> techniques that make analysis harder.</li>
+<li><strong>Behavior:</strong> observable actions such as file creation, process spawning or network communication.</li>
+</ul>
+
+<h3>Open-Source Tool Categories</h3>
+<table><tr><th>Purpose</th><th>Examples of tools/categories</th></tr>
+<tr><td>Hashing</td><td>sha256sum / platform hashing utilities</td></tr>
+<tr><td>Strings</td><td>strings</td></tr>
+<tr><td>PE inspection</td><td>PEStudio and similar PE-analysis tools</td></tr>
+<tr><td>Disassembly/reverse engineering</td><td>Ghidra, radare2</td></tr>
+<tr><td>Memory</td><td>Volatility</td></tr>
+<tr><td>Network observation</td><td>Wireshark</td></tr>
+</table>
+
+<h3>Safe Practical Lab</h3>
+<div class="box danger"><strong>Never execute unknown malware on your normal laptop or network.</strong> Use an isolated, purpose-built malware-analysis lab with snapshots, restricted networking and known-safe training samples.</div>
+<ol>
+<li>Record sample hash and metadata.</li>
+<li>Perform static inspection first.</li>
+<li>Record strings, file type and suspicious indicators.</li>
+<li>If dynamic analysis is authorized, use an isolated VM.</li>
+<li>Observe processes, filesystem changes, registry activity and network behavior.</li>
+<li>Extract IOCs.</li>
+<li>Correlate behavior with endpoint/network evidence.</li>
+<li>Produce a concise malware-analysis report.</li>
+</ol>
+</div></details>
+
+<details class="section" id="s9" open>
+<summary>9 — IoT Forensics</summary><div class="content">
+<h2>9.1 What is IoT Forensics?</h2>
+<p><strong>IoT forensics</strong> applies digital-forensics principles to connected devices such as cameras, sensors, smart appliances, gateways and other embedded systems.</p>
+
+<h3>Protocols and File Systems</h3>
+<p>IoT devices may use specialized protocols, embedded operating systems and unusual storage formats. Evidence may exist on the device, removable storage, gateway, mobile application, cloud service and network.</p>
+
+<h4>Storage and Interfaces</h4>
+<p>Common interfaces can include flash storage, SD cards, USB, serial interfaces and vendor-specific interfaces. Acquisition must be performed using an appropriate method for the device.</p>
+
+<h4>File Systems</h4>
+<p>Embedded devices may use standard Linux filesystems or specialized/flash-oriented filesystems. The examiner first identifies the storage format before attempting interpretation.</p>
+
+<h3>Multimedia Analysis</h3>
+<p>IoT cameras and similar devices can generate images/audio/video. Examine timestamps, encoding information, file metadata, sequence continuity and potential gaps or manipulation indicators.</p>
+
+<h3>GPS Tracking</h3>
+<p>Location evidence may come from GPS coordinates, application databases, device logs or cloud records. Coordinates must be interpreted with timestamps and the source's accuracy/limitations.</p>
+
+<h3>Wi-Fi Cracking — Forensic Context</h3>
+<p>The syllabus includes Wi-Fi cracking. In a forensic course, the important concepts are wireless authentication, encryption, capture evidence, access-point configuration and lawful recovery/testing of credentials in an authorized lab. Do not attempt to access networks without permission.</p>
+
+<h3>Security Challenges</h3>
+<ul>
+<li>Limited storage and processing power</li>
+<li>Vendor-specific formats</li>
+<li>Proprietary/cloud dependencies</li>
+<li>Remote management</li>
+<li>Weak/default credentials on poorly secured devices</li>
+<li>Clock/timestamp inconsistencies</li>
+<li>Encrypted or volatile data</li>
+<li>Large numbers of distributed devices</li>
+</ul>
+
+<h3>IoT Forensics with Open-Source Tools</h3>
+<p>A practical workflow can combine disk/file analysis, metadata extraction, network capture analysis and timeline correlation. Always identify the source of each artifact: device, SD card, gateway, mobile app, network or cloud export.</p>
+<div class="box safe"><strong>Best practice:</strong> build an evidence map: <code>Device → Storage → Artifact → Timestamp → Event → Corroborating Source</code>.</div>
+</div></details>
+
+<details class="section" id="final" open>
+<summary>10 — End-to-End Workflow, Important Terms & Revision</summary><div class="content">
+<h2>10.1 The Complete Forensic Workflow</h2>
+<pre>1. Legal authority / scope
+        ↓
+2. Identify evidence
+        ↓
+3. Preserve scene + evidence
+        ↓
+4. Acquire / image
+        ↓
+5. Hash + verify
+        ↓
+6. Examine
+        ↓
+7. Analyze
+        ↓
+8. Correlate across sources
+        ↓
+9. Document findings
+        ↓
+10. Report + preserve evidence</pre>
+
+<h3>Important Terms You Should Know</h3>
+<table>
+<tr><th>Term</th><th>Simple meaning</th></tr>
+<tr><td>Digital evidence</td><td>Information of investigative value stored or transmitted digitally.</td></tr>
+<tr><td>Forensic image</td><td>A bit-level or otherwise forensic copy of evidence media, depending on acquisition method.</td></tr>
+<tr><td>Hash</td><td>Fixed-length digest used to verify data integrity/identity.</td></tr>
+<tr><td>Chain of custody</td><td>Documented history of possession and handling of evidence.</td></tr>
+<tr><td>Write blocker</td><td>Mechanism designed to prevent writes to evidence media during examination.</td></tr>
+<tr><td>Artifact</td><td>A piece of data left by a system/application activity.</td></tr>
+<tr><td>Volatile data</td><td>Data that may disappear when power/state changes, especially RAM contents.</td></tr>
+<tr><td>File carving</td><td>Recovery based on raw data/file signatures rather than only filesystem metadata.</td></tr>
+<tr><td>PCAP</td><td>A packet-capture file containing recorded network traffic.</td></tr>
+<tr><td>IOC</td><td>Indicator of compromise used to identify suspicious activity.</td></tr>
+<tr><td>Timeline</td><td>Chronological representation of events/artifacts.</td></tr>
+<tr><td>Metadata</td><td>Information describing a file, object or event.</td></tr>
+</table>
+
+<h3>How to Correlate Evidence</h3>
+<p>The strongest forensic conclusions usually come from <strong>correlation</strong>. For example, a browser artifact may show a visit at one time, a Windows event may show a related logon, a network capture may show communication around the same time, and a memory image may show the related process. None should automatically be treated as definitive alone.</p>
+
+<h3>Practical Skills Checklist</h3>
+<ul>
+<li>☐ Explain acquisition vs examination vs analysis.</li>
+<li>☐ Explain chain of custody.</li>
+<li>☐ Explain why hashing is important.</li>
+<li>☐ Identify FAT, NTFS and Linux filesystem concepts.</li>
+<li>☐ Explain partitions and MBR/GPT at a basic level.</li>
+<li>☐ Explain Windows Registry and major hives.</li>
+<li>☐ Explain file carving and unallocated space.</li>
+<li>☐ Identify browser, Event Log, Prefetch, VSS, Recycle Bin, pagefile and hibernation artifacts.</li>
+<li>☐ Explain metadata, spool files, link files and reparse points.</li>
+<li>☐ Perform a basic disk-image examination in Autopsy or the supplied forensic tool.</li>
+<li>☐ Explain live vs dead-box forensics.</li>
+<li>☐ Explain memory dumping and memory analysis.</li>
+<li>☐ Perform basic PCAP analysis in Wireshark.</li>
+<li>☐ Explain SIM and CDR evidence.</li>
+<li>☐ Distinguish static and dynamic malware analysis.</li>
+<li>☐ Explain IoT evidence sources and challenges.</li>
+</ul>
+
+<h3>Exam-Oriented High-Yield Comparisons</h3>
+<table>
+<tr><th>Question</th><th>Remember</th></tr>
+<tr><td>Acquisition vs Analysis</td><td>Acquire/preserve first; analyze the verified working copy.</td></tr>
+<tr><td>Live vs Dead-box</td><td>Live captures volatile state; dead-box examines powered-off persistent evidence.</td></tr>
+<tr><td>Static vs Dynamic malware analysis</td><td>Static = don't execute; Dynamic = observe controlled execution.</td></tr>
+<tr><td>File deletion vs file destruction</td><td>Deletion may remove references while data remnants remain; secure destruction is different.</td></tr>
+<tr><td>Metadata vs content</td><td>Metadata describes the object; content is the actual information.</td></tr>
+<tr><td>PCAP vs host log</td><td>PCAP records network traffic; host logs record system/application events.</td></tr>
+<tr><td>CDR vs call audio</td><td>CDR is generally call metadata, not the conversation audio.</td></tr>
+</table>
+
+<div class="box safe"><strong>Final study strategy:</strong> for every topic, learn four things: <strong>What is it?</strong> → <strong>Why is it useful?</strong> → <strong>What artifact/evidence does it produce?</strong> → <strong>How would you examine and correlate it?</strong></div>
+</div></details>
+
+<div class="footer">
+Cyber Forensics — Complete Theory & Practical Guide<br>
+Built from the supplied syllabus topics, with explanatory study notes and safe lab-oriented expansion.
+</div>
+</div>
+</body>
+</html>

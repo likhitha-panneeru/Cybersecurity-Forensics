@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Programming — Complete Theory & Practical Guide</title>
+
+<style>
+:root{--bg:#080b12;--panel:#101722;--panel2:#151e2c;--text:#e8eef7;--muted:#a9b5c7;--purple:#8b5cf6;--cyan:#22d3ee;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--border:#2a374a;--code:#05080d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.72 Inter,Segoe UI,Arial,sans-serif}
+.hero{padding:48px 20px;text-align:center;background:linear-gradient(135deg,#111827,#312e81 55%,#172554);border-bottom:3px solid var(--purple)}
+.hero h1{margin:0;font-size:31px}.hero p{max-width:900px;margin:10px auto 0;color:#cbd5e1}
+.wrap{max-width:1120px;margin:auto;padding:20px 18px 80px}.toolbar{position:sticky;top:0;z-index:9;display:flex;gap:8px;flex-wrap:wrap;padding:9px;background:rgba(8,11,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+button{border:1px solid var(--border);background:var(--panel2);color:#e9d5ff;padding:8px 12px;border-radius:7px;font-weight:700;cursor:pointer}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:9px;margin:20px 0}.toc a{color:#ddd6fe;text-decoration:none;background:var(--panel);border:1px solid var(--border);padding:10px 12px;border-radius:8px}.toc a:hover{border-color:var(--purple)}
+details.section{margin:17px 0;border:1px solid var(--border);background:var(--panel);border-radius:11px;overflow:hidden}details.section>summary{list-style:none;cursor:pointer;padding:15px 18px;background:var(--panel2);font-size:19px;font-weight:800;color:#ddd6fe}details.section>summary::-webkit-details-marker{display:none}details.section>summary:before{content:"▶";font-size:10px;margin-right:10px;color:var(--purple)}details.section[open]>summary:before{content:"▼"}
+.content{padding:18px 20px}h2{color:#c4b5fd;font-size:21px;margin:23px 0 9px}h3{color:#67e8f9;font-size:17px;margin:20px 0 7px}h4{color:#fbbf24;font-size:14px;text-transform:uppercase;letter-spacing:.35px;margin:15px 0 5px}
+p{margin:7px 0;color:#d4dce8}ul,ol{padding-left:24px;color:#cbd5e1}li{margin:5px 0}strong{color:#fff}code{font:14px Consolas,monospace;background:#202a38;color:#fde68a;padding:2px 5px;border-radius:4px}
+pre{background:var(--code);border:1px solid var(--border);padding:14px;border-radius:8px;overflow:auto;color:#bff7ff;line-height:1.55}table{width:100%;border-collapse:collapse;margin:13px 0}th,td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}th{background:#1b2534;color:#c4b5fd}td{color:#d2dae6}
+.box{margin:12px 0;padding:12px 15px;border-left:4px solid var(--cyan);background:#08202a;border-radius:7px}.green{border-left-color:var(--green);background:#092015}.yellow{border-left-color:var(--yellow);background:#211807}.red{border-left-color:var(--red);background:#250d12}.lab{border:1px dashed #42526b;background:#0c1420;padding:14px 16px;border-radius:8px;margin:14px 0}
+.footer{text-align:center;color:var(--muted);border-top:1px solid var(--border);padding:20px;margin-top:30px}
+@media(max-width:650px){.hero h1{font-size:24px}.wrap{padding:10px}.content{padding:14px}}
+</style>
+<script>
+function allOpen(v){document.querySelectorAll('details.section').forEach(d=>d.open=v)}
+</script>
+
+</head>
+<body>
+<header class="hero">
+<h1>Secure Programming</h1>
+<p>Complete Theory + Practical Study Guide — expanded from the supplied course syllabus while preserving its session structure and terminology.</p>
+</header>
+<div class="wrap">
+<div class="toolbar">
+<button onclick="allOpen(true)">Expand All</button>
+<button onclick="allOpen(false)">Collapse All</button>
+</div>
+<div class="toc"><a href="#sec1">Session 1 — Browser Components, DOM/JS, HTTP, Cookies, HTTPS, QUIC, HTTP/2 & HTTP/3</a><a href="#sec2">Session 2 — Secure Application Design</a><a href="#sec3">Session 3 — Input Validation</a><a href="#sec4">Session 4 — Authentication and Authorization</a><a href="#sec5">Session 5 — Session Management</a><a href="#sec6">Session 6 — Error Handling</a><a href="#sec7">Session 7 — Secure Deployment</a><a href="#sec8">Session 8 — Attack Hardening, DoS/DDoS, Fail2ban, CAPTCHA & Secure Networks</a><a href="#sec9">Final Revision — Secure Programming Quick Reference</a></div>
+<details class="section" id="sec1" open><summary>Session 1 — Browser Components, DOM/JS, HTTP, Cookies, HTTPS, QUIC, HTTP/2 & HTTP/3</summary><div class="content">
+<h2>Introduction to Components of a Browser</h2>
+<p>A browser is a client application that retrieves web resources, interprets them and presents an interactive page. For secure programming, understand the boundary between the browser/client, the network protocol and the server.</p>
+
+<h3>DOM</h3>
+<p>The <strong>Document Object Model (DOM)</strong> is the browser's structured representation of an HTML document. Elements become nodes in a tree that JavaScript can read and modify.</p>
+<pre>&lt;button id="save"&gt;Save&lt;/button&gt;
+&lt;script&gt;
+const button = document.getElementById("save");
+button.textContent = "Saved";
+&lt;/script&gt;</pre>
+<p>Security relevance: DOM manipulation is central to understanding client-side injection issues, including DOM-based XSS.</p>
+
+<h3>JavaScript</h3>
+<p>JavaScript executes in the browser and can manipulate the DOM, respond to events and communicate with servers. Secure programming requires treating data received from users, URLs, storage and servers as potentially untrusted.</p>
+
+<h3>HTTP — the protocol</h3>
+<p>HTTP is an application-layer request/response protocol. A client sends a request; a server returns a response.</p>
+<table><tr><th>Request concept</th><th>Example</th></tr>
+<tr><td>Method</td><td><code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code></td></tr>
+<tr><td>Path/URL</td><td><code>/login</code></td></tr>
+<tr><td>Headers</td><td><code>Host</code>, <code>Content-Type</code>, <code>Cookie</code></td></tr>
+<tr><td>Body</td><td>Commonly used for submitted data</td></tr>
+<tr><td>Status code</td><td><code>200</code>, <code>404</code>, <code>500</code>, etc.</td></tr></table>
+
+<h3>HTTP History</h3>
+<p>HTTP history in browser/developer tooling helps examine previously made requests and responses. From a secure-development perspective, use it to understand what information the browser sends, what the server returns and where sensitive data appears.</p>
+
+<h3>HTTP/1.1</h3>
+<p>HTTP/1.1 standardized persistent connections and common mechanisms such as request methods, headers, status codes, caching and chunked transfer. It is important to recognize its text-oriented request/response structure.</p>
+
+<h3>Cookies for Stateful Requests</h3>
+<p>HTTP itself is stateless: individual requests do not inherently remember earlier requests. Cookies allow a server to associate subsequent requests with state, commonly through a session identifier.</p>
+<pre>Set-Cookie: session_id=abc123; Secure; HttpOnly; SameSite=Lax
+Cookie: session_id=abc123</pre>
+<p>Important cookie attributes:</p>
+<ul><li><strong>Secure:</strong> send the cookie over HTTPS connections.</li><li><strong>HttpOnly:</strong> prevents ordinary JavaScript access to the cookie.</li><li><strong>SameSite:</strong> controls cross-site cookie sending behavior.</li><li><strong>Path/Domain:</strong> constrain where the cookie is sent.</li></ul>
+
+<h3>HTTPS</h3>
+<p>HTTPS is HTTP carried over TLS. TLS provides confidentiality, integrity and server authentication when correctly configured. HTTPS protects traffic in transit; it does not automatically make the application itself secure.</p>
+
+<h3>QUIC</h3>
+<p>QUIC is a transport protocol built over UDP and designed for secure, multiplexed communications. It forms the transport foundation for HTTP/3.</p>
+
+<h3>HTTP/2</h3>
+<p>HTTP/2 uses a binary framing layer and supports multiplexing multiple streams over a connection, reducing some limitations of HTTP/1.1 connection handling.</p>
+
+<h3>HTTP/3</h3>
+<p>HTTP/3 maps HTTP semantics onto QUIC rather than TCP. Know the high-level relationship:</p>
+<div class="box green"><strong>HTTP/1.1 → TCP-based traditional HTTP; HTTP/2 → TCP + binary multiplexed framing; HTTP/3 → QUIC over UDP.</strong></div>
+
+<h3>Lab — Analyzing Web Components</h3>
+<div class="lab"><ol><li>Open browser developer tools on a permitted test page.</li><li>Inspect the HTML/DOM tree.</li><li>Inspect JavaScript loaded by the page.</li><li>Open the Network panel and observe an HTTP request and response.</li><li>Identify method, URL, status code, headers and response body.</li><li>Observe cookies and their security attributes in the browser storage/application tools.</li><li>Compare a normal HTTP request with an HTTPS request at the application level.</li></ol></div>
+</div></details><details class="section" id="sec2" open><summary>Session 2 — Secure Application Design</summary><div class="content">
+<h2>Least Privilege</h2>
+<p><strong>Least privilege</strong> means a user, process, service or component receives only the permissions necessary to perform its legitimate function.</p>
+<p>Examples: an application service account should not automatically have administrator/root privileges; a database account should receive only the tables/actions it requires.</p>
+
+<h2>Separation of Duties</h2>
+<p><strong>Separation of duties</strong> divides sensitive responsibilities among different people, roles or components so that one actor cannot independently complete a high-risk operation.</p>
+<p>Example: one role prepares a financial transaction while another role approves it.</p>
+
+<h2>Defense in Depth</h2>
+<p><strong>Defense in depth</strong> uses multiple independent or complementary security controls. If one control fails, another can reduce the impact.</p>
+<p>Example: secure coding + authentication + authorization + input validation + network segmentation + monitoring + backups.</p>
+
+<h2>Open Design</h2>
+<p>The <strong>open design</strong> principle says security should not depend on secrecy of the design or implementation. A design should remain secure even when an attacker knows how the system works, apart from secrets such as keys/passwords that are specifically intended to remain secret.</p>
+
+<h2>Minimizing Attack Surface Area</h2>
+<p>The <strong>attack surface</strong> is the collection of reachable interfaces, services, features, inputs and privileges that can potentially be abused. Reduce it by disabling unnecessary services, removing unused features, limiting exposed endpoints and minimizing privileges.</p>
+
+<div class="box yellow"><strong>Remember the five design principles in this session:</strong> Least Privilege → Separation of Duties → Defense in Depth → Open Design → Minimize Attack Surface.</div>
+
+<h3>Lab — OWASP Secure Coding Schemes</h3>
+<div class="lab"><ol><li>Take a small intentionally insecure application in a controlled lab.</li><li>Identify its trust boundaries and sensitive operations.</li><li>Map possible issues to secure coding guidance.</li><li>Apply least privilege and input validation.</li><li>Review authentication/authorization decisions.</li><li>Repeat the review after the fixes.</li></ol></div>
+</div></details><details class="section" id="sec3" open><summary>Session 3 — Input Validation</summary><div class="content">
+<h2>Input Validation Strategies</h2>
+<p><strong>Input validation</strong> checks whether data conforms to the application's expected rules before processing it. Validation should be based on the application's actual business requirements.</p>
+<h3>Allowlist vs denylist</h3>
+<ul><li><strong>Allowlist:</strong> define what is permitted and reject everything outside the expected set. Generally preferred when feasible.</li><li><strong>Denylist:</strong> define known-bad patterns. It can be useful as an additional control but is often incomplete by itself.</li></ul>
+<h3>Validation dimensions</h3>
+<ul><li>Type — integer, date, string, etc.</li><li>Length — minimum/maximum size.</li><li>Range — acceptable numeric/date boundaries.</li><li>Format — for example a constrained identifier format.</li><li>Business rules — whether the value makes sense in context.</li></ul>
+
+<h2>Client-Side vs Server-Side Validation</h2>
+<table><tr><th>Client-side</th><th>Server-side</th></tr><tr><td>Improves user experience and gives immediate feedback.</td><td>Security boundary; must independently validate untrusted input.</td></tr><tr><td>Can be bypassed or modified by the client.</td><td>Runs under application/server control.</td></tr></table>
+<div class="box red"><strong>Exam point:</strong> client-side validation is not a security boundary. Never rely on it alone.</div>
+
+<h2>Preventing XSS and Content Security Policy</h2>
+<p><strong>Cross-Site Scripting (XSS)</strong> occurs when attacker-controlled data is interpreted as executable content in a victim's browser. Prevention includes context-appropriate output encoding, safe DOM APIs, careful handling of HTML and strong server-side input controls.</p>
+<p><strong>Content Security Policy (CSP)</strong> is a browser-enforced policy delivered through HTTP headers (or, in some cases, HTML metadata) that restricts permitted content sources and execution behavior. A strong CSP can reduce the impact of some XSS paths, but it should complement—not replace—safe output handling.</p>
+
+<h2>File Upload Validation</h2>
+<p>File uploads require validation because the application is accepting attacker-controlled content.</p>
+<ul><li>Allow only required file types.</li><li>Validate size limits.</li><li>Do not trust the client-provided filename or MIME type alone.</li><li>Generate safe server-side filenames.</li><li>Store uploads outside executable web roots where appropriate.</li><li>Apply authorization checks.</li><li>Scan/process files in an appropriately isolated environment when required.</li></ul>
+
+<h2>Email Address Validation</h2>
+<p>Email validation should establish that the supplied value fits the application's expected format. Avoid trying to implement every possible detail of the full email standard with an overly restrictive regular expression. Also distinguish <strong>syntax validation</strong> from <strong>verification</strong>: a syntactically valid address does not prove that the mailbox exists or belongs to a particular user.</p>
+
+<h3>Lab — OWASP Cheat Sheet Series</h3>
+<div class="lab"><p>Use the OWASP cheat-sheet material supplied for the course as the lab reference. Practice mapping each validation problem to a concrete defense, then test the application with benign boundary cases and malformed input in the authorized lab.</p></div>
+</div></details><details class="section" id="sec4" open><summary>Session 4 — Authentication and Authorization</summary><div class="content">
+<h2>Implement Proper Password Strength Controls</h2>
+<p>Password controls should encourage sufficiently strong passwords without relying on simplistic rules alone. Secure systems should store passwords using a dedicated password-hashing algorithm with a unique salt and appropriate work factor rather than reversible encryption or plaintext.</p>
+<p>Consider length, breached-password defenses where available, rate limiting, secure password reset and multi-factor authentication for higher-risk accounts.</p>
+
+<h2>Authentication and Error Messages</h2>
+<p><strong>Authentication</strong> answers “Who are you?” Error responses should not unnecessarily reveal whether a particular account exists. Consistent external messages can reduce account-enumeration opportunities while detailed diagnostic information remains available to authorized operators through secure logging.</p>
+
+<h2>Enforce Least Privileges</h2>
+<p>After authentication, the application should grant only the permissions required by the user's role and current task. Authentication alone does not grant authorization.</p>
+
+<h2>Authorization Checks on Static Resources</h2>
+<p>Static or directly addressable resources can also require authorization. Do not assume that hiding a link in the UI protects the underlying file/resource. The server or resource-serving layer must enforce access policy.</p>
+
+<div class="box green"><strong>Authentication ≠ Authorization:</strong> authentication establishes identity; authorization determines what that identity is allowed to do.</div>
+
+<h3>Lab — OWASP Cheat Sheet Series</h3>
+<div class="lab"><ol><li>Review authentication and authorization guidance.</li><li>Identify login, logout, password reset and session boundaries.</li><li>Test authorized lab accounts with different roles.</li><li>Verify that every sensitive action performs an authorization decision.</li><li>Check that error messages do not unnecessarily disclose account existence or internal details.</li></ol></div>
+</div></details><details class="section" id="sec5" open><summary>Session 5 — Session Management</summary><div class="content">
+<h2>Session ID Properties</h2>
+<p>A session ID links a series of requests to a server-side session. A secure session identifier should be unpredictable, sufficiently long, protected in transit and handled as a sensitive credential.</p>
+<ul><li>Use a cryptographically strong random source for session identifiers.</li><li>Regenerate the session ID after important privilege changes such as login to reduce session-fixation risk.</li><li>Expire sessions appropriately.</li><li>Invalidate sessions on logout where appropriate.</li><li>Protect session identifiers from unnecessary exposure.</li></ul>
+
+<h2>Session Management Implementation</h2>
+<p>Session management covers creation, association, renewal, timeout and destruction of sessions. The server should treat session identifiers as authentication-related secrets.</p>
+<p>Important controls include idle/absolute timeouts, secure logout, session rotation and protection against fixation and theft.</p>
+
+<h2>Cookie Attributes</h2>
+<table><tr><th>Attribute</th><th>Purpose</th></tr>
+<tr><td><code>Secure</code></td><td>Cookie is sent only over secure connections.</td></tr>
+<tr><td><code>HttpOnly</code></td><td>Blocks normal JavaScript access to the cookie.</td></tr>
+<tr><td><code>SameSite</code></td><td>Controls cross-site sending behavior.</td></tr>
+<tr><td><code>Path</code></td><td>Restricts applicable URL paths.</td></tr><tr><td><code>Domain</code></td><td>Controls applicable domain scope.</td></tr></table>
+
+<h2>The Session Storage API</h2>
+<p>The browser <code>sessionStorage</code> API provides storage associated with a page/session context and is separate from HTTP cookies. Data in web storage is accessible to JavaScript running in the relevant origin, so sensitive authentication material should not automatically be placed there.</p>
+<pre>sessionStorage.setItem("theme", "dark");
+const value = sessionStorage.getItem("theme");
+sessionStorage.removeItem("theme");</pre>
+<div class="box red"><strong>Security point:</strong> if an XSS vulnerability exists, JavaScript-accessible storage can potentially be read. Storage choice must therefore be part of the threat model.</div>
+
+<h3>Lab — OWASP Cheat Sheet Series</h3>
+<div class="lab"><p>Inspect session cookies in a controlled application. Verify their attributes, observe login/logout behavior, test session expiration, and document whether session identifiers change after authentication.</p></div>
+</div></details><details class="section" id="sec6" open><summary>Session 6 — Error Handling</summary><div class="content">
+<h2>Information Exposure Through an Error Message</h2>
+<p>Error messages can accidentally disclose sensitive information such as filesystem paths, database details, stack traces, internal hostnames, software versions or query fragments. Production-facing responses should provide useful but appropriately limited information.</p>
+<p>Detailed diagnostic information should be protected and available through controlled logging/monitoring rather than exposed directly to untrusted users.</p>
+
+<h2>Unchecked Error Condition</h2>
+<p>An <strong>unchecked error condition</strong> occurs when a program fails to handle an operation's failure state correctly. This can lead to crashes, inconsistent state, security bypasses or unsafe continuation.</p>
+<pre>try:
+    result = perform_operation()
+except ExpectedError:
+    handle_failure()
+else:
+    use(result)</pre>
+<p>Do not silently ignore important failures. Decide which failures are expected, handle them deliberately and preserve useful diagnostic context without exposing secrets.</p>
+
+<h3>Lab — Error-prone tools</h3>
+<div class="lab"><p>Use controlled, intentionally error-prone programs/tools. Trigger benign failure conditions such as invalid input, missing files and unavailable resources. Record the original failure, the user-visible response and the secure handling improvement.</p></div>
+</div></details><details class="section" id="sec7" open><summary>Session 7 — Secure Deployment</summary><div class="content">
+<h2>VMs vs Containers vs Bare-Metal Isolation</h2>
+<table><tr><th>Technology</th><th>High-level isolation model</th><th>Security consideration</th></tr>
+<tr><td>Virtual Machine</td><td>Guest OS runs on virtualized hardware through a hypervisor.</td><td>Strong isolation boundary in many deployments, but hypervisor/guest configuration still matters.</td></tr>
+<tr><td>Container</td><td>Processes share the host kernel while being isolated using OS mechanisms.</td><td>Lightweight, but the shared-kernel model means container isolation is different from a full VM.</td></tr>
+<tr><td>Bare metal</td><td>Workload runs directly on physical hardware.</td><td>No virtualization layer between workload and hardware, but OS/process isolation still matters.</td></tr></table>
+
+<h2>Serverless</h2>
+<p><strong>Serverless</strong> abstracts much of the underlying server management. Code is commonly executed in response to events or requests. Secure design still requires authentication, authorization, input validation, dependency management, logging, secrets management and least privilege.</p>
+
+<h2>Where and How to Keep Secrets</h2>
+<p>Secrets include API keys, passwords, tokens and private keys. Do not hard-code production secrets in source code or commit them to repositories.</p>
+<ul><li>Use a dedicated secrets-management mechanism where available.</li><li>Restrict access with least privilege.</li><li>Rotate secrets appropriately.</li><li>Keep secrets out of logs and error messages.</li><li>Use environment/configuration mechanisms carefully and protect the execution environment.</li></ul>
+
+<h2>Automating the Deployment Process</h2>
+<p>Automated deployment reduces manual variation and can make security checks repeatable. Secure deployment pipelines should include source control, dependency checks, tests, secret scanning, infrastructure/configuration review and controlled promotion.</p>
+<div class="box green"><strong>Core principle:</strong> deployment automation should make the secure path the repeatable path—not simply make deployment faster.</div>
+
+<h3>Lab — Secure Deployment Practice</h3>
+<div class="lab"><ol><li>Deploy a harmless sample application to a disposable environment.</li><li>Compare a VM-based and containerized deployment conceptually.</li><li>Store a non-production test secret outside source code.</li><li>Run automated tests before deployment.</li><li>Verify logs do not contain the test secret.</li><li>Document the security controls in the pipeline.</li></ol></div>
+</div></details><details class="section" id="sec8" open><summary>Session 8 — Attack Hardening, DoS/DDoS, Fail2ban, CAPTCHA & Secure Networks</summary><div class="content">
+<h2>Attack Hardening</h2>
+<p><strong>Attack hardening</strong> reduces the likelihood and impact of attacks by removing unnecessary exposure, limiting resources, validating inputs, applying rate controls and designing resilient systems.</p>
+
+<h2>What is DoS/DDoS?</h2>
+<p><strong>Denial of Service (DoS)</strong> aims to make a service unavailable or degraded. <strong>Distributed Denial of Service (DDoS)</strong> uses multiple sources, often a distributed set of compromised or otherwise participating systems, to generate the disruptive traffic.</p>
+
+<h3>Resource Exhaustion Fundamentals</h3>
+<p>Services have finite resources such as CPU, memory, connection slots, threads, file descriptors, bandwidth and application queues. An availability attack attempts to consume a resource faster than the service can recover it.</p>
+<div class="box yellow"><strong>Defensive model:</strong> identify the scarce resource → limit consumption → reject or delay excess work → isolate components → monitor → scale or absorb traffic where appropriate.</div>
+
+<h3>SYN Flood</h3>
+<p>A SYN flood targets TCP connection establishment by causing the server to maintain state for many incomplete handshakes. Defenses can include operating-system/network protections, connection controls, filtering and upstream DDoS mitigation.</p>
+
+<h3>Full HTTP</h3>
+<p>The syllabus lists <strong>Full HTTP</strong> under DoS/DDoS. In this context, understand application-layer HTTP request flooding where complete HTTP requests consume server-side resources such as workers, application processing, database queries or bandwidth.</p>
+
+<h3>Slowloris</h3>
+<p><strong>Slowloris</strong> is an application-layer availability technique that attempts to keep many HTTP connections open by sending requests slowly, tying up server connection resources.</p>
+
+<h3>ReDoS</h3>
+<p><strong>Regular Expression Denial of Service (ReDoS)</strong> occurs when a vulnerable regular expression causes excessive backtracking/processing for crafted input. Secure defenses include avoiding pathological regex patterns, using safe regex designs, limiting input size and applying execution/resource limits where supported.</p>
+
+<h2>Fail2ban</h2>
+<p><strong>Fail2ban</strong> is a defensive tool that can monitor logs for patterns associated with abusive behavior and temporarily block or restrict offending sources through configured actions.</p>
+<p>It is a response mechanism, not a complete DDoS defense. It is most useful when the attack is visible in local logs and the host can safely enforce the response.</p>
+
+<h2>CAPTCHAs, reCAPTCHA, reCAPTCHA v3, XR privacy</h2>
+<p>A <strong>CAPTCHA</strong> is a challenge intended to distinguish automated activity from human interaction. Such controls can reduce some forms of automated abuse but should not be treated as a replacement for rate limiting, authorization or secure application design.</p>
+<p><strong>reCAPTCHA</strong> refers to Google's CAPTCHA-related service. <strong>reCAPTCHA v3</strong> uses a risk/scoring approach rather than always presenting a visible challenge.</p>
+<p>The PDF lists <strong>XR privacy</strong> but does not provide further explanation of that term in the supplied syllabus. Therefore, no additional interpretation is asserted here.</p>
+
+<h2>Introduction to Designing Secure Networks</h2>
+<p>Secure network design begins with understanding assets, trust boundaries and communication requirements.</p>
+<ul><li>Segment systems according to trust and function.</li><li>Expose only required services.</li><li>Use firewalls/security groups to restrict flows.</li><li>Protect management interfaces.</li><li>Encrypt sensitive traffic in transit.</li><li>Use monitoring and centralized logging.</li><li>Design for availability and recovery.</li><li>Apply least privilege to network access as well as user permissions.</li></ul>
+
+<h3>Defensive DoS/DDoS lab</h3>
+<div class="lab"><p>Use only a local/disposable lab and traffic-generation tools approved by your instructor. Do not run DoS/DDoS techniques against public or third-party systems. Instead, study server logs, connection limits, rate-limiting behavior and defensive configuration using controlled test traffic.</p></div>
+</div></details><details class="section" id="sec9" open><summary>Final Revision — Secure Programming Quick Reference</summary><div class="content">
+<h2>Principles to Memorize</h2>
+<table><tr><th>Concept</th><th>One-line meaning</th></tr>
+<tr><td>Least Privilege</td><td>Give only the permissions required.</td></tr>
+<tr><td>Separation of Duties</td><td>Split sensitive responsibilities to reduce single-person/component abuse.</td></tr>
+<tr><td>Defense in Depth</td><td>Use multiple complementary security controls.</td></tr>
+<tr><td>Open Design</td><td>Security should not depend on keeping the design secret.</td></tr>
+<tr><td>Attack Surface Reduction</td><td>Remove unnecessary exposed functionality and privilege.</td></tr>
+<tr><td>Input Validation</td><td>Accept data only when it meets expected rules.</td></tr>
+<tr><td>Authentication</td><td>Establish identity.</td></tr>
+<tr><td>Authorization</td><td>Decide what an identity is permitted to do.</td></tr>
+<tr><td>Session Management</td><td>Securely create, maintain, rotate and invalidate session state.</td></tr>
+<tr><td>Secure Error Handling</td><td>Handle failures without exposing unnecessary internal information.</td></tr>
+<tr><td>Secure Deployment</td><td>Deploy repeatably with protected secrets and security checks.</td></tr>
+<tr><td>DoS/DDoS Hardening</td><td>Protect finite resources from deliberate exhaustion.</td></tr></table>
+
+<h2>High-Value Comparisons</h2>
+<table><tr><th>Comparison</th><th>Key distinction</th></tr>
+<tr><td>HTTP vs HTTPS</td><td>HTTPS uses TLS to protect HTTP in transit.</td></tr>
+<tr><td>HTTP/1.1 vs HTTP/2</td><td>HTTP/2 adds binary framing and multiplexing while retaining HTTP semantics.</td></tr>
+<tr><td>HTTP/2 vs HTTP/3</td><td>HTTP/2 commonly uses TCP; HTTP/3 uses QUIC over UDP.</td></tr>
+<tr><td>Cookie vs sessionStorage</td><td>Cookies participate in HTTP cookie mechanisms; sessionStorage is browser JavaScript-accessible storage for a session context.</td></tr>
+<tr><td>Client vs server validation</td><td>Client validation improves UX; server validation is required for security.</td></tr>
+<tr><td>Authentication vs authorization</td><td>Identity vs permissions.</td></tr>
+<tr><td>DoS vs DDoS</td><td>Single/source-limited vs distributed sources.</td></tr>
+<tr><td>VM vs container</td><td>VM virtualizes a guest OS; containers share the host kernel.</td></tr>
+<tr><td>CAPTCHA vs rate limiting</td><td>CAPTCHA challenges automation; rate limiting controls request volume. They can complement each other.</td></tr>
+<tr><td>Logging vs error disclosure</td><td>Detailed diagnostics belong in protected logs; user responses should avoid unnecessary sensitive details.</td></tr></table>
+
+<h2>Exam Checklist</h2>
+<ul>
+<li>☐ Explain DOM and JavaScript roles in a browser.</li>
+<li>☐ Explain HTTP request/response and HTTP/1.1.</li>
+<li>☐ Explain cookies and stateful requests.</li>
+<li>☐ Distinguish HTTP, HTTPS, QUIC, HTTP/2 and HTTP/3.</li>
+<li>☐ Explain least privilege, separation of duties, defense in depth, open design and attack-surface reduction.</li>
+<li>☐ Explain input-validation strategies and allowlist/denylist thinking.</li>
+<li>☐ Distinguish client-side and server-side validation.</li>
+<li>☐ Explain XSS prevention and the role of CSP.</li>
+<li>☐ Explain secure file-upload validation.</li>
+<li>☐ Explain email-address syntax validation vs actual verification.</li>
+<li>☐ Explain password-strength controls and safe password storage concepts.</li>
+<li>☐ Distinguish authentication from authorization.</li>
+<li>☐ Explain authorization checks on resources.</li>
+<li>☐ Explain session-ID properties and secure session management.</li>
+<li>☐ Know Secure, HttpOnly and SameSite cookie attributes.</li>
+<li>☐ Understand sessionStorage and its security implications.</li>
+<li>☐ Explain information exposure through error messages.</li>
+<li>☐ Explain unchecked error conditions and structured error handling.</li>
+<li>☐ Compare VMs, containers and bare metal.</li>
+<li>☐ Explain serverless security responsibilities.</li>
+<li>☐ Explain secure secrets storage.</li>
+<li>☐ Explain deployment automation as a security control.</li>
+<li>☐ Explain DoS/DDoS and resource exhaustion.</li>
+<li>☐ Know the syllabus terms SYN flood, Full HTTP, Slowloris and ReDoS.</li>
+<li>☐ Explain Fail2ban at a high level.</li>
+<li>☐ Explain CAPTCHA/reCAPTCHA and the high-level idea of reCAPTCHA v3.</li>
+<li>☐ Know the basic principles of designing secure networks.</li>
+</ul>
+
+<div class="box green"><strong>Fast revision chain:</strong> Browser → HTTP/HTTPS → Secure Design → Validate Input → Authenticate → Authorize → Manage Sessions → Handle Errors → Deploy Securely → Harden Against Availability Attacks → Design Secure Networks.</div>
+</div></details>
+<div class="footer">Secure Programming — Complete Theory & Practical Guide<br>Source basis: supplied 5-page Secure Programming syllabus.</div>
+</div>
+</body>
+</html>

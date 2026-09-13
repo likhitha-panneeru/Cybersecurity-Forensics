@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Essentials</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b;line-height:1.8;font-size:15px}
+.hero{background:linear-gradient(135deg,#0c4a6e,#155e75 40%,#164e63 100%);color:#fff;padding:44px 24px;text-align:center;border-bottom:3px solid #06b6d4}
+.hero h1{font-size:24px;font-weight:800}.hero h1 span{color:#22d3ee}
+.hero .sub{font-size:13px;color:#a5f3fc;margin-top:4px}
+.hero .meta{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}
+.hero .meta span{font-size:11px;background:rgba(255,255,255,.12);padding:4px 12px;border-radius:20px}
+.ct{max-width:940px;margin:0 auto;padding:20px 20px 80px}
+.acts{display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px}
+.acts button{font:600 12px Inter,sans-serif;padding:6px 14px;border-radius:6px;border:1px solid #e2e8f0;background:#fff;color:#0e7490;cursor:pointer}
+.phase{margin:24px 0 10px;padding:12px 18px;border-radius:8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px}
+.phase-a{background:linear-gradient(90deg,#cffafe,#ecfeff);color:#155e75;border-left:4px solid #06b6d4}
+.phase-b{background:linear-gradient(90deg,#d1fae5,#ecfdf5);color:#065f46;border-left:4px solid #10b981}
+.s{margin-bottom:10px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.s-h{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;user-select:none}
+.s-h:hover{background:#f8fafc}
+.s-h h2{font-size:14px;font-weight:700;flex:1}
+.sn{min-width:40px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.sn-c{background:#0891b2}.sn-g{background:#059669}
+.tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.tag-t{background:#cffafe;color:#155e75}.tag-l{background:#d1fae5;color:#065f46}.tag-s{background:#fef3c7;color:#92400e}
+.cv{width:16px;height:16px;transition:transform .2s;color:#94a3b8}
+.s.o .cv{transform:rotate(180deg)}
+.s-b{display:none;padding:0 18px 22px;border-top:1px solid #f1f5f9}
+.s.o .s-b{display:block}
+h3{font-size:15px;font-weight:700;color:#0c4a6e;margin:18px 0 10px;padding-bottom:5px;border-bottom:2px solid #e0f2fe}
+h4{font-size:13px;font-weight:700;color:#0e7490;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.3px}
+p{margin-bottom:8px;color:#334155}
+ul,ol{padding-left:20px;margin:6px 0 10px;color:#475569}li{margin-bottom:5px}
+strong{color:#0f172a}
+code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#f1f5f9;color:#b91c1c;padding:2px 6px;border-radius:4px}
+pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:14px 16px;margin:8px 0 12px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.85;white-space:pre-wrap}
+.box{border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px}
+.box-b{background:#ecfeff;border-left:4px solid #06b6d4;color:#155e75}
+.box-g{background:#f0fdf4;border-left:4px solid #22c55e;color:#166534}
+.box-y{background:#fefce8;border-left:4px solid #eab308;color:#854d0e}
+.box-r{background:#fef2f2;border-left:4px solid #ef4444;color:#991b1b}
+.tbl{overflow-x:auto;margin:8px 0;border-radius:8px;border:1px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#f1f5f9;text-align:left;padding:8px 12px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#64748b;border-bottom:2px solid #e2e8f0}
+td{padding:7px 12px;border-bottom:1px solid #f1f5f9;vertical-align:top}tr:last-child td{border-bottom:none}
+.diagram{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;padding:14px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.5;white-space:pre;overflow-x:auto;text-align:center;color:#475569}
+.sl{background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:14px 16px;margin:10px 0}
+.sl h4{color:#92400e;margin-top:0}
+@media(max-width:640px){.hero{padding:28px 14px}.hero h1{font-size:20px}pre{font-size:11px}.diagram{font-size:11px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>Network Essentials</h1>
+</div>
+
+<div class="ct">
+<div class="acts">
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.add('o'))">Expand All</button>
+<button onclick="document.querySelectorAll('.s').forEach(s=>s.classList.remove('o'))">Collapse All</button>
+</div>
+
+<div class="phase phase-a">📡 Sessions 1–7 — Networking Foundations, Protocols &amp; Addressing</div>
+
+<!-- ═══════════ SESSION 1 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S01</span><h2>Number Systems, Networking Terms, Cables &amp; NOS</h2><span class="tag tag-t">Theory</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Binary Number System (Base 2)</h3>
+<p>Computers only understand <strong>binary</strong> — 0s and 1s. Each digit is a <strong>bit</strong>. 8 bits = 1 <strong>byte</strong>. Every IP address, MAC address, and subnet mask is stored as binary. Understanding binary is essential for subnetting.</p>
+
+<h4>Decimal to Binary Conversion</h4>
+<p>Method: Repeatedly <strong>divide by 2</strong> and record the remainder. Read remainders bottom-to-top.</p>
+<pre>Convert 192 to binary:
+192 ÷ 2 = 96  remainder 0
+ 96 ÷ 2 = 48  remainder 0
+ 48 ÷ 2 = 24  remainder 0
+ 24 ÷ 2 = 12  remainder 0
+ 12 ÷ 2 =  6  remainder 0
+  6 ÷ 2 =  3  remainder 0
+  3 ÷ 2 =  1  remainder 1
+  1 ÷ 2 =  0  remainder 1
+Read bottom → top: 11000000 ✓</pre>
+
+<h4>Quick Method — Powers of 2 Table</h4>
+<div class="tbl"><table>
+<tr><th>Bit Position</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+<tr><th>Value</th><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr>
+</table></div>
+<p>For 192: 128+64 = 192 → bits 7 and 6 are ON → <code>11000000</code></p>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Convert 192.168.10.25 to Binary</h4>
+<pre>192 = 128+64               = 11000000
+168 = 128+32+8              = 10101000
+ 10 = 8+2                   = 00001010
+ 25 = 16+8+1                = 00011001
+
+Answer: 11000000.10101000.00001010.00011001</pre>
+</div>
+
+<h4>Binary to Decimal Conversion</h4>
+<pre>Convert 10101000 to decimal:
+1×128 + 0×64 + 1×32 + 0×16 + 1×8 + 0×4 + 0×2 + 0×1
+= 128 + 32 + 8 = 168 ✓</pre>
+
+<h3>Hexadecimal Number System (Base 16)</h3>
+<p>Uses 16 symbols: <strong>0-9</strong> and <strong>A-F</strong> (A=10, B=11, C=12, D=13, E=14, F=15). Used for MAC addresses, IPv6 addresses, memory addresses, and color codes. Each hex digit = exactly <strong>4 binary bits (nibble)</strong>.</p>
+
+<div class="tbl"><table>
+<tr><th>Hex</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>
+<tr><th>Dec</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+<tr><th>Bin</th><td>0000</td><td>0001</td><td>0010</td><td>0011</td><td>0100</td><td>0101</td><td>0110</td><td>0111</td><td>1000</td><td>1001</td><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td></tr>
+</table></div>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Convert MAC 00-1A-2B-3C-4D-5E</h4>
+<pre>Each hex pair → 8-bit binary:
+00 → 0000 0000
+1A → 0001 1010   (1=0001, A=1010)
+2B → 0010 1011   (2=0010, B=1011)
+3C → 0011 1100   (3=0011, C=1100)
+4D → 0100 1101   (4=0100, D=1101)
+5E → 0101 1110   (5=0101, E=1110)
+
+Full binary: 00000000.00011010.00101011.00111100.01001101.01011110</pre>
+</div>
+
+<h4>Where Binary and Hex Are Used in Networking</h4>
+<ul>
+<li><strong>Binary:</strong> IP addresses internally, Subnet masks (to separate network/host bits), ACL wildcard masks, Subnetting calculations</li>
+<li><strong>Hexadecimal:</strong> MAC addresses (48-bit, written as 6 hex pairs), IPv6 addresses (128-bit, 8 groups of 4 hex digits), Ethernet frame headers, Wireshark packet analysis, Memory addresses</li>
+</ul>
+
+<h3>Networking Terms</h3>
+
+<h4>Bandwidth</h4>
+<p>The <strong>maximum rate</strong> of data transfer across a network link. Measured in <strong>bits per second</strong> (bps). Think of it as the <strong>width of a highway</strong> — a 4-lane highway (1 Gbps) can carry more traffic than a 1-lane road (100 Mbps). Bandwidth is theoretical maximum, not actual speed.</p>
+
+<h4>Throughput</h4>
+<p>The <strong>actual amount</strong> of data successfully transferred per unit time. Always ≤ bandwidth. Affected by congestion, errors, protocol overhead, latency. If bandwidth is the highway width, throughput is the number of cars actually passing per hour.</p>
+
+<h4>Latency</h4>
+<p>The <strong>time delay</strong> for a packet to travel from source to destination. Measured in <strong>milliseconds (ms)</strong>. Components: Propagation delay (speed of light in medium), Serialization delay (putting bits on wire), Processing delay (router/switch processing), Queuing delay (waiting in buffer). Lower = better. Measured with <code>ping</code>.</p>
+
+<h4>Jitter</h4>
+<p>The <strong>variation in latency</strong> over time. If latency is usually 20ms but sometimes jumps to 100ms, jitter is high. Critical for real-time apps: VoIP, video calls, gaming. High jitter = choppy calls, lag spikes.</p>
+
+<h4>MTU (Maximum Transmission Unit)</h4>
+<p>The <strong>largest packet size</strong> a network link can carry without fragmenting. Default Ethernet MTU = <strong>1500 bytes</strong>. If a packet exceeds MTU, it must be <strong>fragmented</strong> (broken into smaller pieces) — or dropped if DF (Don't Fragment) bit is set. Fragmentation hurts performance.</p>
+
+<h4>Other Essential Terms</h4>
+<ul>
+<li><strong>Protocol:</strong> A set of rules defining how data is formatted, transmitted, and received (TCP, IP, HTTP, DNS).</li>
+<li><strong>Packet:</strong> A unit of data. Contains header (addressing info) + payload (actual data).</li>
+<li><strong>Frame:</strong> Layer 2 packet. Contains source/destination MAC addresses.</li>
+<li><strong>Segment:</strong> Layer 4 (TCP) unit. Contains port numbers and sequence numbers.</li>
+<li><strong>Datagram:</strong> Layer 4 (UDP) unit. Connectionless, unreliable.</li>
+<li><strong>Node:</strong> Any device connected to the network.</li>
+<li><strong>Host:</strong> A device with an IP address (computer, server, phone).</li>
+<li><strong>Client:</strong> Requests services. <strong>Server:</strong> Provides services.</li>
+<li><strong>Collision Domain:</strong> Where frames can collide. Each switch port = separate collision domain. Hub = one big collision domain.</li>
+<li><strong>Broadcast Domain:</strong> Where broadcast frames reach ALL devices. Separated by routers or VLANs.</li>
+<li><strong>Duplex:</strong> Simplex (one-way), Half-duplex (one at a time), Full-duplex (both simultaneously).</li>
+</ul>
+
+<h3>Cable Infrastructure</h3>
+
+<h4>Copper Cables (Twisted Pair)</h4>
+<div class="tbl"><table>
+<tr><th>Category</th><th>Speed</th><th>Max Distance</th><th>Use</th></tr>
+<tr><td>Cat 5</td><td>100 Mbps</td><td>100m</td><td>Obsolete</td></tr>
+<tr><td><strong>Cat 5e</strong></td><td>1 Gbps</td><td>100m</td><td>Common in older offices</td></tr>
+<tr><td><strong>Cat 6</strong></td><td>1 Gbps (10 Gbps up to 55m)</td><td>100m</td><td>Recommended standard</td></tr>
+<tr><td>Cat 6a</td><td>10 Gbps</td><td>100m</td><td>Data centers</td></tr>
+<tr><td>Cat 7</td><td>10 Gbps</td><td>100m</td><td>Fully shielded</td></tr>
+<tr><td>Cat 8</td><td>25/40 Gbps</td><td>30m</td><td>Short-run data center</td></tr>
+</table></div>
+
+<p><strong>UTP</strong> (Unshielded Twisted Pair): Most common. No shielding. <strong>STP</strong> (Shielded): Metal foil shielding, better EMI protection. <strong>Connector:</strong> RJ-45 (8-pin).</p>
+
+<p><strong>Straight-through:</strong> Both ends same wiring (T568B–T568B). Use: PC ↔ Switch, Switch ↔ Router. <strong>Crossover:</strong> Different wiring (T568A–T568B). Use: PC ↔ PC, Switch ↔ Switch. <strong>Rollover (Console):</strong> Pins reversed. Use: PC serial ↔ Router console port.</p>
+
+<div class="box box-b">💡 <strong>Modern note:</strong> Most switches now support <strong>Auto-MDIX</strong> and auto-detect cable type. But you must know the concept for exams!</div>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Choose Correct Cable</h4>
+<p><strong>Server to switch (same room):</strong> Cat 6 UTP Straight-through (RJ-45). Under 100m, high speed.<br>
+<strong>Building to building:</strong> Fiber optic (Single-mode for >2km, Multi-mode for <550m). Immune to EMI, lightning-safe, long distance.</p>
+</div>
+
+<h4>Fiber Optic Cables</h4>
+<div class="tbl"><table>
+<tr><th>Type</th><th>Core</th><th>Distance</th><th>Use</th></tr>
+<tr><td><strong>Single-Mode (SMF)</strong></td><td>9 μm</td><td>Up to 80+ km</td><td>WAN, ISP backbone</td></tr>
+<tr><td><strong>Multi-Mode (MMF)</strong></td><td>50/62.5 μm</td><td>Up to 550m</td><td>LAN, Data center</td></tr>
+</table></div>
+<p><strong>Connectors:</strong> LC (small, most common), SC (square, snap-in), ST (round, bayonet twist), MPO/MTP (multi-fiber, data centers).</p>
+
+<h4>Coaxial Cable</h4>
+<p>Central conductor + insulation + shielding. Used for: Cable TV (RG-6), Internet from ISP (DOCSIS). Connector: BNC (older), F-type (TV/cable modem).</p>
+
+<h3>Network Operating Systems (NOS)</h3>
+<div class="tbl"><table>
+<tr><th>NOS</th><th>Type</th><th>Use</th></tr>
+<tr><td><strong>Windows Server</strong></td><td>Commercial</td><td>Active Directory, IIS, Enterprise</td></tr>
+<tr><td><strong>Linux</strong> (RHEL, Ubuntu Server)</td><td>Open Source</td><td>Web servers, Cloud, Security tools</td></tr>
+<tr><td><strong>Unix</strong> (Solaris, AIX)</td><td>Commercial</td><td>Legacy enterprise, Banking</td></tr>
+<tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>Proprietary</td><td>Routers and switches</td></tr>
+<tr><td><strong>Junos OS</strong></td><td>Proprietary</td><td>Juniper routers/switches</td></tr>
+</table></div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 2 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S02</span><h2>Network Infrastructure, Ports, MAC, Switches, Routers &amp; Packets</h2><span class="tag tag-t">Theory</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Network Architecture</h3>
+<ul>
+<li><strong>Peer-to-Peer:</strong> No central server. Each device is both client and server. Simple, cheap, doesn't scale. Example: Windows Workgroup file sharing.</li>
+<li><strong>Client-Server:</strong> Centralized server provides services to clients. Scalable, manageable, secure. Example: AD domain, web/mail servers.</li>
+</ul>
+
+<h3>Ports &amp; Interfaces</h3>
+<p><strong>Physical port:</strong> A connector on a device (RJ-45, SFP). <strong>Logical port:</strong> A number (0–65535) identifying an application/service. Well-known: 0–1023. Registered: 1024–49151. Dynamic/Ephemeral: 49152–65535.</p>
+
+<h4>Must-Know Port Numbers</h4>
+<div class="tbl"><table>
+<tr><th>Port</th><th>Protocol</th><th>Service</th><th>TCP/UDP</th></tr>
+<tr><td>20, 21</td><td>FTP</td><td>File Transfer (Data/Control)</td><td>TCP</td></tr>
+<tr><td>22</td><td>SSH</td><td>Secure Shell</td><td>TCP</td></tr>
+<tr><td>23</td><td>Telnet</td><td>Remote access (insecure!)</td><td>TCP</td></tr>
+<tr><td>25</td><td>SMTP</td><td>Send email</td><td>TCP</td></tr>
+<tr><td>53</td><td>DNS</td><td>Domain Name Resolution</td><td>TCP+UDP</td></tr>
+<tr><td>67/68</td><td>DHCP</td><td>IP auto-assignment</td><td>UDP</td></tr>
+<tr><td>69</td><td>TFTP</td><td>Trivial File Transfer</td><td>UDP</td></tr>
+<tr><td>80</td><td>HTTP</td><td>Web traffic</td><td>TCP</td></tr>
+<tr><td>110</td><td>POP3</td><td>Receive email (download)</td><td>TCP</td></tr>
+<tr><td>123</td><td>NTP</td><td>Time synchronization</td><td>UDP</td></tr>
+<tr><td>143</td><td>IMAP</td><td>Receive email (sync)</td><td>TCP</td></tr>
+<tr><td>161/162</td><td>SNMP</td><td>Network management</td><td>UDP</td></tr>
+<tr><td>389</td><td>LDAP</td><td>Directory services</td><td>TCP</td></tr>
+<tr><td>443</td><td>HTTPS</td><td>Secure web (TLS)</td><td>TCP</td></tr>
+<tr><td>445</td><td>SMB</td><td>Windows file sharing</td><td>TCP</td></tr>
+<tr><td>514</td><td>Syslog</td><td>Log collection</td><td>UDP</td></tr>
+<tr><td>636</td><td>LDAPS</td><td>Secure LDAP</td><td>TCP</td></tr>
+<tr><td>993</td><td>IMAPS</td><td>Secure IMAP</td><td>TCP</td></tr>
+<tr><td>995</td><td>POP3S</td><td>Secure POP3</td><td>TCP</td></tr>
+<tr><td>3306</td><td>MySQL</td><td>MySQL Database</td><td>TCP</td></tr>
+<tr><td>3389</td><td>RDP</td><td>Remote Desktop</td><td>TCP</td></tr>
+</table></div>
+
+<h3>MAC Addresses</h3>
+<p>A <strong>48-bit</strong> hardware address burned into every NIC. Layer 2 identity. Written as 6 hex pairs: <code>AA:BB:CC:DD:EE:FF</code>.</p>
+<div class="diagram">AA : BB : CC : DD : EE : FF
+|----OUI----|---Device ID---|
+First 24 bits = Manufacturer (e.g., 00:50:56 = VMware)
+Last 24 bits  = Unique per device</div>
+<p><strong>Broadcast MAC:</strong> <code>FF:FF:FF:FF:FF:FF</code> — reaches ALL devices on LAN.</p>
+
+<h3>How a Switch Works</h3>
+<ol>
+<li>Frame arrives on port 1 from source MAC <code>AA:AA</code></li>
+<li>Switch records: "MAC AA:AA is on Port 1" in <strong>CAM table (MAC Address Table)</strong></li>
+<li>Checks destination MAC in CAM table</li>
+<li><strong>Known:</strong> forwards to that specific port only (unicast)</li>
+<li><strong>Unknown:</strong> floods to ALL ports except source (unknown unicast flood)</li>
+<li>Over time, switch learns all MAC-to-port mappings</li>
+</ol>
+
+<h3>Routers</h3>
+<p>Layer 3 device. Connects <strong>different networks</strong>. Forwards based on <strong>IP addresses</strong> using a <strong>routing table</strong>. Each interface = separate broadcast domain. Performs NAT.</p>
+
+<div class="box box-g">🔑 <strong>Switch vs Router:</strong> Switch connects devices within SAME network (MAC addresses). Router connects DIFFERENT networks (IP addresses). Your home "router" is actually router + switch + AP + firewall combined.</div>
+
+<h3>Understanding Packets — Structure</h3>
+<div class="diagram">┌──────────────────────────────────────────────────┐
+│                  Ethernet Frame                   │
+├──────────┬──────────────────────────┬─────────────┤
+│ Frame    │        IP Packet         │  Frame      │
+│ Header   │  ┌────────────────────┐  │  Trailer    │
+│ (14 B)   │  │   IP Header (20 B) │  │  (4 B FCS) │
+│          │  │  ┌──────────────┐  │  │             │
+│ Dst MAC  │  │  │ TCP/UDP Hdr  │  │  │             │
+│ Src MAC  │  │  │ + App Data   │  │  │             │
+│ EtherType│  │  └──────────────┘  │  │             │
+│          │  └────────────────────┘  │             │
+└──────────┴──────────────────────────┴─────────────┘</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 3 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S03</span><h2>TCP/IP Framework, IP Addresses (v4/v6), Subnet Masks, CIDR</h2><span class="tag tag-t">Theory</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>TCP/IP Model (4 Layers)</h3>
+<div class="tbl"><table>
+<tr><th>TCP/IP Layer</th><th>OSI Equivalent</th><th>Function</th><th>Key Protocols</th><th>PDU</th></tr>
+<tr><td><strong>Application</strong></td><td>7, 6, 5</td><td>User-facing services, data formatting, sessions</td><td>HTTP, FTP, SSH, DNS, DHCP, SMTP, SNMP</td><td>Data</td></tr>
+<tr><td><strong>Transport</strong></td><td>4</td><td>End-to-end delivery, reliability, port numbers</td><td>TCP, UDP</td><td>Segment / Datagram</td></tr>
+<tr><td><strong>Internet</strong></td><td>3</td><td>Logical addressing, routing between networks</td><td>IP (v4/v6), ICMP, ARP, IGMP</td><td>Packet</td></tr>
+<tr><td><strong>Network Access</strong></td><td>2, 1</td><td>Physical addressing, media access, signaling</td><td>Ethernet, Wi-Fi, PPP</td><td>Frame / Bits</td></tr>
+</table></div>
+
+<h4>TCP vs UDP</h4>
+<div class="tbl"><table>
+<tr><th>Feature</th><th>TCP</th><th>UDP</th></tr>
+<tr><td>Connection</td><td>Connection-oriented (3-way handshake: SYN → SYN-ACK → ACK)</td><td>Connectionless (fire and forget)</td></tr>
+<tr><td>Reliability</td><td>Guaranteed (ACK + retransmit)</td><td>Best-effort (no guarantee)</td></tr>
+<tr><td>Ordering</td><td>In-order (sequence numbers)</td><td>No ordering</td></tr>
+<tr><td>Speed</td><td>Slower (overhead)</td><td>Faster (8-byte header)</td></tr>
+<tr><td>Use Cases</td><td>Web, email, file transfer, SSH, databases</td><td>DNS, DHCP, VoIP, streaming, gaming, SNMP</td></tr>
+</table></div>
+
+<h3>IPv4 Addressing</h3>
+<p><strong>32-bit</strong> address as 4 decimal octets: <code>192.168.1.100</code>. Each octet = 0–255. Two parts: <strong>Network</strong> (which network) + <strong>Host</strong> (which device). The <strong>subnet mask</strong> separates them.</p>
+
+<h4>IP Classes</h4>
+<div class="tbl"><table>
+<tr><th>Class</th><th>First Octet</th><th>Default Mask</th><th>Range</th><th>Hosts</th></tr>
+<tr><td><strong>A</strong></td><td>1–126</td><td>/8 (255.0.0.0)</td><td>1.0.0.0 – 126.255.255.255</td><td>16.7M</td></tr>
+<tr><td><strong>B</strong></td><td>128–191</td><td>/16 (255.255.0.0)</td><td>128.0.0.0 – 191.255.255.255</td><td>65,534</td></tr>
+<tr><td><strong>C</strong></td><td>192–223</td><td>/24 (255.255.255.0)</td><td>192.0.0.0 – 223.255.255.255</td><td>254</td></tr>
+<tr><td><strong>D</strong></td><td>224–239</td><td>—</td><td>Multicast</td><td>—</td></tr>
+<tr><td><strong>E</strong></td><td>240–255</td><td>—</td><td>Experimental</td><td>—</td></tr>
+</table></div>
+
+<h4>Private IPs (RFC 1918) — Not routable on Internet</h4>
+<ul>
+<li><strong>A:</strong> <code>10.0.0.0/8</code></li>
+<li><strong>B:</strong> <code>172.16.0.0/12</code> (172.16.0.0 – 172.31.255.255)</li>
+<li><strong>C:</strong> <code>192.168.0.0/16</code></li>
+</ul>
+
+<h4>Special Addresses</h4>
+<p><code>127.0.0.1</code> — Loopback (localhost). <code>0.0.0.0</code> — Default route / Any. <code>255.255.255.255</code> — Limited broadcast. <code>169.254.x.x</code> — APIPA (DHCP failure).</p>
+
+<h3>Subnet Masks &amp; CIDR</h3>
+<pre>IP:   192.168.1.100     = 11000000.10101000.00000001.01100100
+Mask: 255.255.255.0      = 11111111.11111111.11111111.00000000
+                           |---------- Network ---------|- Host|
+Network: 192.168.1.0    Broadcast: 192.168.1.255    Usable: .1 – .254</pre>
+
+<p><strong>CIDR:</strong> /24 = 24 network bits = 255.255.255.0. Replaces rigid class system.</p>
+<div class="tbl"><table>
+<tr><th>CIDR</th><th>Mask</th><th>Hosts</th><th>Block</th></tr>
+<tr><td>/24</td><td>255.255.255.0</td><td>254</td><td>256</td></tr>
+<tr><td>/25</td><td>255.255.255.128</td><td>126</td><td>128</td></tr>
+<tr><td>/26</td><td>255.255.255.192</td><td>62</td><td>64</td></tr>
+<tr><td>/27</td><td>255.255.255.224</td><td>30</td><td>32</td></tr>
+<tr><td>/28</td><td>255.255.255.240</td><td>14</td><td>16</td></tr>
+<tr><td>/29</td><td>255.255.255.248</td><td>6</td><td>8</td></tr>
+<tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>4</td></tr>
+</table></div>
+
+<h3>IPv6</h3>
+<p><strong>128-bit</strong>, 8 groups of 4 hex digits: <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>. Shortening: drop leading zeros, replace longest all-zero group with <code>::</code> (once). Types: Global Unicast (<code>2000::/3</code>), Link-Local (<code>fe80::/10</code>), Unique Local (<code>fc00::/7</code>), Multicast (<code>ff00::/8</code>). <strong>No broadcast</strong> — uses multicast. NDP replaces ARP.</p>
+
+</div></div>
+
+<!-- ═══════════ SESSION 4 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S04</span><h2>IP Subnetting &amp; Routing</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Subnetting — Complete Method</h3>
+<div class="box box-r">🎯 Subnetting is the MOST TESTED networking topic. Practice until you can do it in your head.</div>
+
+<h4>Key Formulas</h4>
+<ul>
+<li><strong>Subnets</strong> = 2^(bits borrowed from host)</li>
+<li><strong>Usable hosts</strong> = 2^(host bits) − 2</li>
+<li><strong>Block size</strong> = 256 − interesting octet value in mask</li>
+<li><strong>Network</strong> = first address (host bits all 0)</li>
+<li><strong>Broadcast</strong> = last address (host bits all 1)</li>
+</ul>
+
+<h4>Worked Example: 192.168.1.0/26</h4>
+<pre>/26 = 26 network bits, 6 host bits
+Mask = 255.255.255.192
+Block size = 256 − 192 = 64
+Subnets from /24: 2^(26−24) = 4
+Hosts per subnet: 2^6 − 2 = 62
+
+Subnet 1: 192.168.1.0   | Usable: .1–.62    | Bcast: .63
+Subnet 2: 192.168.1.64  | Usable: .65–.126  | Bcast: .127
+Subnet 3: 192.168.1.128 | Usable: .129–.190 | Bcast: .191
+Subnet 4: 192.168.1.192 | Usable: .193–.254 | Bcast: .255</pre>
+
+<h4>"Find the Network" Method</h4>
+<pre>Q: What network does 172.16.45.200/21 belong to?
+
+/21 mask = 255.255.248.0 → Block = 256−248 = 8 (3rd octet)
+Multiples of 8: 0, 8, 16, 24, 32, 40, 48...
+45 falls between 40 and 48
+Network = 172.16.40.0/21   Broadcast = 172.16.47.255
+Usable:  172.16.40.1 – 172.16.47.254</pre>
+
+<h3>Routing</h3>
+<p>Selecting the <strong>best path</strong> for packets across networks. Router examines destination IP → looks up routing table → forwards to next hop.</p>
+
+<h4>Static vs Dynamic Routing</h4>
+<pre># Cisco Static Route
+Router(config)# ip route 10.10.0.0 255.255.0.0 192.168.1.1
+Router(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.1    ! Default route</pre>
+
+<div class="tbl"><table>
+<tr><th>Protocol</th><th>Type</th><th>Algorithm</th><th>Metric</th><th>AD</th><th>Use</th></tr>
+<tr><td><strong>RIP v2</strong></td><td>Distance Vector</td><td>Bellman-Ford</td><td>Hop count (max 15)</td><td>120</td><td>Small/learning</td></tr>
+<tr><td><strong>OSPF</strong></td><td>Link State</td><td>Dijkstra</td><td>Cost (bandwidth)</td><td>110</td><td>Enterprise</td></tr>
+<tr><td><strong>EIGRP</strong></td><td>Hybrid</td><td>DUAL</td><td>Composite</td><td>90</td><td>Cisco</td></tr>
+<tr><td><strong>BGP</strong></td><td>Path Vector</td><td>Best Path</td><td>AS Path</td><td>20/200</td><td>Internet</td></tr>
+</table></div>
+<p><strong>Administrative Distance:</strong> Connected=0, Static=1, EIGRP=90, OSPF=110, RIP=120. Lower AD wins.</p>
+
+</div></div>
+
+<!-- ═══════════ SESSION 5 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S05</span><h2>Networking Tools, DNS, DHCP &amp; ARP</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>DNS — Domain Name System (Port 53)</h3>
+<div class="diagram">www.google.com → IP?
+
+1. Browser cache → OS cache → hosts file → miss
+2. Recursive Resolver (ISP / 8.8.8.8)
+3. → Root Server (.)        → "Try .com TLD"
+4. → .com TLD Server        → "Try ns1.google.com"
+5. → Authoritative NS       → "IP = 142.250.x.x"
+6. Cache + return to browser</div>
+
+<p><strong>Records:</strong> A (→IPv4), AAAA (→IPv6), CNAME (alias), MX (mail), NS (nameserver), PTR (reverse), SOA (zone authority), TXT (SPF/DKIM), SRV (service).</p>
+
+<h3>DHCP (Ports 67/68, UDP)</h3>
+<div class="diagram">D — Discover (broadcast: "I need an IP!")
+O — Offer    (server: "Use 192.168.1.50")
+R — Request  (broadcast: "I'll take .50")
+A — Acknowledge (confirmed, lease 8 hours)</div>
+<p>Provides: IP, Mask, Gateway, DNS, Domain, Lease time. <strong>DHCP Relay:</strong> forwards broadcasts across routers.</p>
+
+<h3>ARP (Layer 2.5)</h3>
+<div class="diagram">PC-A needs MAC for 192.168.1.50:
+
+1. ARP Request (broadcast): "Who has 192.168.1.50?"
+2. ARP Reply (unicast):     "I do! My MAC is BB:BB:BB:BB:BB:BB"
+3. PC-A caches: 192.168.1.50 → BB:BB:BB:BB:BB:BB</div>
+
+<h3>Networking Tools</h3>
+<pre># Connectivity
+$ ping 8.8.8.8                        # ICMP echo
+$ ping -c 4 -s 1400 target.com        # Test MTU
+
+# Path tracing
+$ traceroute target.com               # Linux
+$ tracert target.com                  # Windows
+
+# DNS
+$ nslookup google.com
+$ nslookup -type=mx google.com
+$ dig google.com +short
+
+# Configuration
+$ ip addr show / ipconfig /all
+$ ip route show / route print
+
+# Connections
+$ ss -tulnp / netstat -tulnp
+
+# ARP
+$ arp -a                              # View ARP cache
+$ sudo ip neigh flush all             # Clear ARP cache</pre>
+
+</div></div>
+
+<!-- ═══════════ SESSION 6 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S06</span><h2>Packet Tracer — Setup &amp; Basic Lab</h2><span class="tag tag-l">Lab</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Cisco Packet Tracer</h3>
+<p>Free network <strong>simulation</strong> tool by Cisco. Design, configure, and test networks without real hardware. Download from <strong>netacad.com</strong>.</p>
+
+<h4>Key Interface Areas</h4>
+<ul>
+<li><strong>Workspace:</strong> Drag and drop devices</li>
+<li><strong>Device Panel (bottom):</strong> Routers, Switches, End Devices, Connections</li>
+<li><strong>Simulation Mode (stopwatch):</strong> Step through packets one at a time — see what happens at each layer</li>
+<li><strong>Realtime Mode:</strong> Normal operation</li>
+</ul>
+
+<h3>Basic Lab — 2 PCs + 1 Switch</h3>
+<pre>1. Drag Switch (2960) + 2 PCs
+2. Connect: PC0 → Switch Fa0/1, PC1 → Switch Fa0/2 (straight-through)
+3. PC0: IP 192.168.1.10, Mask 255.255.255.0
+4. PC1: IP 192.168.1.20, Mask 255.255.255.0
+5. PC0 Command Prompt: ping 192.168.1.20 → SUCCESS</pre>
+
+<div class="sl">
+<h4>🔶 Self-Learning Exercises</h4>
+<pre># Simulation Mode Observation:
+1. Switch to Simulation Mode (stopwatch icon)
+2. Add Simple PDU: Click PC0 → PC1
+3. Click "Capture/Forward" — watch step by step
+4. Observe: ARP broadcast first, then ARP reply, then ICMP
+
+# MAC Table Exercises:
+Switch> enable
+Switch# show mac address-table        ! View learned MACs
+Switch# clear mac address-table dynamic  ! Clear table
+# Ping again → watch MACs relearned
+
+# Packet Size Testing:
+PC0> ping -n 1 -l 1500 192.168.1.20   ! Test at MTU
+PC0> ping -n 1 -l 65000 192.168.1.20  ! Exceeds MTU → fragment/fail</pre>
+</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 7 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-c">S07</span><h2>NAT — Network Address Translation</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Why NAT?</h3>
+<p>Not enough IPv4 addresses. NAT lets multiple devices share ONE public IP by translating private→public at the router.</p>
+
+<div class="diagram">Inside (Private)         Router (NAT)         Internet
+192.168.1.10 ──┐                                    
+192.168.1.20 ──┼── Router ──── 203.0.113.5 ──── Internet
+192.168.1.30 ──┘   (all appear as 203.0.113.5)</div>
+
+<h4>NAT Types</h4>
+<div class="tbl"><table>
+<tr><th>Type</th><th>How</th><th>Use</th></tr>
+<tr><td><strong>Static NAT</strong></td><td>1 private ↔ 1 public (permanent)</td><td>Web server with fixed public IP</td></tr>
+<tr><td><strong>Dynamic NAT</strong></td><td>Pool of public IPs, assigned on demand</td><td>Multiple users, limited public IPs</td></tr>
+<tr><td><strong>PAT / Overload</strong></td><td>Many private → 1 public (port numbers differentiate)</td><td>Home/office — most common!</td></tr>
+</table></div>
+
+<h4>Terminology</h4>
+<p><strong>Inside Local:</strong> Private IP (192.168.1.10). <strong>Inside Global:</strong> Public IP representing internal device (203.0.113.5). <strong>Outside Global:</strong> Real IP of external server (8.8.8.8).</p>
+
+<h3>Cisco NAT Configuration</h3>
+<pre># Mark interfaces
+Router(config)# int Gi0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# ip nat inside
+Router(config)# int Gi0/1
+Router(config-if)# ip address 203.0.113.1 255.255.255.0
+Router(config-if)# ip nat outside
+
+# ═══ Static NAT ═══
+Router(config)# ip nat inside source static 192.168.1.100 203.0.113.10
+
+# ═══ Dynamic NAT ═══
+Router(config)# ip nat pool MYPOOL 203.0.113.10 203.0.113.20 netmask 255.255.255.0
+Router(config)# access-list 1 permit 192.168.1.0 0.0.0.255
+Router(config)# ip nat inside source list 1 pool MYPOOL
+
+# ═══ PAT (Most Common) ═══
+Router(config)# access-list 1 permit 192.168.1.0 0.0.0.255
+Router(config)# ip nat inside source list 1 interface Gi0/1 overload
+
+# Verify
+Router# show ip nat translations
+Router# show ip nat statistics</pre>
+
+<div class="diagram">PAT — How port numbers differentiate:
+PC1 (192.168.1.10:50001) → NAT → (203.0.113.5:50001) → google.com
+PC2 (192.168.1.20:50002) → NAT → (203.0.113.5:50002) → google.com
+PC3 (192.168.1.30:50001) → NAT → (203.0.113.5:50003) → google.com
+                                                 ↑ port changed to avoid conflict</div>
+
+</div></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<div class="phase phase-b">📡 Sessions 8–15 — VLANs, ACLs, Wireless, Wireshark &amp; GNS3</div>
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- ═══════════ SESSION 8 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S08</span><h2>VLANs — Complete Deep Dive</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Why VLANs?</h3>
+<p><strong>Security:</strong> Isolate departments. <strong>Performance:</strong> Smaller broadcast domains. <strong>Flexibility:</strong> Logical grouping regardless of physical location. <strong>Policy:</strong> Apply ACLs/QoS per VLAN.</p>
+
+<h4>VLAN Types</h4>
+<ul>
+<li><strong>Data VLAN:</strong> Normal user traffic</li>
+<li><strong>Voice VLAN:</strong> VoIP (QoS prioritized)</li>
+<li><strong>Management VLAN:</strong> Switch/router management (don't use VLAN 1!)</li>
+<li><strong>Native VLAN:</strong> Untagged traffic on trunk. Default=VLAN 1. Change for security!</li>
+</ul>
+
+<h4>Access vs Trunk Ports</h4>
+<p><strong>Access:</strong> ONE VLAN, connects end devices, frames untagged. <strong>Trunk:</strong> MULTIPLE VLANs between switches, uses <strong>802.1Q tagging</strong> (4-byte tag with VLAN ID inserted into frame).</p>
+
+<div class="diagram">802.1Q Tagged Frame:
+[Dst MAC][Src MAC][802.1Q Tag][EtherType][Data][FCS]
+                      │
+               ┌──────┴──────┐
+               │ TPID: 0x8100│ (identifies as tagged)
+               │ Priority: 3 │ (QoS 0-7)
+               │ VLAN ID: 10 │ (1-4094)
+               └─────────────┘</div>
+
+<h3>Full VLAN Lab</h3>
+<pre># ═══ Create VLANs ═══
+Switch(config)# vlan 10
+Switch(config-vlan)# name HR
+Switch(config)# vlan 20
+Switch(config-vlan)# name Finance
+Switch(config)# vlan 30
+Switch(config-vlan)# name IT
+
+# ═══ Assign Access Ports ═══
+Switch(config)# int range Fa0/1-5
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 10
+
+Switch(config)# int range Fa0/6-10
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 20
+
+Switch(config)# int range Fa0/11-15
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 30
+
+# ═══ Configure Trunk ═══
+Switch(config)# int Gi0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20,30
+Switch(config-if)# switchport trunk native vlan 99
+
+# ═══ Verify ═══
+Switch# show vlan brief
+Switch# show interfaces trunk
+Switch# show interfaces Fa0/1 switchport</pre>
+
+<h4>Inter-VLAN Routing — Router-on-a-Stick</h4>
+<pre># One physical link, multiple sub-interfaces
+Router(config)# int Gi0/0
+Router(config-if)# no shutdown
+
+Router(config)# int Gi0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+
+Router(config)# int Gi0/0.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+
+Router(config)# int Gi0/0.30
+Router(config-subif)# encapsulation dot1Q 30
+Router(config-subif)# ip address 192.168.30.1 255.255.255.0
+
+# Set PC gateways: VLAN 10 → 192.168.10.1, VLAN 20 → 192.168.20.1
+# Now VLAN 10 can reach VLAN 20 through router!</pre>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Enterprise VLAN Design</h4>
+<pre>VLAN 10 — HR:         192.168.10.0/24
+VLAN 20 — Finance:    192.168.20.0/24
+VLAN 30 — IT:         192.168.30.0/24
+VLAN 40 — Guest:      192.168.40.0/24 (ACL: Internet only)
+VLAN 50 — Voice:      172.16.50.0/24  (QoS priority)
+VLAN 99 — Management: 192.168.99.0/24
+VLAN 100 — Native:    (unused VLAN, prevents hopping)
+
+Security: Guest ACL blocks internal. Native ≠ VLAN 1. Voice QoS.</pre>
+</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 9 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S09</span><h2>ACLs — Access Control Lists</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>What Are ACLs?</h3>
+<p>Rules on a router that <strong>permit or deny</strong> traffic based on criteria. Most basic network filtering.</p>
+
+<div class="tbl"><table>
+<tr><th>Type</th><th>Number</th><th>Filters</th><th>Place Near</th></tr>
+<tr><td><strong>Standard</strong></td><td>1–99</td><td>Source IP only</td><td>Destination</td></tr>
+<tr><td><strong>Extended</strong></td><td>100–199</td><td>Source/Dest IP, Port, Protocol</td><td>Source</td></tr>
+<tr><td><strong>Named</strong></td><td>Text</td><td>Same as Standard or Extended</td><td>Same rules</td></tr>
+</table></div>
+
+<h4>Wildcard Masks (Inverse of Subnet Mask)</h4>
+<pre>255.255.255.0   → Wildcard: 0.0.0.255      (match network)
+255.255.255.128 → Wildcard: 0.0.0.127
+Host exact      → Wildcard: 0.0.0.0        (keyword: host)
+Any IP          → Wildcard: 255.255.255.255 (keyword: any)</pre>
+
+<h4>ACL Rules</h4>
+<ul>
+<li>Processed <strong>top-to-bottom, first match wins</strong></li>
+<li><strong>Implicit deny all</strong> at the end (always add <code>permit any</code> if needed)</li>
+<li>More specific rules FIRST</li>
+<li>One ACL per interface per direction</li>
+</ul>
+
+<h3>Practical</h3>
+<pre># ═══ Standard ACL — Block Source ═══
+Router(config)# access-list 10 deny 192.168.10.0 0.0.0.255
+Router(config)# access-list 10 permit any
+Router(config)# int Gi0/1
+Router(config-if)# ip access-group 10 out
+
+# ═══ Extended ACL — Block Specific Traffic ═══
+Router(config)# access-list 100 deny tcp 192.168.10.0 0.0.0.255 host 192.168.20.100 eq 80
+Router(config)# access-list 100 deny tcp 192.168.10.0 0.0.0.255 host 192.168.20.100 eq 443
+Router(config)# access-list 100 permit ip any any
+Router(config)# int Gi0/0
+Router(config-if)# ip access-group 100 in
+
+# ═══ Named ACL ═══
+Router(config)# ip access-list extended BLOCK_HR
+Router(config-ext-nacl)# deny tcp 192.168.10.0 0.0.0.255 host 192.168.20.100 eq 80
+Router(config-ext-nacl)# permit ip any any
+
+# ═══ Verify ═══
+Router# show access-lists
+Router# show ip interface Gi0/0</pre>
+
+<div class="sl">
+<h4>🔶 Self-Learning: ACL Placement</h4>
+<pre>Standard ACL → near DESTINATION (can only filter source)
+  Place at source = blocks ALL traffic from source to everywhere
+
+Extended ACL → near SOURCE (can specify destination)
+  Place early = saves bandwidth, blocks only specific traffic
+
+Rule Order:
+  ✗ WRONG: permit any → deny tcp...   (deny never reached!)
+  ✓ RIGHT: deny tcp... → permit any   (specific first)</pre>
+</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 10 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S10</span><h2>NTP &amp; Port SPAN (Mirroring)</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>NTP — Network Time Protocol (Port 123, UDP)</h3>
+<p>Synchronizes clocks across network devices. <strong>Why critical:</strong> Log correlation for forensics, Kerberos auth fails if >5 min skew, Scheduled tasks depend on correct time.</p>
+
+<h4>NTP Stratum</h4>
+<p>Stratum 0: Atomic clocks/GPS. Stratum 1: Directly connected to Stratum 0. Stratum 2: Syncs to Stratum 1. Each level adds ~1ms. Stratum 16 = unsynchronized.</p>
+
+<pre># Cisco NTP Client
+Router(config)# ntp server 216.239.35.0
+Router# show ntp status
+Router# show ntp associations
+Router# show clock
+
+# Cisco NTP Server
+Router(config)# ntp master 3              ! Act as Stratum 3 server
+
+# Linux (chrony)
+$ sudo systemctl enable --now chronyd
+$ chronyc sources -v
+$ timedatectl</pre>
+
+<h3>Port SPAN / Port Mirroring</h3>
+<p>Copies traffic from <strong>source port(s)</strong> to a <strong>destination port</strong> for monitoring (IDS, Wireshark, SIEM).</p>
+
+<div class="diagram">PC ──[Port 1]──Switch──[Port 2]── Server
+                        │
+                   [Port 24] ← SPAN destination
+                        │
+                  [Wireshark/IDS]  (sees ALL traffic)</div>
+
+<p><strong>Types:</strong> Local SPAN (same switch), RSPAN (across switches via RSPAN VLAN), ERSPAN (over L3/GRE tunnel).</p>
+
+<pre># Configure Local SPAN
+Switch(config)# monitor session 1 source interface Fa0/1 both
+Switch(config)# monitor session 1 destination interface Fa0/24
+# Or mirror entire VLAN:
+Switch(config)# monitor session 1 source vlan 10
+Switch# show monitor session 1</pre>
+
+</div></div>
+
+<!-- ═══════════ SESSION 11 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S11</span><h2>Wireless Basics &amp; Wireless LANs</h2><span class="tag tag-t">Theory</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Frequency Bands</h3>
+<div class="tbl"><table>
+<tr><th>Band</th><th>Range</th><th>Speed</th><th>Non-Overlapping Channels</th><th>Pros / Cons</th></tr>
+<tr><td><strong>2.4 GHz</strong></td><td>Longer (better through walls)</td><td>Slower</td><td>3 (channels 1, 6, 11)</td><td>More interference (microwaves, Bluetooth). Better penetration.</td></tr>
+<tr><td><strong>5 GHz</strong></td><td>Shorter</td><td>Faster</td><td>24+</td><td>Less interference, more channels. Worse through walls.</td></tr>
+<tr><td><strong>6 GHz</strong></td><td>Shortest</td><td>Fastest</td><td>59</td><td>Wi-Fi 6E/7 only. Very clean spectrum.</td></tr>
+</table></div>
+
+<h4>Wi-Fi Standards</h4>
+<div class="tbl"><table>
+<tr><th>Standard</th><th>Marketing Name</th><th>Band</th><th>Max Speed</th><th>Year</th></tr>
+<tr><td>802.11a</td><td>—</td><td>5 GHz</td><td>54 Mbps</td><td>1999</td></tr>
+<tr><td>802.11b</td><td>—</td><td>2.4 GHz</td><td>11 Mbps</td><td>1999</td></tr>
+<tr><td>802.11g</td><td>—</td><td>2.4 GHz</td><td>54 Mbps</td><td>2003</td></tr>
+<tr><td>802.11n</td><td>Wi-Fi 4</td><td>2.4 + 5</td><td>600 Mbps</td><td>2009</td></tr>
+<tr><td>802.11ac</td><td>Wi-Fi 5</td><td>5 GHz</td><td>6.93 Gbps</td><td>2013</td></tr>
+<tr><td>802.11ax</td><td>Wi-Fi 6/6E</td><td>2.4+5+6</td><td>9.6 Gbps</td><td>2019</td></tr>
+<tr><td>802.11be</td><td>Wi-Fi 7</td><td>2.4+5+6</td><td>46 Gbps</td><td>2024</td></tr>
+</table></div>
+
+<h4>Wireless Security</h4>
+<div class="tbl"><table>
+<tr><th>Protocol</th><th>Encryption</th><th>Status</th></tr>
+<tr><td><strong>WEP</strong></td><td>RC4</td><td>❌ Broken in minutes. Never use.</td></tr>
+<tr><td><strong>WPA</strong></td><td>TKIP</td><td>⚠️ Deprecated</td></tr>
+<tr><td><strong>WPA2</strong></td><td>AES-CCMP</td><td>✅ Current standard</td></tr>
+<tr><td><strong>WPA3</strong></td><td>AES-GCMP / SAE</td><td>✅ Newest, resistant to offline attacks</td></tr>
+</table></div>
+
+<h4>Key Terms</h4>
+<p><strong>SSID:</strong> Network name. <strong>BSSID:</strong> AP's MAC address. <strong>WPA-Personal (PSK):</strong> Shared password. <strong>WPA-Enterprise (802.1X):</strong> RADIUS authentication (Supplicant → Authenticator → Auth Server). <strong>WLC:</strong> Wireless LAN Controller (manages many APs). <strong>Interference sources:</strong> Microwaves, Bluetooth, cordless phones, other Wi-Fi, USB 3.0.</p>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Secure WLAN Design</h4>
+<pre>SSID: "CDAC-Corporate" (hidden SSID optional, not real security)
+Security: WPA2-Enterprise with RADIUS
+Authentication: 802.1X with EAP-TLS (certificate-based)
+Band: 5 GHz preferred (less interference)
+Channel: Non-overlapping (use site survey tool)
+Isolation: Client isolation enabled (clients can't see each other)
+MAC filtering: Additional layer (not primary security — spoofable)
+Guest SSID: Separate VLAN, Internet-only ACL</pre>
+</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 12 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S12</span><h2>Wireshark — Capture &amp; Filtering</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>What is Wireshark?</h3>
+<p>World's most popular <strong>packet analyzer</strong>. Captures live traffic, inspects every byte at every layer. Free and open-source. Used for troubleshooting, security analysis, forensics, and learning.</p>
+
+<h3>Capture Filters vs Display Filters</h3>
+<div class="box box-b">💡 <strong>Capture filters</strong> = BEFORE capture (BPF syntax, limits what's saved). <strong>Display filters</strong> = AFTER capture (Wireshark syntax, filter what you see). Display filters are more commonly used.</div>
+
+<h4>Capture Filters (BPF Syntax)</h4>
+<pre>host 192.168.1.10                    # Only this IP
+port 80                             # Only HTTP
+tcp port 443                        # Only HTTPS
+net 192.168.1.0/24                  # Only this subnet
+not port 22                         # Exclude SSH</pre>
+
+<h4>Display Filters (Wireshark Syntax)</h4>
+<pre># By Protocol
+icmp                                 # Ping traffic
+tcp                                  # All TCP
+udp                                  # All UDP
+http                                 # HTTP only
+dns                                  # DNS queries/responses
+arp                                  # ARP
+tls                                  # TLS/SSL
+dhcp                                 # DHCP
+
+# By IP
+ip.addr == 192.168.1.10              # To or from this IP
+ip.src == 192.168.1.10               # FROM this IP
+ip.dst == 8.8.8.8                    # TO this IP
+
+# By Port
+tcp.port == 80                       # Port 80 either direction
+tcp.dstport == 443                   # Destination port 443
+udp.port == 53                       # DNS
+
+# By TCP Flags
+tcp.flags.syn == 1                   # SYN packets
+tcp.flags.syn == 1 && tcp.flags.ack == 0  # SYN only (new connections)
+tcp.flags.rst == 1                   # Reset packets
+tcp.flags.fin == 1                   # Connection close
+
+# Combining
+ip.src == 192.168.1.10 && tcp.dstport == 80
+http.request.method == "GET"
+http.response.code == 404
+dns.qry.name contains "google"
+tcp.analysis.retransmission          # Retransmissions (trouble indicator)
+
+# Exclusion
+!(arp || dns)                        # Exclude ARP and DNS noise
+!ip.addr == 10.0.0.1                 # Exclude this IP</pre>
+
+<h3>Essential Wireshark Features</h3>
+<ul>
+<li><strong>Follow TCP Stream:</strong> Right-click → Follow → TCP Stream (read full conversation)</li>
+<li><strong>Protocol Hierarchy:</strong> Statistics → Protocol Hierarchy (% breakdown)</li>
+<li><strong>Conversations:</strong> Statistics → Conversations (who talked to whom)</li>
+<li><strong>Expert Info:</strong> Analyze → Expert Information (warnings, errors)</li>
+<li><strong>IO Graph:</strong> Statistics → IO Graph (traffic over time)</li>
+<li><strong>Coloring:</strong> Green=TCP, Blue=DNS, Red=Errors, etc.</li>
+</ul>
+
+</div></div>
+
+<!-- ═══════════ SESSION 13 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S13</span><h2>Dissecting TCP, UDP, IPv4 &amp; IPv6 Packets</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><span class="tag tag-s">Self-Learn</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>IPv4 Header Fields (20 bytes min)</h3>
+<div class="tbl"><table>
+<tr><th>Field</th><th>Bits</th><th>Purpose</th></tr>
+<tr><td><strong>Version</strong></td><td>4</td><td>IP version (4)</td></tr>
+<tr><td><strong>IHL</strong></td><td>4</td><td>Header length in 32-bit words (usually 5 = 20 bytes)</td></tr>
+<tr><td><strong>DSCP</strong></td><td>6</td><td>QoS priority marking</td></tr>
+<tr><td><strong>Total Length</strong></td><td>16</td><td>Entire packet size. Max 65,535 bytes.</td></tr>
+<tr><td><strong>Identification</strong></td><td>16</td><td>Fragment reassembly ID</td></tr>
+<tr><td><strong>Flags</strong></td><td>3</td><td>DF (Don't Fragment), MF (More Fragments)</td></tr>
+<tr><td><strong>Fragment Offset</strong></td><td>13</td><td>Position of fragment in original datagram</td></tr>
+<tr><td><strong>TTL</strong></td><td>8</td><td>Hop limit. Decremented at each router. 0 = drop. Default: 64 (Linux), 128 (Windows)</td></tr>
+<tr><td><strong>Protocol</strong></td><td>8</td><td>Upper layer: 1=ICMP, 6=TCP, 17=UDP, 47=GRE, 50=ESP</td></tr>
+<tr><td><strong>Header Checksum</strong></td><td>16</td><td>Error detection for header</td></tr>
+<tr><td><strong>Source IP</strong></td><td>32</td><td>Sender's address</td></tr>
+<tr><td><strong>Destination IP</strong></td><td>32</td><td>Receiver's address</td></tr>
+</table></div>
+
+<h3>IPv6 Header (Fixed 40 bytes)</h3>
+<div class="tbl"><table>
+<tr><th>Field</th><th>Bits</th><th>Purpose</th></tr>
+<tr><td>Version</td><td>4</td><td>Always 6</td></tr>
+<tr><td>Traffic Class</td><td>8</td><td>QoS</td></tr>
+<tr><td>Flow Label</td><td>20</td><td>Identifies flow for QoS</td></tr>
+<tr><td>Payload Length</td><td>16</td><td>Data after header</td></tr>
+<tr><td>Next Header</td><td>8</td><td>Next protocol (replaces Protocol field)</td></tr>
+<tr><td>Hop Limit</td><td>8</td><td>Same as TTL</td></tr>
+<tr><td>Source IP</td><td>128</td><td>Sender's IPv6</td></tr>
+<tr><td>Destination IP</td><td>128</td><td>Receiver's IPv6</td></tr>
+</table></div>
+
+<h4>IPv4 vs IPv6 Comparison</h4>
+<div class="tbl"><table>
+<tr><th>Feature</th><th>IPv4</th><th>IPv6</th></tr>
+<tr><td>Size</td><td>32-bit (4.3B)</td><td>128-bit (3.4×10³⁸)</td></tr>
+<tr><td>Header</td><td>Variable 20–60 B</td><td>Fixed 40 B (simpler)</td></tr>
+<tr><td>Broadcast</td><td>Yes</td><td>No (multicast)</td></tr>
+<tr><td>Checksum</td><td>In header</td><td>Removed</td></tr>
+<tr><td>Fragmentation</td><td>Any router</td><td>Source only</td></tr>
+<tr><td>ARP</td><td>Yes</td><td>NDP</td></tr>
+<tr><td>NAT</td><td>Required</td><td>Not needed</td></tr>
+<tr><td>Auto-config</td><td>DHCP</td><td>SLAAC or DHCPv6</td></tr>
+<tr><td>IPSec</td><td>Optional</td><td>Built-in</td></tr>
+</table></div>
+
+<h3>TCP Header (20 bytes min)</h3>
+<div class="tbl"><table>
+<tr><th>Field</th><th>Bits</th><th>Purpose</th></tr>
+<tr><td>Source Port</td><td>16</td><td>Sender's app port</td></tr>
+<tr><td>Dest Port</td><td>16</td><td>Receiver's app port</td></tr>
+<tr><td><strong>Sequence #</strong></td><td>32</td><td>Byte position in stream — ensures ordering</td></tr>
+<tr><td><strong>Acknowledgment #</strong></td><td>32</td><td>Next byte expected — confirms receipt</td></tr>
+<tr><td>Data Offset</td><td>4</td><td>Header length</td></tr>
+<tr><td><strong>Flags</strong></td><td>9</td><td>SYN, ACK, FIN, RST, PSH, URG</td></tr>
+<tr><td>Window Size</td><td>16</td><td>Flow control — bytes receiver can accept</td></tr>
+<tr><td>Checksum</td><td>16</td><td>Error detection</td></tr>
+</table></div>
+
+<h4>3-Way Handshake in Wireshark</h4>
+<pre># Filter: tcp.flags.syn == 1
+
+Pkt 1: [SYN]       Client→Server  Seq=0                Flags: SYN
+Pkt 2: [SYN,ACK]   Server→Client  Seq=0, Ack=1         Flags: SYN+ACK
+Pkt 3: [ACK]       Client→Server  Seq=1, Ack=1         Flags: ACK
+                    ═══ Connection Established ═══
+Pkt 4: [PSH,ACK]   Client→Server  Seq=1, Len=374       (HTTP GET)
+Pkt 5: [ACK]       Server→Client  Ack=375              (confirms 374 bytes)
+
+Key: ACK# = last Seq received + data length</pre>
+
+<h3>UDP Header (Fixed 8 bytes)</h3>
+<p>Source Port (16) + Dest Port (16) + Length (16) + Checksum (16) = 8 bytes total. No sequence numbers, no ACK, no handshake. Just data. That's why it's fast.</p>
+
+<div class="sl">
+<h4>🔶 Self-Learning: Wireshark Analysis Tasks</h4>
+<pre># Capture ICMP:  Filter: icmp
+# - Identify Type 8 (Echo Request) and Type 0 (Echo Reply)
+# - Note TTL values (64 = Linux, 128 = Windows)
+
+# Capture TCP handshake:  Filter: tcp.flags.syn == 1
+# - Identify SYN, SYN-ACK, ACK sequence
+# - Note initial sequence numbers (ISN)
+# - Observe window size negotiation
+
+# Capture HTTP:  Filter: http
+# - Find GET requests (http.request.method == "GET")
+# - Follow TCP Stream → read full request/response
+
+# Capture DNS:  Filter: dns
+# - See query (dns.flags.response == 0)
+# - See response (dns.flags.response == 1)
+# - Note: A record responses contain IP
+
+# Compare IPv4 vs IPv6:
+# Filter: ip       (IPv4 packets — check TTL, Protocol fields)
+# Filter: ipv6     (IPv6 packets — check Hop Limit, Next Header)</pre>
+</div>
+
+</div></div>
+
+<!-- ═══════════ SESSION 14 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S14</span><h2>GNS3 — Setup, Preferences &amp; GUI</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>GNS3 vs Packet Tracer</h3>
+<div class="tbl"><table>
+<tr><th>Feature</th><th>Packet Tracer</th><th>GNS3</th></tr>
+<tr><td>Type</td><td>Simulator (mimics behavior)</td><td>Emulator (runs REAL OS images)</td></tr>
+<tr><td>Accuracy</td><td>~80% (limited commands)</td><td>100% (real device behavior)</td></tr>
+<tr><td>Resources</td><td>Light</td><td>Heavy (each device = process/VM)</td></tr>
+<tr><td>Cost</td><td>Free (Netacad)</td><td>Free (but IOS images licensed)</td></tr>
+<tr><td>Multi-vendor</td><td>Cisco only</td><td>Cisco, Juniper, Palo Alto, Linux</td></tr>
+<tr><td>Best for</td><td>CCNA, CDAC labs</td><td>CCNP+, real testing</td></tr>
+</table></div>
+
+<h3>Installation</h3>
+<ol>
+<li>Download from <strong>gns3.com</strong></li>
+<li>Install GNS3 application (includes Dynamips, VPCS)</li>
+<li>Install <strong>GNS3 VM</strong> (VMware/VirtualBox) — recommended for heavy appliances</li>
+<li>Start GNS3 → Setup Wizard → "Run appliances on GNS3 VM"</li>
+</ol>
+
+<h4>GNS3 Components</h4>
+<ul>
+<li><strong>Dynamips:</strong> Emulates Cisco IOS routers (needs real .bin images)</li>
+<li><strong>VPCS:</strong> Lightweight virtual PCs (ping, traceroute only)</li>
+<li><strong>QEMU:</strong> Full OS emulation (Juniper vSRX, Linux, Windows)</li>
+<li><strong>Docker:</strong> Lightweight containers for Linux tools</li>
+<li><strong>GNS3 VM:</strong> Dedicated VM for heavy emulation workload</li>
+</ul>
+
+<h4>GUI Layout</h4>
+<p><strong>Center:</strong> Topology workspace. <strong>Left:</strong> Device toolbar (routers, switches, end devices, links). <strong>Right:</strong> Server summary (CPU/RAM). <strong>Bottom:</strong> Console, logs.</p>
+
+<h4>Idle-PC (Critical!)</h4>
+<p>Without Idle-PC, each emulated router uses 100% CPU. Right-click router → Idle-PC → Select value with * (asterisk = recommended). This pauses emulation when router is idle, dramatically reducing CPU usage.</p>
+
+</div></div>
+
+<!-- ═══════════ SESSION 15 ═══════════ -->
+<div class="s"><div class="s-h" onclick="this.closest('.s').classList.toggle('o')"><span class="sn sn-g">S15</span><h2>GNS3 Switching &amp; Appliances (Cisco/Juniper)</h2><span class="tag tag-t">Theory</span><span class="tag tag-l">Lab</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div><div class="s-b">
+
+<h3>Switching in GNS3</h3>
+<div class="tbl"><table>
+<tr><th>Option</th><th>What</th><th>Pros</th><th>Cons</th></tr>
+<tr><td><strong>Built-in Switch</strong></td><td>Simple L2 switch in GNS3</td><td>No image needed</td><td>Very basic, no CLI</td></tr>
+<tr><td><strong>EtherSwitch Module</strong></td><td>NM-16ESW on router</td><td>Real IOS CLI, VLANs/STP</td><td>16 ports, router image</td></tr>
+<tr><td><strong>IOSvL2</strong></td><td>Cisco virtual switch (QEMU)</td><td>Full switch features</td><td>Licensed (CML), heavy</td></tr>
+<tr><td><strong>Open vSwitch</strong></td><td>Open-source (Docker)</td><td>Free, SDN/OpenFlow</td><td>Different CLI</td></tr>
+</table></div>
+
+<h4>EtherSwitch Module</h4>
+<pre># Add NM-16ESW to router (c3725):
+# Right-click → Configure → Slots → NM-16ESW
+
+Router# show vlan-switch
+Router(config)# vlan database
+Router(vlan)# vlan 10 name HR
+Router(vlan)# exit
+Router(config)# int Fa1/0
+Router(config-if)# switchport mode access
+Router(config-if)# switchport access vlan 10</pre>
+
+<h3>Appliances</h3>
+<h4>Cisco</h4>
+<p><strong>Router IOS:</strong> c3725, c7200 (Dynamips). <strong>IOSv/IOSvL2:</strong> Virtual router/switch (QEMU, from CML). <strong>CSR1000v:</strong> IOS-XE router. <strong>ASAv:</strong> Virtual firewall.</p>
+
+<h4>Juniper</h4>
+<p><strong>vSRX:</strong> Virtual firewall/router. <strong>vMX:</strong> Enterprise router. <strong>vQFX:</strong> Data center switch.</p>
+
+<h4>Cisco IOS vs Juniper JunOS</h4>
+<div class="tbl"><table>
+<tr><th>Task</th><th>Cisco IOS</th><th>JunOS</th></tr>
+<tr><td>Config mode</td><td><code>configure terminal</code></td><td><code>configure</code></td></tr>
+<tr><td>Show config</td><td><code>show running-config</code></td><td><code>show configuration</code></td></tr>
+<tr><td>Hostname</td><td><code>hostname R1</code></td><td><code>set system host-name R1</code></td></tr>
+<tr><td>Interface IP</td><td><code>ip address 10.0.0.1 255.255.255.0</code></td><td><code>set interfaces ge-0/0/0 unit 0 family inet address 10.0.0.1/24</code></td></tr>
+<tr><td>Save</td><td><code>write memory</code></td><td><code>commit</code></td></tr>
+<tr><td>Undo</td><td>Manual re-config</td><td><code>rollback 1</code> then <code>commit</code></td></tr>
+<tr><td>Routes</td><td><code>show ip route</code></td><td><code>show route</code></td></tr>
+</table></div>
+
+<div class="box box-g">🔑 <strong>JunOS advantage:</strong> Candidate config + commit model. Make changes → <code>commit</code> to apply. If broken → <code>rollback 1</code> and <code>commit</code> reverts instantly. Much safer than Cisco's immediate-apply approach.</div>
+
+<h4>Importing Appliances</h4>
+<pre># Edit → Preferences → QEMU → New VM
+# Name: "Juniper vSRX 3.0"
+# RAM: 4GB+
+# Disk: Point to .qcow2 image
+# Adapters: 4+
+# Save → Drag from device panel
+
+# Or: GNS3 Marketplace
+# File → Import Appliance → .gns3a template → point to image</pre>
+
+</div></div>
+
+</div>
+
+<div style="text-align:center;padding:24px 20px 48px;color:#94a3b8;font-size:12px">
+CDAC PGCP-CSF Module 2 — Network Essentials | All 15 sessions + All self-learning tasks covered. 🌐
+</div>
+</body>
+</html>
