@@ -1,5 +1,5 @@
 # Cybersecurity-Forensics
-View the Website : 👉 **[Open QUICK Cybersecurity Reference](https://likhitha-panneeru.github.io/Cybersecurity-Forensics/)**
+View the Website : 👉 **[Open Cybersecurity & Forensics](https://likhitha-panneeru.github.io/Cybersecurity-Forensics/)**
 
 ---
 
